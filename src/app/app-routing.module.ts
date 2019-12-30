@@ -1,7 +1,32 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { PesawatComponent } from './components/pesawat/pesawat.component';
+import { HotelComponent } from './components/hotel/hotel.component';
+import { KeretaApiComponent } from './components/kereta-api/kereta-api.component';
+import { SewaMobilComponent } from './components/sewa-mobil/sewa-mobil.component';
+import { HiburanComponent } from './components/hiburan/hiburan.component';
+import { DaftarLoginComponent } from './components/daftar-login/daftar-login.component';
+import { CekOrderComponent } from './components/cek-order/cek-order.component';
+import { TixPointComponent } from './components/tix-point/tix-point.component';
+import { UnduhAplikasiComponent } from './components/unduh-aplikasi/unduh-aplikasi.component';
+import { PromoListComponent } from './components/promo-list/promo-list.component';
+import { HelpCenterComponent } from './components/help-center/help-center.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'pesawat', component: PesawatComponent },
+  { path: 'hotel', component: HotelComponent },
+  { path: 'keretaapi', component: KeretaApiComponent },
+  { path: 'sewamobil', component: SewaMobilComponent },
+  { path: 'hiburan', component: HiburanComponent },
+  { path: 'tixpoint', component: TixPointComponent },
+  { path: 'cekorder', component: CekOrderComponent },
+  { path: 'daftarlogin', component: DaftarLoginComponent },
+  { path: 'unduhaplikasi', component: UnduhAplikasiComponent },
+  { path: 'promo', component: PromoListComponent },
+  { path: 'help', component: HelpCenterComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

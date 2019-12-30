@@ -1,0 +1,23 @@
+<div class="header-container">
+    <div class="header-left-side">
+        <div class="header-logo">
+            <a [routerLink]="['/']" routerLinkActive="router-link-active" >
+                <img src="https://static.tiket.photos/image/upload/v1576229034/logo/2019/12/13/9ac66782-b53a-415f-8e50-34ea899d5f8c-1576229031908-04e9e567dc74230fa9929c5ffe3f6fd0.png" alt="logo tiket.com">
+            </a>
+        </div>
+        <div class="product-list">
+            <div class="product-link"><a [routerLink]="['/pesawat']" routerLinkActive="router-link-active" >Pesawat</a></div>
+            <div class="product-link"><a [routerLink]="['/hotel']" routerLinkActive="router-link-active" >Hotel</a></div>
+            <div class="product-link"><a [routerLink]="['/keretaapi']" routerLinkActive="router-link-active" >Kereta Api</a></div>
+            <div class="product-link"><a [routerLink]="['/sewamobil']" routerLinkActive="router-link-active" >Sewa Mobil</a></div>
+            <div class="product-link"><a [routerLink]="['/hiburan']" routerLinkActive="router-link-active" >Hiburan</a></div>
+        </div>
+    </div>
+    <div class="header-right-side">
+        <div class="right-link"><a [routerLink]="['/tixpoint']" routerLinkActive="router-link-active" >Tix Point</a></div>
+        <div class="right-link"><a [routerLink]="['/cekorder']" routerLinkActive="router-link-active" >Cek Order</a></div>
+        <div class="right-link"><a [routerLink]="['/daftarlogin']" routerLinkActive="router-link-active" >Login</a></div>
+        <div class="right-link" id="daftar"><a [routerLink]="['/daftarlogin']" routerLinkActive="router-link-active" >Daftar</a></div>
+    </div>
+</div>
+<router-outlet></router-outlet>
