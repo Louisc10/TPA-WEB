@@ -55,33 +55,33 @@
         <div class="footer-list">
             <div class="footer-item-title">Produk</div>
             <div class="footer-item-contents">
-                <div class="footer-item-content"><a href="/pesawat">Pesawat</a></div>
-                <div class="footer-item-content"><a href="/hotel">Hotel</a></div>
-                <div class="footer-item-content"><a href="/kereta-api">Kereta Api</a></div>
-                <div class="footer-item-content"><a href="/sewa-mobil">Sewa Mobil</a></div>
-                <div class="footer-item-content"><a href="/event">Hiburan</a></div>
+                <div class="footer-item-content"><a [routerLink]="['/pesawat']" routerLinkActive="router-link-active">Pesawat</a></div>
+                <div class="footer-item-content"><a [routerLink]="['/hotel']" routerLinkActive="router-link-active">Hotel</a></div>
+                <div class="footer-item-content"><a [routerLink]="['/keretaapi']" routerLinkActive="router-link-active">Kereta Api</a></div>
+                <div class="footer-item-content"><a [routerLink]="['/sewamobil']" routerLinkActive="router-link-active">Sewa Mobil</a></div>
+                <div class="footer-item-content"><a [routerLink]="['/hiburan']" routerLinkActive="router-link-active">Hiburan</a></div>
             </div>
         </div>
         <div class="footer-list">
             <div class="footer-item-title">Dukungan</div>
             <div class="footer-item-contents">
-                <div class="footer-item-content"><a href="/help-center">Pusat Bantuan</a></div>
-                <div class="footer-item-content"><a href="/info">Syarat dan Ketentuan</a></div>
-                <div class="footer-item-content"><a href="/info/privacy-policy">Kebijakan dan Privasi</a></div>
-                <div class="footer-item-content"><a href="/info/tiket-anti-galau">Tiket Anti Galau</a></div>
+                <div class="footer-item-content">Pusat Bantuan</div>
+                <div class="footer-item-content">Syarat dan Ketentuan</div>
+                <div class="footer-item-content">Kebijakan dan Privasi</div>
+                <div class="footer-item-content">Tiket Anti Galau</div>
             </div>
         </div>
         <div class="footer-list">
             <div class="footer-item-title">Download tiket.com app</div>
             <div class="footer-item-contents">
                 <div class="footer-item-content image-content">
-                    <a href="http://m.onelink.me/ee4c8d9c" rel="nofollow noreferrer noopener">
+                    <a href="http://m.onelink.me/ee4c8d9c">
                         <img src="https://static.tiket.photos/image/upload/v1566906089/home/2019/08/27/a1675362-dcd8-4cdf-b5e7-e8f19a0f3e18-1566906088525-439c59735093bc47a84e0a389a3ebfdf.png"
                             alt="Apps Tiket Google">
                     </a>
                 </div>
                 <div class="footer-item-content image-content">
-                    <a href="http://m.onelink.me/6c61f6f2" rel="nofollow noreferrer noopener">
+                    <a href="http://m.onelink.me/6c61f6f2">
                         <img src="https://static.tiket.photos/image/upload/v1566906080/home/2019/08/27/20f9e8ec-b4c9-4961-b397-8a4b86f5de0f-1566906079170-b2136cf4644abf507b818814f501516f.png"
                             alt="Apps Tiket Apple">
                     </a>
@@ -140,3 +140,5 @@
         </div>
     </div>
 </div>
+
+<router-outlet></router-outlet>
