@@ -23,6 +23,9 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainFooterComponent } from './components/footer/main-footer/main-footer.component';
 import { DefaultFooterComponent } from './components/footer/default-footer/default-footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { MainWidgetComponent } from './components/widget/main-widget/main-widget.component';
 
 @NgModule({
   declarations: [
@@ -45,11 +48,14 @@ import { DefaultFooterComponent } from './components/footer/default-footer/defau
     AdminComponent,
     FooterComponent,
     MainFooterComponent,
-    DefaultFooterComponent
+    DefaultFooterComponent,
+    MainWidgetComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
