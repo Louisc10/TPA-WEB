@@ -24,7 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainFooterComponent } from './components/footer/main-footer/main-footer.component';
 import { DefaultFooterComponent } from './components/footer/default-footer/default-footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './module/material/material.module';
+import { MaterialModule } from "./module/material/material.module";
 import { SocialmediaModule } from './module/socialmedia/socialmedia.module';
 import { MainWidgetComponent } from './components/widget/main-widget/main-widget.component';
 
