@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +24,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainFooterComponent } from './components/footer/main-footer/main-footer.component';
 import { DefaultFooterComponent } from './components/footer/default-footer/default-footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './module/material/material.module';
+import { SocialmediaModule } from './module/socialmedia/socialmedia.module';
 import { MainWidgetComponent } from './components/widget/main-widget/main-widget.component';
 
 @NgModule({
@@ -55,7 +56,8 @@ import { MainWidgetComponent } from './components/widget/main-widget/main-widget
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    SocialmediaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
