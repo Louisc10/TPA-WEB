@@ -12,9 +12,10 @@ import { TixPointComponent } from './components/tix-point/tix-point.component';
 import { UnduhAplikasiComponent } from './components/unduh-aplikasi/unduh-aplikasi.component';
 import { PromoListComponent } from './components/promo-list/promo-list.component';
 import { HelpCenterComponent } from './components/help-center/help-center.component';
+import { HotelWidget } from './components/widget/hotel/hotel.component'
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent  },
   { path: 'pesawat', component: PesawatComponent },
   { path: 'hotel', component: HotelComponent },
   { path: 'keretaapi', component: KeretaApiComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'unduhaplikasi', component: UnduhAplikasiComponent },
   { path: 'promo', component: PromoListComponent },
   { path: 'help', component: HelpCenterComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -33,3 +35,19 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export const RoutingComponents = [ 
+  HotelWidget,
+  HomeComponent,
+  PesawatComponent,
+  HotelComponent,
+  KeretaApiComponent,
+  SewaMobilComponent,
+  HiburanComponent,
+  TixPointComponent,
+  CekOrderComponent,
+  DaftarLoginComponent,
+  UnduhAplikasiComponent,
+  PromoListComponent,
+  HelpCenterComponent,
+
+]

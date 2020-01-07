@@ -1,0 +1,96 @@
+.card-right
+    margin:
+        left: 10vw
+    width: 20vw
+    height: 28vw
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)
+    transition: 0.3s
+    padding: 2%
+    display: flex
+    flex-direction: column
+    .signup-text
+        font:
+            size: 1.5vw
+            weight: bold 
+    .input-wrap
+        width: 90%
+        margin: 
+            top: 1.5vw
+            bottom: 1.5vw
+        input
+            width: 100%
+            padding: 0.5vw
+            border: 1px solid rgba(0,0,0,0.2)
+                radius: 3px
+        .btn-custom
+            width: 107%
+            padding: 0.5vw
+            background-color: #f2c746
+            color: blue
+            font:
+                weight: bold
+            border: none
+                radius: 25px
+    .hr-with-txt
+        width: 96%
+        display: flex
+        justify-content: center 
+
+        span
+            // background: 
+            //     color: white
+            padding: 
+                left: 1vw
+                right: 1vw 
+    .social-network-wrap
+        border: 1px solid rgba(0,0,0,0.2)
+            radius: 3px
+        display: flex
+        flex-direction: column
+        align-items: center
+        .btn-socmed
+            padding: auto
+                top: 1vw
+                buttom: 1vw
+            width: 99%
+            display: flex
+            justify-content: center
+            align-content: center
+            border: none
+            cursor: pointer
+            .content
+                width: 2vw
+                height: 2vw
+                display: flex
+                justify-content: center
+                align-content: center
+                background: 
+                    color: rgba(0, 0, 0, 0)
+                margin:
+                        left: 2vw
+                        right: 2vw
+                        bottom: 1vw
+                img
+                    width: auto
+                    height: 80%
+                        max: 2vw
+                    background: 
+                        color: rgba(0, 0, 0, 0)
+            span
+                margin: auto
+                    bottom: 1vw
+                background: 
+                    color: rgba(0, 0, 0, 0)
+            &:hover
+                background: 
+                    color: rgba(0, 0, 0, 0.2)
+        .btn-divider
+            width: 80%
+            height: 0.1vw
+
+
+@media screen and (max-width: 1024px)
+    .card-right
+        height: 32vw
+        margin:
+            top: 3vw

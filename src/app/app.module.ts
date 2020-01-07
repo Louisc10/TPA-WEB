@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NavbarBottomComponent } from './components/navbar/navbar-bottom/navbar-bottom.component';
@@ -27,6 +29,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./module/material/material.module";
 import { SocialmediaModule } from './module/socialmedia/socialmedia.module';
 import { MainWidgetComponent } from './components/widget/main-widget/main-widget.component';
+import { CardRightComponent } from './components/daftar-login/card-right/card-right.component';
+import { PartnerEventComponent } from './components/hiburan/partner-event/partner-event.component';
+import { SubscribionComponent } from './components/footer/subscribion/subscribion.component';
+import { HotelWidget } from './components/widget/hotel/hotel.component'
+import { MapsComponent } from './components/hotel/maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -50,16 +57,29 @@ import { MainWidgetComponent } from './components/widget/main-widget/main-widget
     FooterComponent,
     MainFooterComponent,
     DefaultFooterComponent,
-    MainWidgetComponent
+    MainWidgetComponent,
+    CardRightComponent,
+    PartnerEventComponent,
+    SubscribionComponent,
+    MapsComponent,
+    HotelWidget,
+    RoutingComponents
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    SocialmediaModule
+    SocialmediaModule,
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA78FwfXaY_ZtA0yGJTSlzD3mUtSA13u9U'
+    })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    MainWidgetComponent
+  ]
 })
 export class AppModule { }

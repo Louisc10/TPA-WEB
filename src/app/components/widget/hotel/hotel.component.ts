@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-hotel',
+  selector: 'widget-hotel',
   templateUrl: './hotel.component.html',
   styleUrls: ['./hotel.component.sass']
 })
-export class HotelComponent implements OnInit {
+export class HotelWidget implements OnInit {
 
   constructor() { }
 
