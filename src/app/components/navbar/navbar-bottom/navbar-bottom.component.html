@@ -16,8 +16,8 @@
     <div class="header-right-side">
         <div class="right-link"><a [routerLink]="['/tixpoint']" routerLinkActive="router-link-active" >Tix Point</a></div>
         <div class="right-link"><a [routerLink]="['/cekorder']" routerLinkActive="router-link-active" >Cek Order</a></div>
-        <div class="right-link"><a [routerLink]="['/daftarlogin']" routerLinkActive="router-link-active" >Login</a></div>
-        <div class="right-link" id="daftar"><a [routerLink]="['/daftarlogin']" routerLinkActive="router-link-active" >Daftar</a></div>
+        <div class="right-link" (click) = "openLogin()">Login</div>
+        <div class="right-link" id="daftar" (click) = "openLogin()" >Daftar</div>
     </div>
 </div>
 <router-outlet></router-outlet>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CardRightComponent } from '../../daftar-login/card-right/card-right.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-navbar-bottom',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarBottomComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog : MatDialog) { }
 
   ngOnInit() {
   }
 
+  openLogin(){
+    this.dialog.open(CardRightComponent);
+  }
 }

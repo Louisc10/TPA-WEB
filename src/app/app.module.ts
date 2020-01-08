@@ -32,8 +32,12 @@ import { MainWidgetComponent } from './components/widget/main-widget/main-widget
 import { CardRightComponent } from './components/daftar-login/card-right/card-right.component';
 import { PartnerEventComponent } from './components/hiburan/partner-event/partner-event.component';
 import { SubscribionComponent } from './components/footer/subscribion/subscribion.component';
-import { HotelWidget } from './components/widget/hotel/hotel.component'
 import { MapsComponent } from './components/hotel/maps/maps.component';
+import { HotelWidget } from './components/widget/hotel/hotel.component'
+import { EntertainmentWidget } from './components/widget/entertainment/entertainment.component';
+import { SewaMobilWidget } from './components/widget/sewa-mobil/sewa-mobil.component';
+import { PesawatWidget } from './components/widget/pesawat/pesawat.component';
+import { KeretaApiWidget } from './components/widget/kereta-api/kereta-api.component';
 
 @NgModule({
   declarations: [
@@ -62,8 +66,12 @@ import { MapsComponent } from './components/hotel/maps/maps.component';
     PartnerEventComponent,
     SubscribionComponent,
     MapsComponent,
+    RoutingComponents,
     HotelWidget,
-    RoutingComponents
+    KeretaApiWidget,
+    PesawatWidget,
+    EntertainmentWidget,
+    SewaMobilWidget,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +87,13 @@ import { MapsComponent } from './components/hotel/maps/maps.component';
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    MainWidgetComponent
+    MainWidgetComponent,
+    HotelWidget,
+    SewaMobilWidget,
+    EntertainmentWidget,
+    PesawatWidget,
+    KeretaApiWidget,
+    CardRightComponent
   ]
 })
 export class AppModule { }

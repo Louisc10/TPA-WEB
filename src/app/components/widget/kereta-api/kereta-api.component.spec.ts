@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HotelWidget } from './hotel.component';
+import { KeretaApiComponent } from './kereta-api.component';
 
-describe('HotelWidget', () => {
-  let component: HotelWidget;
-  let fixture: ComponentFixture<HotelWidget>;
+describe('KeretaApiComponent', () => {
+  let component: KeretaApiComponent;
+  let fixture: ComponentFixture<KeretaApiComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HotelWidget ]
+      declarations: [ KeretaApiComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HotelWidget);
+    fixture = TestBed.createComponent(KeretaApiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
