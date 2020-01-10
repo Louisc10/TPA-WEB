@@ -45,7 +45,13 @@
             padding:
                 top: 0.8vw
                 bottom: 0.8vw
+            color: black
+            text-decoration: none
+            font:
+                size: 1vw
+            cursor: pointer
             &:hover
+                color: blue
                 border-bottom: 1px solid blue 
         #daftar
             border: 1px solid rgba(0,0,0, 0.1)
@@ -53,6 +59,32 @@
             border-radius: 25%
             padding: 0.3vw 0.6vw
             color: blue
+        
+        .user
+            // width: 150px
+            height: 25px
+            padding: 5px
+            cursor: pointer
+            display: flex
+            margin:
+                top: auto
+                bottom: auto
+            align-items: center
+            border-radius: 5px
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)
+            &:hover
+                background-color: rgba(75, 89, 195, 1)
+                color: white
+            .name
+                // width: 40px
+                // padding: 0 1px
+                // height: 10px
+                font-size: 10px
+            .icon
+                margin: 0 5px
+                width: 20px
+                height: 20px
+                border-radius: 10px
 
 a
     color: black

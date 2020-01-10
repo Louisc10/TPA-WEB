@@ -38,6 +38,7 @@ import { EntertainmentWidget } from './components/widget/entertainment/entertain
 import { SewaMobilWidget } from './components/widget/sewa-mobil/sewa-mobil.component';
 import { PesawatWidget } from './components/widget/pesawat/pesawat.component';
 import { KeretaApiWidget } from './components/widget/kereta-api/kereta-api.component';
+import { DatePickerComponent } from './components/widget/other/date-picker/date-picker.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { KeretaApiWidget } from './components/widget/kereta-api/kereta-api.compo
     PesawatWidget,
     EntertainmentWidget,
     SewaMobilWidget,
+    DatePickerComponent,
   ],
   imports: [
     BrowserModule,

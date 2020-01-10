@@ -16,8 +16,14 @@
     <div class="header-right-side">
         <div class="right-link"><a [routerLink]="['/tixpoint']" routerLinkActive="router-link-active" >Tix Point</a></div>
         <div class="right-link"><a [routerLink]="['/cekorder']" routerLinkActive="router-link-active" >Cek Order</a></div>
-        <div class="right-link" (click) = "openLogin()">Login</div>
-        <div class="right-link" id="daftar" (click) = "openLogin()" >Daftar</div>
+        
+        <div class="right-link" *ngIf="userPresent() == false" (click) = "openLogin()">Login</div>
+        <div class="right-link" *ngIf="userPresent() == false" id="daftar" (click) = "openLogin()" >Daftar</div>
+
+        <div class="user" *ngIf="userPresent()" (click)="signOut()">
+            <div class="name">{{ user.firstName }} {{ user.lastName }}</div>
+            <img class="icon" src="{{ user.photoUrl }}">
+        </div>
     </div>
 </div>
 <router-outlet></router-outlet>
