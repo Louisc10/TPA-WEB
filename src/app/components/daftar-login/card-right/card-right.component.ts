@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
+import { BackendServiceService } from '../../../service/backend-service.service';
+import { Query } from 'src/app/models/query';
 
 @Component({
   selector: 'app-card-right',
@@ -11,8 +13,9 @@ import { SocialUser } from "angularx-social-login";
 export class CardRightComponent implements OnInit {
   private user: SocialUser;
   private loggedIn: boolean;
+  private username: String;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private apollo: BackendServiceService) { }
  
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
@@ -24,6 +27,16 @@ export class CardRightComponent implements OnInit {
  
   signOut(): void {
     this.authService.signOut();
+  }
+
+  checkLogin(): void{
+    this.username = (<HTMLInputElement>document.getElementById('userinput')).value;
+    console.log(this.username);
+    // this.apollo.getAdmin(this.username).subscribe(
+    //   Query=>{
+    //     this.username = Query.data.getAdmin
+    //   }
+    // );
   }
 
   ngOnInit() {

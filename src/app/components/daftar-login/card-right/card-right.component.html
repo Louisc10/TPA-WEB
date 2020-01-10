@@ -3,11 +3,11 @@
     <div class="signup-text-desc">Perjalanan serumu dimulai di sini.</div>
     <div class="input-wrap">
         <div class="hasLabel">
-            <input name="username" type="text" placeholder="Nomor Ponsel atau Email">
+            <input name="username" #userinput type="text" placeholder="Nomor Ponsel atau Email">
         </div>
     </div>
     <div class="input-wrap">
-        <button type="button" class="btn-custom">Lanjutkan</button>
+        <button type="button" class="btn-custom" (click)="checkLogin()">Lanjutkan</button>
     </div>
     <div class="hr-with-txt"><span>atau dengan</span></div>
     <div class="social-network-wrap">
