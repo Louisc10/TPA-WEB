@@ -39,6 +39,7 @@ import { SewaMobilWidget } from './components/widget/sewa-mobil/sewa-mobil.compo
 import { PesawatWidget } from './components/widget/pesawat/pesawat.component';
 import { KeretaApiWidget } from './components/widget/kereta-api/kereta-api.component';
 import { DatePickerComponent } from './components/widget/other/date-picker/date-picker.component';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { DatePickerComponent } from './components/widget/other/date-picker/date-
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA78FwfXaY_ZtA0yGJTSlzD3mUtSA13u9U'
-    })
+    }),
+    GraphQLModule
   ],
   providers: [],
   bootstrap: [AppComponent],
