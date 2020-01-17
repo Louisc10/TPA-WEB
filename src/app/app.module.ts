@@ -40,6 +40,8 @@ import { PesawatWidget } from './components/widget/pesawat/pesawat.component';
 import { KeretaApiWidget } from './components/widget/kereta-api/kereta-api.component';
 import { DatePickerComponent } from './components/widget/other/date-picker/date-picker.component';
 import { GraphQLModule } from './graphql.module';
+import { ImageSliderComponent } from './components/home/image-slider/image-slider.component';
+import { WhatsappComponent } from './components/other/whatsapp/whatsapp.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,8 @@ import { GraphQLModule } from './graphql.module';
     EntertainmentWidget,
     SewaMobilWidget,
     DatePickerComponent,
+    ImageSliderComponent,
+    WhatsappComponent,
   ],
   imports: [
     BrowserModule,
