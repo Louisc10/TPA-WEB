@@ -42,6 +42,7 @@ import { DatePickerComponent } from './components/widget/other/date-picker/date-
 import { GraphQLModule } from './graphql.module';
 import { ImageSliderComponent } from './components/home/image-slider/image-slider.component';
 import { WhatsappComponent } from './components/other/whatsapp/whatsapp.component';
+import { RegisterComponent } from './components/daftar-login/register/register.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { WhatsappComponent } from './components/other/whatsapp/whatsapp.componen
     DatePickerComponent,
     ImageSliderComponent,
     WhatsappComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

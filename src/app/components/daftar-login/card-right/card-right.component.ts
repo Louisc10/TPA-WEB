@@ -32,12 +32,18 @@ export class CardRightComponent implements OnInit {
   checkLogin(): void{
     this.username = (<HTMLInputElement>document.getElementById("userinput")).value;
     console.log(this.username);
-    this.apollo.getAdmin(this.username).subscribe(
-      async Query=>{
-        this.username = Query.data.getAdmin
-      }
-      // await console.log();
-    );
+    if(this.username==""){
+      alert("Can't Be Empty");
+    }
+    else{
+      this.apollo.getAdmin(this.username).subscribe(
+        async Query=>{
+          this.username = Query.data.getAdmin
+        }
+        // await console.log();
+      );
+
+    } 
   }
 
   ngOnInit() {
