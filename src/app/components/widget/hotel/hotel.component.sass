@@ -1,5 +1,7 @@
 .top
-    border: 1px solid black
+    border:
+        top: 1px solid black
+        bottom: 1px solid black
     padding: 10px
     display: flex
     flex: 1 1
@@ -27,8 +29,40 @@
         cursor: pointer
         .last
             color: blue            
-            
+
+.mid
+    display: flex
+    .left
+        width: 25%
+        .title
+            color: gray
+        .content
+            margin-top: 5px 
+            color: black
+    .center
+        
+        width: 50%
+        .title
+            color: gray
+        .content
+            color: black
+    .right
+        width: 25%
+        .title
+            color: gray
+        .content
+            color: black
+
+
 .buttom
-    border: 1px solid black
+    border-top: 1px solid black
     border-bottom-right-radius: 8px
     border-bottom-left-radius: 8px
+    .search
+        float: right
+        padding: 10px 25px
+        margin: 15px
+        border-radius: 20px
+        border: none
+        color: blue
+        background-color: yellow

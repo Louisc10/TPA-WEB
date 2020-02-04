@@ -1,6 +1,7 @@
 <app-image-slider></app-image-slider>
 <div style="display: flex; justify-content: center;">
-    <app-main-widget (click) = "openDialog()"></app-main-widget>
+    <app-main-widget id="widget" #widget (click) = "openDialog()"></app-main-widget>
 </div>
 <app-whatsapp></app-whatsapp>
 <app-footer></app-footer>
+<div id="overlay" #overlay (click) = "closeDialog()"></div>

@@ -11,9 +11,60 @@
         </div>
     </button>
 </div>
-<div class = "buttom">
-    <div>
-        Hwllo
+<div class="mid">
+    <div class="left">
+        <div class="title">
+            Tujuan
+        </div>
+        <div class="content">
+            <mat-form-field>
+                <mat-select placeholder="Pilih Kota Tujuan atau Nama Hotel">
+                    <mat-option value="option">Option</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="center">
+        <div>
+            <div class="title">
+                Check-in
+            </div>
+            <div class="content">
+                <mat-form-field>
+                    <input id="date1" matInput [matDatepickerFilter]="myFilter1" [matDatepicker]="picker1" placeholder="Pilih Tanggal Masuk" 
+                        [(ngModel)]="date1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <div class="title">
+                Check-out
+            </div>
+            <div class="content">
+                <mat-form-field>
+                    <input matInput min="date1" [matDatepicker]="picker2" placeholder="Pilih Tanggal Keluar" 
+                    [(ngModel)]="date2">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="title">
+            Tamu & Kamar
+        </div>
+        <div class="content">
+            <mat-form-field>
+                <mat-select placeholder="Tamu dan Kamar">
+                    <mat-option value="option">Option</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
 </div>
-
+<div class="buttom">
+    <button class="search" (click)="kik()">CARI HOTEL</button>
+</div>

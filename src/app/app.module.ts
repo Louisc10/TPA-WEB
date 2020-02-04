@@ -43,6 +43,7 @@ import { GraphQLModule } from './graphql.module';
 import { ImageSliderComponent } from './components/home/image-slider/image-slider.component';
 import { WhatsappComponent } from './components/other/whatsapp/whatsapp.component';
 import { RegisterComponent } from './components/daftar-login/register/register.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { RegisterComponent } from './components/daftar-login/register/register.c
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA78FwfXaY_ZtA0yGJTSlzD3mUtSA13u9U'
     }),
-    GraphQLModule
+    GraphQLModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
