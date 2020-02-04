@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { MainWidgetComponent } from '../widget/main-widget/main-widget.component';
 import { animate } from '@angular/animations';
+import { MoneyExchangeService } from 'src/app/service/money-exchange.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,16 @@ import { animate } from '@angular/animations';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-
+  v;
   constructor(private dialog : MatDialog) { }
 
   ngOnInit() {
+    this.v = new MoneyExchangeService();
+    async Init => {
+      this.v.init();
+      await console.log(this.v.getRates("IDR"));
+      console.log(Init);
+    }
   }
 
   openDialog(){

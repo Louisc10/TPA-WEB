@@ -13,7 +13,10 @@ import { Query } from 'src/app/models/query';
 export class CardRightComponent implements OnInit {
   private user: SocialUser;
   private loggedIn: boolean;
-  private username: String;
+  private account;
+  private username: String = null;
+  private password: String = null;
+  private status: String = "hidden";
 
   constructor(private authService: AuthService, private apollo: BackendServiceService) { }
  
@@ -31,6 +34,8 @@ export class CardRightComponent implements OnInit {
 
   checkLogin(): void{
     this.username = (<HTMLInputElement>document.getElementById("userinput")).value;
+    this.password = (<HTMLInputElement>document.getElementById("passinput")).value;
+    (<HTMLInputElement>document.getElementById("passinput")).value = "";
     console.log(this.username);
     if(this.username==""){
       alert("Can't Be Empty");
@@ -38,12 +43,31 @@ export class CardRightComponent implements OnInit {
     else{
       this.apollo.getAdmin(this.username).subscribe(
         async Query=>{
-          this.username = Query.data.getAdmin
+          this.account = Query.data.getAdmin
+          await console.table(this.account[0]["frontname"]);
+          // console.log("Data: " + this.username[0]["password"] );
+          // console.log("Password: " + this.password);
+          if(this.account.length == 1){
+            this.status = "";
+          }
+          else{
+            this.status = "hidden";
+          }
+
+          if(this.password != ""){
+            // console.log(this.username)
+            if(this.account[0]["password"] == this.password){
+              alert("Success");
+            }
+            else{
+              alert("False & Failed");
+            }
+          }
         }
-        // await console.log();
       );
 
-    } 
+    }
+    
   }
 
   ngOnInit() {
