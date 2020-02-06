@@ -10,9 +10,9 @@ import { HttpClient } from '@angular/common/http';
 export class MapsComponent implements OnInit {
   @ViewChild('mapRef', { static: true }) mapElement: ElementRef;
   ipAddress: any;
-  latitude: any = -23.510070;
-  longitude: any = -47.479260;
-
+  latitude: any = -6.201987;
+  longitude: any = 106.781616;
+  
   constructor(private http: HttpClient) {
     this.http.get('https://jsonip.com').subscribe((ipOfNetwork) =>
       this.ipAddress = ipOfNetwork['ip']
