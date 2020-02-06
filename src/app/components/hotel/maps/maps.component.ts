@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MapsService } from 'src/app/service/maps.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-maps',
@@ -7,19 +8,67 @@ import { MapsService } from 'src/app/service/maps.service';
   styleUrls: ['./maps.component.sass']
 })
 export class MapsComponent implements OnInit {
-  lat: string = '';
-  lng: string = '';
+  @ViewChild('mapRef', { static: true }) mapElement: ElementRef;
+  ipAddress: any;
+  latitude: any = -23.510070;
+  longitude: any = -47.479260;
 
-  location: Object;
+  constructor(private http: HttpClient) {
+    this.http.get('https://jsonip.com').subscribe((ipOfNetwork) =>
+      this.ipAddress = ipOfNetwork['ip']
+    );
+  };
 
-  constructor(private maps: MapsService) { }
-
-  ngOnInit() {  
-    this.maps.getLocation().subscribe(data => {
-      this.lat =  data.latitude;
-      this.lng = data.longitude;
-      
-    })
+  ngOnInit() {
+    this.renderMap();
   }
 
+  loadMap = () => {
+    var map = new window['google'].maps.Map(this.mapElement.nativeElement, {
+      center: { lat: this.latitude, lng: this.longitude },
+      zoom: 8
+    });
+
+    var marker = new window['google'].maps.Marker({
+      position: { lat: this.latitude, lng: this.longitude },
+      map: map,
+      title: 'Location!',
+      draggable: false,
+      animation: window['google'].maps.Animation.DROP,
+    });
+
+    var contentString = '<div id="content">' +
+      '<div id="siteNotice">' +
+      '</div>' +
+      '<h3 id="thirdHeading" class="thirdHeading">W3path.com</h3>' +
+      '<div id="bodyContent">' +
+      '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>' +
+      '</div>' +
+      '</div>';
+
+    var infowindow = new window['google'].maps.InfoWindow({
+      content: contentString
+    });
+
+    marker.addListener('click', function () {
+      infowindow.open(map, marker);
+    });
+
+  }
+  renderMap() {
+
+    window['initMap'] = () => {
+      this.loadMap();
+    }
+    if (!window.document.getElementById('google-map-script')) {
+      var s = window.document.createElement("script");
+      s.id = "google-map-script";
+      s.type = "text/javascript";
+      s.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyA78FwfXaY_ZtA0yGJTSlzD3mUtSA13u9U&callback=initMap";
+
+      window.document.body.appendChild(s);
+    } else {
+      this.loadMap();
+    }
+  }
 }

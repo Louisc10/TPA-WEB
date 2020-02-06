@@ -20,7 +20,8 @@ export class PesawatWidget implements OnInit {
 
   date1;
   date2;
-  selectedCity: string = "";
+  selectedCity1: string = "";
+  selectedCity2: string = "";
 
   cities: City[] = [
     {name: 'Bandung', id: 1, longitude: '106.816635', latitude: '-6.595038'}

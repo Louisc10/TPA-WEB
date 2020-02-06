@@ -14,23 +14,11 @@
 <div class="mid">
     <div class="left">
         <div class="title">
-            Dari
+            Lokasi Sewa
         </div>
         <div class="content">
             <mat-form-field>
-                <mat-select [(ngModel)]="selectedCity" placeholder="Pilih Kota Asal">
-                    <mat-option *ngFor="let city of cities"  [value]="city.name">
-                        {{city.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="title">
-            Tujuan
-        </div>
-        <div class="content">
-            <mat-form-field>
-                <mat-select [(ngModel)]="selectedCity" placeholder="Pilih Kota Tujuan">
+                <mat-select [(ngModel)]="selectedCity" placeholder="Mau Sewa Dimana?">
                     <mat-option *ngFor="let city of cities"  [value]="city.name">
                         {{city.name}}
                     </mat-option>
@@ -41,11 +29,11 @@
     <div class="center">
         <div>
             <div class="title">
-                Berangkat
+                Tanggal Mulai
             </div>
             <div class="content">
                 <mat-form-field>
-                    <input id="date1" matInput [matDatepickerFilter]="myFilter1" [matDatepicker]="picker1" placeholder="Pilih Tanggal Pergi" 
+                    <input id="date1" matInput [matDatepickerFilter]="myFilter1" [matDatepicker]="picker1" placeholder="Tanggal Mulai" 
                         [(ngModel)]="date1">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
@@ -54,11 +42,11 @@
         </div>
         <div>
             <div class="title">
-                Pulang
+                Tanggal Selesai
             </div>
             <div class="content">
                 <mat-form-field>
-                    <input matInput min="date1" [matDatepicker]="picker2" placeholder="Pilih Tanggal Pulang" 
+                    <input matInput min="date1" [matDatepicker]="picker2" placeholder="Tanggal Selesai" 
                     [(ngModel)]="date2">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
@@ -68,36 +56,15 @@
     </div>
     <div class="right">
         <div class="title">
-            Tamu & Kamar
+            Jumlah Mobil
         </div>
         <div class="content">
             <mat-form-field>
-                <mat-select [(ngModel)]="selectedTamu" placeholder="Tamu">
+                <mat-select [(ngModel)]="selectedTamu" placeholder="Mobil">
                     <mat-option value="1">1</mat-option>
                     <mat-option value="2">2</mat-option>
                     <mat-option value="3">3</mat-option>
                     <mat-option value="4">4</mat-option>
-                    <mat-option value="5">5</mat-option>
-                    <mat-option value="6">6</mat-option>
-                    <mat-option value="7">7</mat-option>
-                    <mat-option value="8">8</mat-option>
-                    <mat-option value="9">9</mat-option>
-                    <mat-option value="10">10</mat-option>
-                </mat-select>
-                
-            </mat-form-field>
-            <mat-form-field>
-                <mat-select [(ngModel)]="selectedRoom" placeholder="Kamar">
-                    <mat-option value="1">1</mat-option>
-                    <mat-option value="2">2</mat-option>
-                    <mat-option value="3">3</mat-option>
-                    <mat-option value="4">4</mat-option>
-                    <mat-option value="5">5</mat-option>
-                    <mat-option value="6">6</mat-option>
-                    <mat-option value="7">7</mat-option>
-                    <mat-option value="8">8</mat-option>
-                    <mat-option value="9">9</mat-option>
-                    <mat-option value="10">10</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>

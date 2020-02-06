@@ -18,7 +18,7 @@
         </div>
         <div class="content">
             <mat-form-field>
-                <mat-select [(ngModel)]="selectedCity" placeholder="Pilih Kota Asal">
+                <mat-select [(ngModel)]="selectedCity1" placeholder="Pilih Kota Asal">
                     <mat-option *ngFor="let city of cities"  [value]="city.name">
                         {{city.name}}
                     </mat-option>
@@ -30,7 +30,7 @@
         </div>
         <div class="content">
             <mat-form-field>
-                <mat-select [(ngModel)]="selectedCity" placeholder="Pilih Kota Tujuan">
+                <mat-select [(ngModel)]="selectedCity2" placeholder="Pilih Kota Tujuan">
                     <mat-option *ngFor="let city of cities"  [value]="city.name">
                         {{city.name}}
                     </mat-option>
