@@ -13,17 +13,18 @@ export class BackendServiceService {
 
   constructor(private apollo: Apollo) { }
 
+  //ADMIN
   getAdmin(email: String): Observable<Query>{
     return this.apollo.query<Query>(
       {
         query: gql`
-          query getAdmin($email:String!){
-            getAdmin(email:$email){
+          query getAdmin($email: String!){
+            getAdmin(email: $email){
+              email
               frontname
               backname
-              email
-              phonenumber
               password
+              phonenumber
             }
           }
         `,
@@ -52,22 +53,22 @@ export class BackendServiceService {
     )
   }
 
-  createAdmin(newAdmin: Admin ): Observable<Query>{
-    return this.apollo.query<Query>(
+  createAdmin(newAdmin: Admin ): Observable<any>{
+    return this.apollo.mutate<any>(
       {
-        query: gql`
+        mutation: gql`
           mutation createAdmin(
-            $frontname:String!,
-            $backname:String!,
-            $email:String!,
-            $phonenumber:String!,
-            $password:String!,
+            $frontname:String!
+            $backname:String!
+            $email:String!
+            $phonenumber:String!
+            $password:String!
           ){
             createAdmin(
-              frontname: $frontname,
-              backname: $backname,
-              email: $email,
-              phonenumber: $phonenumber,
+              frontname: $frontname
+              backname: $backname
+              email: $email
+              phonenumber: $phonenumber
               password: $password){
               email
             }
@@ -83,5 +84,35 @@ export class BackendServiceService {
       }
     )
   }
+
+  //CITY
+  getAllCity(): Observable<Query>{
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query{
+            getAllCity{
+              id
+              name
+              latitude
+              longitude
+            }
+          }
+        `
+      }
+    )
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
 
 }

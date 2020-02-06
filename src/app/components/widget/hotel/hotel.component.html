@@ -18,8 +18,10 @@
         </div>
         <div class="content">
             <mat-form-field>
-                <mat-select placeholder="Pilih Kota Tujuan atau Nama Hotel">
-                    <mat-option value="option">Option</mat-option>
+                <mat-select [(ngModel)]="selectedCity" placeholder="Pilih Kota Tujuan atau Nama Hotel">
+                    <mat-option *ngFor="let city of cities"  [value]="city.name">
+                        {{city.name}}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -58,8 +60,32 @@
         </div>
         <div class="content">
             <mat-form-field>
-                <mat-select placeholder="Tamu dan Kamar">
-                    <mat-option value="option">Option</mat-option>
+                <mat-select [(ngModel)]="selectedTamu" placeholder="Tamu">
+                    <mat-option value="1">1</mat-option>
+                    <mat-option value="2">2</mat-option>
+                    <mat-option value="3">3</mat-option>
+                    <mat-option value="4">4</mat-option>
+                    <mat-option value="5">5</mat-option>
+                    <mat-option value="6">6</mat-option>
+                    <mat-option value="7">7</mat-option>
+                    <mat-option value="8">8</mat-option>
+                    <mat-option value="9">9</mat-option>
+                    <mat-option value="10">10</mat-option>
+                </mat-select>
+                
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select [(ngModel)]="selectedRoom" placeholder="Kamar">
+                    <mat-option value="1">1</mat-option>
+                    <mat-option value="2">2</mat-option>
+                    <mat-option value="3">3</mat-option>
+                    <mat-option value="4">4</mat-option>
+                    <mat-option value="5">5</mat-option>
+                    <mat-option value="6">6</mat-option>
+                    <mat-option value="7">7</mat-option>
+                    <mat-option value="8">8</mat-option>
+                    <mat-option value="9">9</mat-option>
+                    <mat-option value="10">10</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>

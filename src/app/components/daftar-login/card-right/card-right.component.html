@@ -6,7 +6,10 @@
             <input name="username" id="userinput" type="text" placeholder="Nomor Ponsel atau Email">
         </div>
         <div class="hasLabel {{status}}">
-            <input name="password" id="passinput" type="text" placeholder="Password">
+            <mat-form-field>
+                <input matInput name="password" id="passinput" type="{{visible}}" placeholder="Password">
+                <mat-icon matSuffix (click)="changeCondition()">{{condition}}</mat-icon>
+            </mat-form-field>
         </div>
     </div>
     <div class="input-wrap">

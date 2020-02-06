@@ -4,6 +4,8 @@ import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-logi
 import { SocialUser } from "angularx-social-login";
 import { BackendServiceService } from '../../../service/backend-service.service';
 import { Query } from 'src/app/models/query';
+import { MatDialog } from '@angular/material';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-card-right',
@@ -17,8 +19,10 @@ export class CardRightComponent implements OnInit {
   private username: String = null;
   private password: String = null;
   private status: String = "hidden";
+  private visible: String = "password";
+  private condition: String = "remove_red_eye";
 
-  constructor(private authService: AuthService, private apollo: BackendServiceService) { }
+  constructor(private authService: AuthService, private apollo: BackendServiceService, private dialog : MatDialog) { }
  
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
@@ -40,22 +44,25 @@ export class CardRightComponent implements OnInit {
     if(this.username==""){
       alert("Can't Be Empty");
     }
-    else{
+    else if( this.isValidEmail(this.username) || this.isValidPhone(this.username) ) {
       this.apollo.getAdmin(this.username).subscribe(
         async Query=>{
           this.account = Query.data.getAdmin
-          await console.table(this.account[0]["frontname"]);
+          // await console.table(this.account[0]["frontname"]);
+          await console.table(this.account)
           // console.log("Data: " + this.username[0]["password"] );
           // console.log("Password: " + this.password);
           if(this.account.length == 1){
             this.status = "";
           }
           else{
-            this.status = "hidden";
+            // console.log("ZZZ " + this.username)
+            this.status = " hidden";
+            this.dialog.open(RegisterComponent)
           }
 
           if(this.password != ""){
-            // console.log(this.username)
+            console.log(this.username)
             if(this.account[0]["password"] == this.password){
               alert("Success");
             }
@@ -63,13 +70,61 @@ export class CardRightComponent implements OnInit {
               alert("False & Failed");
             }
           }
+          this.account = null
         }
       );
 
     }
+    else{
+      alert("Not a email or phone number")
+    }
     
   }
 
+  private isValidPhone(phone: String): boolean {
+    if(phone == ""){
+      return false
+    }
+    else if(phone.length < 10 || phone.length  > 12){
+      return false
+    }
+    else{
+      for( var i = 0 ; i < phone.length ; i++ ) {
+        if(phone.charAt(i) < '0' || phone.charAt(i) > '9'){
+          return false
+        }
+      }
+    }
+
+    return true
+  }
+
+  private isValidEmail(email: String): boolean {
+    if(email.startsWith('@') || email.startsWith('.') || email.endsWith('@') || email.endsWith('.')){
+      return false
+    }
+    else if(email.indexOf('@')==-1 || email.indexOf('.') == -1){
+      return false
+    }
+    else if(email.indexOf('@', email.indexOf('@') + 1) != -1){
+      return false
+    }
+    else if(email.charAt(email.indexOf('@') - 1) == '.' || email.charAt(email.indexOf('@') + 1) == '.'){
+      return false
+    }
+
+
+    return true
+  }
+
+  changeCondition() {
+    if(this.visible == "text"){
+      this.visible = "password"
+    }
+    else{
+      this.visible = "text"
+    }
+  }
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
       this.user = user;

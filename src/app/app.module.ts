@@ -105,7 +105,8 @@ import { FormsModule } from '@angular/forms';
     EntertainmentWidget,
     PesawatWidget,
     KeretaApiWidget,
-    CardRightComponent
+    CardRightComponent,
+    RegisterComponent,
   ]
 })
 export class AppModule { }
