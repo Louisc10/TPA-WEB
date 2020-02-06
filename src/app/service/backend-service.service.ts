@@ -103,7 +103,27 @@ export class BackendServiceService {
     )
   }
   
-
+  //Subscription
+  createSubscription(newEmail: String ): Observable<any>{
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation createAdmin(
+            $email:String!
+          ){
+            createAdmin(
+              email: $email
+            ){
+              email
+            }
+          }
+        `,
+        variables:{
+          "email": newEmail
+        }
+      }
+    )
+  }
 
 
 
