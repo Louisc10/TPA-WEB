@@ -108,10 +108,10 @@ export class BackendServiceService {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
-          mutation createAdmin(
+          mutation createSubscription(
             $email:String!
           ){
-            createAdmin(
+            createSubscription(
               email: $email
             ){
               email
