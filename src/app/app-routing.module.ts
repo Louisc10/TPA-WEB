@@ -13,6 +13,7 @@ import { UnduhAplikasiComponent } from './components/unduh-aplikasi/unduh-aplika
 import { PromoListComponent } from './components/promo-list/promo-list.component';
 import { HelpCenterComponent } from './components/help-center/help-center.component';
 import { HotelWidget } from './components/widget/hotel/hotel.component'
+import { EntertaimentItemComponent } from './components/searchItem/entertaiment-item/entertaiment-item.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent  },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'unduhaplikasi', component: UnduhAplikasiComponent },
   { path: 'promo', component: PromoListComponent },
   { path: 'help', component: HelpCenterComponent },
+  { path: 'hiburan/detail', component: EntertaimentItemComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
@@ -49,5 +51,6 @@ export const RoutingComponents = [
   UnduhAplikasiComponent,
   PromoListComponent,
   HelpCenterComponent,
+  EntertaimentItemComponent,
 
 ]

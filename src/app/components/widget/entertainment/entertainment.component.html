@@ -1,1 +1,37 @@
-<p>entertainment works!</p>
+<div style="display: block;">
+    <div class="top">
+        <div class="pic">
+            <img src="https://cdn2.iconfinder.com/data/icons/flaturici-set-4/512/ticket-512.png">
+        </div>
+        <div class="mes">
+            Pengalaman tak terlupakan dimulai dari sini
+        </div>
+    </div>
+    <div class="mid">
+        <div style="margin-right: 10px;">
+            <mat-form-field>
+                <mat-select [(ngModel)]="selectedOption" placeholder="Opsi">
+                    <mat-option value="semua">Semua</mat-option>
+                    <mat-option value="activity">Activites</mat-option>
+                    <mat-option value="attraction">Attractions</mat-option>
+                    <mat-option value="event">Events</mat-option>
+                </mat-select>
+            </mat-form-field>
+    
+        </div>
+        <div>
+            <mat-form-field>
+                <input matInput placeholder="Cari berdasarkan Kota" 
+                     [matAutocomplete]="auto" [formControl]="cityControl">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let city of cities" [value]="city.name">
+                        {{city.name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="buttom">
+        <button class="search" (click)="kik()">PENCARIAN ENTERTAINMENT</button>
+    </div>
+</div>

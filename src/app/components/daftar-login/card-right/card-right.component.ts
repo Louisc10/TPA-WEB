@@ -6,6 +6,7 @@ import { BackendServiceService } from '../../../service/backend-service.service'
 import { Query } from 'src/app/models/query';
 import { MatDialog } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
+import { Admin } from 'src/app/models/admin';
 
 @Component({
   selector: 'app-card-right',
@@ -26,14 +27,34 @@ export class CardRightComponent implements OnInit {
  
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.regApollo()
   }
  
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.regApollo()
   } 
  
   signOut(): void {
     this.authService.signOut();
+  }
+
+  private regApollo(){
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+    });
+    var admin: Admin;
+    admin.Email = this.user.email
+    admin.BackName = this.user.lastName
+    admin.FrontName = this.user.firstName
+    admin.PhoneNumber = ""
+    admin.Password = this.user.email
+    this.apollo.createAdmin(admin).subscribe(
+      async Query=>{
+        this.account = Query.data.createAdmin
+        await console.table(this.account)
+      }
+    );
   }
 
   checkLogin(): void{
@@ -48,15 +69,11 @@ export class CardRightComponent implements OnInit {
       this.apollo.getAdmin(this.username).subscribe(
         async Query=>{
           this.account = Query.data.getAdmin
-          // await console.table(this.account[0]["frontname"]);
           await console.table(this.account)
-          // console.log("Data: " + this.username[0]["password"] );
-          // console.log("Password: " + this.password);
           if(this.account.length == 1){
             this.status = "";
           }
           else{
-            // console.log("ZZZ " + this.username)
             this.status = " hidden";
             this.dialog.open(RegisterComponent)
           }
@@ -131,4 +148,6 @@ export class CardRightComponent implements OnInit {
       this.loggedIn = (user != null);
     });
   }
+
+  
 }

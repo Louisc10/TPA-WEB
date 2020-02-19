@@ -1,0 +1,86 @@
+.top
+    border:
+        top: 1px solid black
+        bottom: 1px solid black
+    padding: 10px
+    display: flex
+    flex: 1 1
+    .pic
+        // border: 1px solid black
+        margin-right: 5px
+        width: 30px
+        height: 30px
+        border-radius: 15px
+        background-color: pink
+        img 
+            padding: 15%
+            width: 70%
+            height: 70%
+        
+    .mes
+        // border: 1px solid black
+        margin: auto
+            left: 0
+        
+    .pencarian_terakhir
+        align-self: flex-end
+        border: none
+        margin: auto 0
+        cursor: pointer
+        .last
+            color: blue            
+
+.mid
+    display: flex
+    flex-direction: row
+    padding: 10px
+    .left
+        width: 25%
+        .title
+            color: gray
+        .content
+            margin-top: 5px 
+            color: black
+    .center
+        display: flex
+        flex-direction: column
+        justify-content:  center
+        align-items: center
+        padding: auto
+        width: 45%
+        // border: 1px solid black
+        .title
+            color: gray
+        .content
+            color: black
+    .right
+        width: 30%
+        .title
+            color: gray
+        .content
+            color: black
+
+
+.buttom
+    border-top: 1px solid black
+    border-bottom-right-radius: 8px
+    border-bottom-left-radius: 8px
+    .search
+        float: right
+        padding: 10px 25px
+        margin: 15px
+        border-radius: 20px
+        border: none
+        color: blue
+        background-color: yellow
+
+@media ( max-width: 1000px )
+    .mid
+        display: flex
+        flex-direction: column
+        .center
+            display: flex
+            flex-direction: column
+            justify-content:  left
+            align-items: flex-start
+            padding: 0

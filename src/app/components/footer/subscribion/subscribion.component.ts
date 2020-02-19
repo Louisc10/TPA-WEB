@@ -20,13 +20,15 @@ export class SubscribionComponent implements OnInit {
       this.apollo.createSubscription(email).subscribe(
         async Query=>{
           this.account = Query.data.createSubscription
-          await console.table(this.account)
+          await console.table(this.account);
+          (<HTMLInputElement>document.getElementById("email")).value = ""
+          alert("Added Successfully")
         }
       );
 
     }
     else{
-      alert("Not a email or phone number")
+      alert("Not a email")
     }
     
   }

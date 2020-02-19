@@ -32,6 +32,8 @@
 
 .mid
     display: flex
+    flex-direction: row
+    padding: 10px
     .left
         width: 25%
         .title
@@ -40,14 +42,19 @@
             margin-top: 5px 
             color: black
     .center
-        
-        width: 50%
+        display: flex
+        flex-direction: column
+        justify-content:  center
+        align-items: center
+        padding: auto
+        width: 45%
+        // border: 1px solid black
         .title
             color: gray
         .content
             color: black
     .right
-        width: 25%
+        width: 30%
         .title
             color: gray
         .content
@@ -66,3 +73,14 @@
         border: none
         color: blue
         background-color: yellow
+
+@media ( max-width: 1000px )
+    .mid
+        display: flex
+        flex-direction: column
+        .center
+            display: flex
+            flex-direction: column
+            justify-content:  left
+            align-items: flex-start
+            padding: 0

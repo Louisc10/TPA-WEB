@@ -56,9 +56,15 @@ export class HotelWidget implements OnInit {
   myFilter2 = (d: Date): boolean => {
     let now = this.date1;
     now.setDate(now.getDate() + 1);
-    let tres = this.date1
-    tres.setDate(tres.getDate() + 16);
+    console.log("<<>> : " + this.date1)
+    let tres = this.addDate(this.date1, 16)
     return d > now && d < tres;
+  }
+
+  private addDate(d : Date,day: any): Date{
+    let date =  new Date(d.getTime() + (1000 * 60 * 60 * 24 * day))
+    console.log("PP : " + date)
+    return date
   }
 
   kik(){

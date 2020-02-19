@@ -1,3 +1,109 @@
-<widget-entertainment></widget-entertainment>
-<app-partner-event></app-partner-event>
-<app-footer></app-footer>
+<div *ngIf="!detail">
+    <widget-entertainment (click) = "doClick()"></widget-entertainment>
+    <div *ngIf="click">
+        <app-entertaiment-filter></app-entertaiment-filter>
+        <div style="display: flex; justify-content: center; margin: 10px;">
+            <button (click)="doFilter()">Do Filter</button>
+        </div>
+        <div>
+            <mat-expansion-panel style="width: auto; height: auto; display: flex; flex-direction: column;">
+                <mat-expansion-panel-header style="font-size: small;">
+                    <mat-panel-title>
+                        {{urutkan}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                
+                <div>
+                    <button mat-button (click)="changeUrutkan('Rekomendasi')">Rekomendasi</button>
+                </div>
+                <div>
+                    <button mat-button (click)="changeUrutkan('Terbaru')">Terbaru</button>
+                </div>
+                <div>
+                    <button mat-button (click)="changeUrutkan('Mendatang')">Mendatang</button>
+                </div>
+                <div>
+                    <button mat-button (click)="changeUrutkan('Terpopuler')">Terpopuler</button>
+                </div>
+                <div>
+                    <button mat-button (click)="changeUrutkan('Harga: Rendah ke Tinggi')">Harga: Rendah ke Tinggi</button>
+                </div>
+                <div>
+                    <button mat-button (click)="changeUrutkan('Harga: Tinggi ke Rendah')">Harga: Tinggi ke Rendah</button>
+                </div>
+            </mat-expansion-panel>
+            
+        </div>
+        <div *ngFor="let item of list" style="width: 46%; margin: 1%; border: 1px solid black; border-radius: 10px; padding: 5px;" (click)="openDetail(item)">
+            <div>
+                <img src="{{item.photoLink1}}" alt="{{item.name}}" style="width: 100%; border-top-left-radius: 5px ; border-top-right-radius: 5px;">
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div style="color: darkorange; font-size: 2vw;">{{item.name}}</div>
+                <div style="color: chocolate; font-size: 1vw;">{{item.price}}</div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!click">
+        <app-partner-event></app-partner-event>
+        <app-footer></app-footer>
+    </div>
+</div>
+
+<div *ngIf="detail">
+    <div>
+        <button (click)= "closeDetail()">Home > Entertainment > {{item.name}} </button>
+
+    </div>
+    <div style="display: flex;">
+        <div class="imageViewer" style="width: 60%; height: auto;">
+            <div style="width: 100%; height: auto;">
+                <img src="{{imageChoosen}}" style="width: 100%; border-top-left-radius: 5px ; border-top-right-radius: 5px;">
+            </div>
+            <div style="display: flex; justify-content: space-evenly;">
+                <div class="imageClick" (click)="changePic(1)">
+                    <img class="picCLick" src="{{item.photoLink1}}">
+                </div>
+                <div class="imageClick" (click)="changePic(2)">
+                    <img class="picCLick" src="{{item.photoLink2}}">
+                </div>
+                <div class="imageClick" (click)="changePic(3)">
+                    <img class="picCLick" src="{{item.photoLink3}}">
+                </div>
+                <div class="imageClick" (click)="changePic(4)">
+                    <img class="picCLick" src="{{item.photoLink4}}">
+                </div>
+                <div class="imageClick" (click)="changePic(5)">
+                    <img class="picCLick" src="{{item.photoLink5}}">
+                </div>
+                <div class="imageClick" (click)="changePic(6)">
+                    <img class="picCLick" src="{{item.photoLink6}}">
+                </div>
+
+            </div>
+            <div class="">
+                <div style="font-size: 2vw;">{{item.name}}</div>
+                <div style="font-size: 1.7vw; color: rgba(0, 0, 0, 0.5);">{{item.location}}</div>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; width: 40%;">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div>Mulai Dari</div>
+                <div>IDR {{item.price}}</div>
+                <div>
+                    <button>Cari Tiket</button>
+                </div>
+                <div>Category: {{item.category}}</div>
+            </div>
+
+            <div class="map-container">
+                <div class="map-frame">
+                    <div #map id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>{{item.description}}</p>
+    </div>
+</div>

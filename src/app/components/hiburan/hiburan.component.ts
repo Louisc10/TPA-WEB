@@ -1,15 +1,191 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import { Entertainment } from 'src/app/models/entertainment';
+import { BackendServiceService } from 'src/app/service/backend-service.service';
+import { EntertainmentFilterServiceService } from 'src/app/service/entertainment-filter-service.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-hiburan',
   templateUrl: './hiburan.component.html',
   styleUrls: ['./hiburan.component.sass']
 })
-export class HiburanComponent implements OnInit {
+export class HiburanComponent implements AfterViewInit {
+  private datas : Entertainment[];
+  private list : Entertainment[];
+  private item : Entertainment;
+  private detail = false;
+  private click = false;
+  private urutkan = "Rekomendasi"
+  private imageChoosen = "Rekomendasi"
+  
+  private map: any;
+  private latitude: any = -6.201987;
+  private longitude: any = 106.781616;
 
-  constructor() { }
+  constructor(private apollo: BackendServiceService, private data: EntertainmentFilterServiceService) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    this.apollo.getAllEntertainment().subscribe(
+      async Query=>{
+        this.datas = Query.data.getAllEntertainment
+        await this.newlyVar();
+      }
+    );
+    
   }
 
+  initMap() {
+    console.log("Lat: "+ this.latitude);
+    console.log("Long: "+ this.longitude);
+    // this.latitude =  this.item.latitude
+    // this.longitude = this.item.longitude
+    this.map = L.map('map').setView([this.latitude, this.longitude], 13);
+
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      minZoom: 3,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(this.map);
+
+    // L.marker([this.latitude, this.longitude]).addTo(this.map).openPopup();
+  }
+
+  changeUrutkan(x){
+    this.urutkan = x
+  }
+
+  changePic(x){
+    if(x==1){
+      x = this.item.photoLink1
+    }
+    else if(x==2){
+      x = this.item.photoLink2
+    }
+    else if(x==3){
+      x = this.item.photoLink3
+    }
+    else if(x==4){
+      x = this.item.photoLink4
+    }
+    else if(x==5){
+      x = this.item.photoLink5
+    }
+    else if(x==6){
+      x = this.item.photoLink6
+    }
+    this.imageChoosen = x
+  }
+  
+  doClick(){
+    this.click = true;
+  }
+  
+  newlyVar(){
+    this.list = this.datas;
+    console.table(this.list)
+  }
+
+  doFilter(){
+    var min = this.data.value;
+    var max = this.data.value1;
+    
+    var date1 = this.data.date1;
+    var date2 = this.data.date2;
+    
+    var activities = this.data.activities;
+    var attractions = this.data.attractions;
+    var events = this.data.events;
+    
+    var penawaran = this.data.penawaran;
+
+    var temp = []
+    this.list = this.datas;
+    for(var i  = 0; i < this.datas.length; i ++){
+      if(this.datas[i]["price"] >= min && this.datas[i]["price"] <= max){
+        temp.push(this.datas[i])
+      }
+    }
+    this.list = temp;
+
+    if(date1 != null){
+      temp = []
+      // for(var i  = 0; i < this.list.length; i ++){
+      //   if(this.list[i]["price"] >= ){
+      //     temp.push(this.list[i])
+      //   }
+      // }
+      // this.list = temp
+    }
+
+    if(date2 != null){
+      temp = []
+      // for(var i  = 0; i < this.list.length; i ++){
+      //   if(this.list[i]["price"] >= ){
+      //     temp.push(this.list[i])
+      //   }
+      // }
+      // this.list = temp
+    }
+
+    console.log("activities " + activities)
+    console.log("attractions " + attractions)
+    console.log("events " + events)
+    console.log("penawaran " + penawaran)
+    if(activities == true || attractions == true || events == true){
+      console.log("===============")
+      temp = []
+      if(activities == true){
+        console.log("212231")
+        for(var i  = 0; i < this.list.length; i ++){
+          console.log(this.list[i]["category"])
+          if(this.list[i]["category"] == "activities"){
+            console.log("=ZZZ=")
+            temp.push(this.list[i])
+          }
+        }
+      }
+      if(attractions == true){
+        for(var i  = 0; i < this.list.length; i ++){
+          if(this.list[i]["category"] == "attractions"){
+            temp.push(this.list[i])
+          }
+        }
+      }
+      if(events == true){
+        for(var i  = 0; i < this.list.length; i ++){
+          if(this.list[i]["category"] == "events"){
+            temp.push(this.list[i])
+          }
+        }
+      }
+      this.list = temp
+    }
+
+    if(penawaran){
+      temp = []
+      // for(var i  = 0; i < this.list.length; i ++){
+      //   if(this.list[i]["penawaran"].equals("events")){
+      //     temp.push(this.list[i])
+      //   }
+      // }
+      // this.list = temp
+    }
+
+
+  }
+
+  openDetail(item){
+    this.detail = true; 
+    this.item = item
+    console.log(item)
+    this.imageChoosen = item.photoLink1
+    this.initMap()
+  }
+
+  closeDetail(){
+    this.detail = false; 
+    this.item = null
+
+  }
 }

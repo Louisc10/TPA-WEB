@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Query } from '../models/query';
 import gql from 'graphql-tag';
 import { Admin } from '../models/admin';
+import { Entertainment } from '../models/entertainment';
 
 
 @Injectable({
@@ -120,6 +121,89 @@ export class BackendServiceService {
         `,
         variables:{
           "email": newEmail
+        }
+      }
+    )
+  }
+  
+  //Entertainment
+  getAllEntertainment(): Observable<Query>{
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query{
+            getAllEntertainment{
+              id
+              name
+              price
+              description
+              latitude
+              longitude
+              location
+              photoLink1
+              photoLink2
+              photoLink3
+              photoLink4
+              photoLink5
+              photoLink6
+              category
+            }
+          }
+        `
+      }
+    )
+  }
+
+  createEntertainment(newEntertainment: Entertainment ): Observable<any>{
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation createEntertainment(
+            $name: String!
+            $latitude: String!
+            $longitude: String!
+            $location: String!
+            $photoLink1: String!
+            $photoLink2: String!
+            $photoLink3: String!
+            $photoLink4: String!
+            $photoLink5: String!
+            $photoLink6: String!
+            $price: Int!
+            $description: String!
+          ){
+            createEntertainment(
+              name: $name
+              latitude: $latitude
+              longitude: $longitude
+              location: $location
+              photoLink1: $photoLink1
+              photoLink2: $photoLink2
+              photoLink3: $photoLink3
+              photoLink4: $photoLink4
+              photoLink5: $photoLink5
+              photoLink6: $photoLink6
+              price: $price
+              description: $description)
+            {
+              name
+              id
+            }
+          }
+        `,
+        variables:{
+          "name": newEntertainment.name,
+          "latitude": newEntertainment.latitude,
+          "longitude": newEntertainment.longitude,
+          "location": newEntertainment.location,
+          "photoLink1": newEntertainment.photoLink1,
+          "photoLink2": newEntertainment.photoLink2,
+          "photoLink3": newEntertainment.photoLink3,
+          "photoLink4": newEntertainment.photoLink4,
+          "photoLink5": newEntertainment.photoLink5,
+          "photoLink6": newEntertainment.photoLink6,
+          "price": newEntertainment.price,
+          "description": newEntertainment.description 
         }
       }
     )

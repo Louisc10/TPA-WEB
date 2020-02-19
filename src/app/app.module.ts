@@ -43,7 +43,11 @@ import { GraphQLModule } from './graphql.module';
 import { ImageSliderComponent } from './components/home/image-slider/image-slider.component';
 import { WhatsappComponent } from './components/other/whatsapp/whatsapp.component';
 import { RegisterComponent } from './components/daftar-login/register/register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { EntertaimentItemComponent } from './components/searchItem/entertaiment-item/entertaiment-item.component';
+import { EntertaimentFilterComponent } from './components/searchFilter/entertaiment-filter/entertaiment-filter.component';
+import { MapsLeafletComponent } from './components/maps-leaflet/maps-leaflet.component';
+import { MarkerService } from './service/marker.service';
 
 @NgModule({
   declarations: [
@@ -82,6 +86,9 @@ import { FormsModule } from '@angular/forms';
     ImageSliderComponent,
     WhatsappComponent,
     RegisterComponent,
+    EntertaimentItemComponent,
+    EntertaimentFilterComponent,
+    MapsLeafletComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,9 +101,10 @@ import { FormsModule } from '@angular/forms';
       apiKey: 'AIzaSyA78FwfXaY_ZtA0yGJTSlzD3mUtSA13u9U'
     }),
     GraphQLModule,
-    FormsModule
-  ],
-  providers: [],
+    FormsModule,
+    ReactiveFormsModule,
+    ],
+  providers: [MarkerService],
   bootstrap: [AppComponent],
   entryComponents: [
     MainWidgetComponent,

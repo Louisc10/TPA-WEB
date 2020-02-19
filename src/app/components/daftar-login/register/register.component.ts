@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { nonInputTypeOnVarMessage } from 'graphql/validation/rules/VariablesAreInputTypes';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Admin } from 'src/app/models/admin';
+import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-register',
@@ -12,9 +13,21 @@ export class RegisterComponent implements OnInit {
   account;
   admin: Admin = new Admin();
 
-  constructor(private apollo: BackendServiceService) { }
+  constructor(private authService: AuthService, private apollo: BackendServiceService) { }
 
   ngOnInit() {
+  }
+  
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+ 
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  } 
+ 
+  signOut(): void {
+    this.authService.signOut();
   }
 
   register(){
