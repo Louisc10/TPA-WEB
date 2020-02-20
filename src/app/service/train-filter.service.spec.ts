@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MarkerService } from './marker.service';
+import { TrainFilterService } from './train-filter.service';
 
-describe('MarkerService', () => {
+describe('TrainFilterService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: MarkerService = TestBed.get(MarkerService);
+    const service: TrainFilterService = TestBed.get(TrainFilterService);
     expect(service).toBeTruthy();
   });
 });

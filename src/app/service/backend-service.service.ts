@@ -5,6 +5,7 @@ import { Query } from '../models/query';
 import gql from 'graphql-tag';
 import { Admin } from '../models/admin';
 import { Entertainment } from '../models/entertainment';
+import { Train } from '../models/train';
 
 
 @Injectable({
@@ -204,6 +205,80 @@ export class BackendServiceService {
           "photoLink6": newEntertainment.photoLink6,
           "price": newEntertainment.price,
           "description": newEntertainment.description 
+        }
+      }
+    )
+  }
+  
+  //Train
+  getAllTrain(): Observable<Query>{
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query{
+            getAllTrain{
+              name
+              id
+              dst
+              src
+              kelas
+              price
+              tipe
+              timeGo
+              timeArrive
+            }
+          }
+        `
+      }
+    )
+  }
+
+  createTrain(item: Train ): Observable<any>{
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation createTrain(
+            $name: String!
+            $src: String!
+            $dst: String!
+            $price: Int!
+            $kelas: String!
+            $tipe: String!
+            $timeGo: String!
+            $timeArrive: String!
+          ){
+            createTrain(
+              name: $name
+              src: $src
+              dst: $dst
+              price: $price
+              kelas: $kelas
+              tipe: $tipe
+              timeGo: $timeGo
+              timeArrive: $timeArrive
+          
+            ){
+              name
+              id
+              dst
+              src
+              kelas
+              price
+              tipe
+              timeGo
+              timeArrive
+            }
+          }
+        `,
+        variables:{
+          "dst": item.dst,
+          "kelas": item.kelas,
+          "name": item.name,
+          "price": item.price,
+          "src": item.src,
+          "timeArrive": item.timeArrive,
+          "timeGo": item.timeGo,
+          "tipe": item.tipe
         }
       }
     )

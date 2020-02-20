@@ -1,0 +1,55 @@
+<div style="border: 1px solid chocolate; margin-top: 100px; padding: 20px;">
+    <div style=" display: flex; justify-content: center; align-content: center;">
+        <div style="margin: auto 15px;">Filter</div>
+        <button mat-button (click)="reset()">Reset</button>
+    </div>
+
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Kelas
+        </div>
+        <mat-checkbox [(ngModel)]="this.data.ekonomi">
+            Ekonomi
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.bisnis">
+            Bisnis
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.eksekutif">
+            Eksekutif
+        </mat-checkbox>
+    </div>
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Waktu
+        </div>
+        <mat-checkbox [(ngModel)]="this.data.timeP1">
+            00:00 - 06:00
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.timeP2">
+            06:00 - 12:00
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.timeP3">
+            12:00 - 18:00
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.timeP4">
+            18:00 - 24:00
+        </mat-checkbox>
+    </div>
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Nama Kereta
+        </div>
+        <mat-checkbox *ngIf="this.data.serayuPresent" [(ngModel)]="this.data.serayu">
+            Serayu
+        </mat-checkbox>
+        <mat-checkbox *ngIf="this.data.tayoPresent" [(ngModel)]="this.data.tayo">
+            Tayo
+        </mat-checkbox>
+        <mat-checkbox *ngIf="this.data.thomasPresent" [(ngModel)]="this.data.thomas">
+            Thomas
+        </mat-checkbox>
+        <mat-checkbox *ngIf="this.data.parayanganPresent" [(ngModel)]="this.data.parayangan">
+            Parayangan
+        </mat-checkbox>
+    </div>
+</div>

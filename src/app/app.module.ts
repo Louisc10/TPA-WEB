@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,7 +49,7 @@ import { FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { EntertaimentItemComponent } from './components/searchItem/entertaiment-item/entertaiment-item.component';
 import { EntertaimentFilterComponent } from './components/searchFilter/entertaiment-filter/entertaiment-filter.component';
 import { MapsLeafletComponent } from './components/maps-leaflet/maps-leaflet.component';
-import { MarkerService } from './service/marker.service';
+import { TrainFilterComponent } from './components/searchFilter/train-filter/train-filter.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +91,7 @@ import { MarkerService } from './service/marker.service';
     EntertaimentItemComponent,
     EntertaimentFilterComponent,
     MapsLeafletComponent,
+    TrainFilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,8 +106,9 @@ import { MarkerService } from './service/marker.service';
     GraphQLModule,
     FormsModule,
     ReactiveFormsModule,
+    InfiniteScrollModule
     ],
-  providers: [MarkerService],
+  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
     MainWidgetComponent,
@@ -118,3 +122,5 @@ import { MarkerService } from './service/marker.service';
   ]
 })
 export class AppModule { }
+ 
+platformBrowserDynamic().bootstrapModule(AppModule);
