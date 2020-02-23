@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <!-- <div *ngIf="!detail">
     <widget-kereta-api (click) = "doClick()"></widget-kereta-api>
     <div *ngIf="click"> -->
@@ -35,8 +36,7 @@
 
 </div>
 <div *ngFor="let item of list"
-    style="width: 46%; margin: 1%; border: 1px solid black; border-radius: 10px; padding: 5px;"
-    (click)="openDetail(item)">
+    style="width: 46%; margin: 1%; border: 1px solid black; border-radius: 10px; padding: 5px;">
     <div>
         <div style="font-weight: bold;">{{item.name}}</div>
         <div>{{item.kelas}}</div>
@@ -57,6 +57,10 @@
         IDR {{item.price}}
     </div>
     <div>
-        <button (click)="test(item)">Click</button>
+        {{msg[item.id]}}
+    </div>
+    <div>
+        <button (click)="openTransit(item)">View Transit</button>
+        <button (click)="openDetail(item)">Click</button>
     </div>
 </div>

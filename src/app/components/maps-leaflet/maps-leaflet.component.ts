@@ -1,6 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
-import { MarkerService } from 'src/app/service/marker.service';
 
 const iconRetinaUrl = 'assets/img/marker_2x.png';
 const iconUrl = 'assets/img/marker.png';
@@ -27,7 +26,7 @@ export class MapsLeafletComponent implements AfterViewInit {
   latitude: any = -6.201987;
   longitude: any = 106.781616;
 
-  constructor(private markerService: MarkerService) {
+  constructor() {
   }
 
   ngAfterViewInit(): void {

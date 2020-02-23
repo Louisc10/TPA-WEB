@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
-import * as L from 'leaflet';
 import { Train } from 'src/app/models/train';
 import { TrainFilterService } from 'src/app/service/train-filter.service';
+import { BoughtService } from 'src/app/service/bought.service';
 
 @Component({
   selector: 'app-kereta-api',
@@ -17,7 +17,7 @@ export class KeretaApiComponent implements OnInit {
   private click = false;
   private urutkan = "Harga Terendah"
 
-  constructor(private apollo: BackendServiceService, private data: TrainFilterService) { }
+  constructor(private apollo: BackendServiceService, private data: TrainFilterService, private bought: BoughtService) { }
 
   ngOnInit() {
     this.apollo.getAllTrain().subscribe(
@@ -133,16 +133,16 @@ export class KeretaApiComponent implements OnInit {
       this.duration()
     }
     else if (x == "Keberangkatan Paling Awal") {
-      this.timeCount("timeGo",1)
+      this.timeCount("timeGo", 1)
     }
     else if (x == "Keberangkatan Paling Akhir") {
-      this.timeCount("timeGo",2 )
+      this.timeCount("timeGo", 2)
     }
     else if (x == "Kedatangan Paling Awal") {
-      this.timeCount("timeArrive",1)
+      this.timeCount("timeArrive", 1)
     }
     else if (x == "Kedatangan Paling Akhir") {
-      this.timeCount("timeArrive",2)
+      this.timeCount("timeArrive", 2)
     }
   }
 
@@ -174,14 +174,23 @@ export class KeretaApiComponent implements OnInit {
     }
   }
 
-  checkPresent() {
+  msg = [""]
 
+  openTransit(item: Train){
+    if(this.msg[item.id] == ""){
+      this.msg[item.id] = "No Transit"
+    }
+    else{
+      this.msg[item.id] = ""
+    }
   }
 
   openDetail(item) {
     this.detail = true;
     this.item = item
     console.log(item)
+    this.bought.train = item
+    
   }
 
   closeDetail() {
@@ -211,7 +220,7 @@ export class KeretaApiComponent implements OnInit {
       hour += 24
       day--
     }
-    return (hour > 0 ? hour + "j " : "") + (min > 0 ? (hour > 0 ? " + " : "") + min + "m" : "") + (day > 0 ? (hour > 0 || min > 0 ? " + " : "")  + day + "D" : "")
+    return (hour > 0 ? hour + "j " : "") + (min > 0 ? (hour > 0 ? " + " : "") + min + "m" : "") + (day > 0 ? (hour > 0 || min > 0 ? " + " : "") + day + "D" : "")
   }
   gDuration(item) {
     var date = new Date(item.timeGo)
@@ -223,7 +232,7 @@ export class KeretaApiComponent implements OnInit {
     return (hour * 60) + min + (day * 24 * 60)
   }
 
-  gT(item){
+  gT(item) {
     var date = new Date(item)
     return (date.getHours() * 60) + date.getMinutes() + (date.getDay() * 24 * 60)
   }
@@ -234,7 +243,7 @@ export class KeretaApiComponent implements OnInit {
   }
   timeCount(text, con) {
     var temp;
-    if(con == 1){
+    if (con == 1) {
       for (var i = 0; i < this.list.length; i++) {
         for (var j = this.list.length - 1; j > i; j--) {
           if (this.gT(this.list[j][text]) < this.gT(this.list[j - 1][text])) {
@@ -246,17 +255,16 @@ export class KeretaApiComponent implements OnInit {
       }
 
     }
-    else{
-      
-    for (var i = 0; i < this.list.length; i++) {
-      for (var j = this.list.length - 1; j > i; j--) {
-        if (this.gT(this.list[j][text]) > this.gT(this.list[j - 1][text])) {
-          temp = this.list[j];
-          this.list[j] = this.list[j - 1]
-          this.list[j - 1] = temp
+    else {
+      for (var i = 0; i < this.list.length; i++) {
+        for (var j = this.list.length - 1; j > i; j--) {
+          if (this.gT(this.list[j][text]) > this.gT(this.list[j - 1][text])) {
+            temp = this.list[j];
+            this.list[j] = this.list[j - 1]
+            this.list[j - 1] = temp
+          }
         }
       }
-    }
     }
   }
   duration() {

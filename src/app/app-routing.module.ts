@@ -14,9 +14,11 @@ import { PromoListComponent } from './components/promo-list/promo-list.component
 import { HelpCenterComponent } from './components/help-center/help-center.component';
 import { HotelWidget } from './components/widget/hotel/hotel.component'
 import { EntertaimentItemComponent } from './components/searchItem/entertaiment-item/entertaiment-item.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent  },
+  { path: 'admin', component: AdminComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'pesawat', component: PesawatComponent },
   { path: 'hotel', component: HotelComponent },
   { path: 'keretaapi', component: KeretaApiComponent },
@@ -37,7 +39,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents = [ 
+export const RoutingComponents = [
   HotelWidget,
   HomeComponent,
   PesawatComponent,
@@ -52,5 +54,5 @@ export const RoutingComponents = [
   PromoListComponent,
   HelpCenterComponent,
   EntertaimentItemComponent,
-
+  AdminComponent,
 ]

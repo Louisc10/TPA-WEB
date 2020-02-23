@@ -12,6 +12,7 @@ import * as L from 'leaflet';
 export class HiburanComponent implements AfterViewInit {
   private datas: Entertainment[];
   private list: Entertainment[];
+  // private show: Entertainment[];
   private item: Entertainment;
   private detail = false;
   private click = false;
@@ -25,7 +26,8 @@ export class HiburanComponent implements AfterViewInit {
   // private notscrolly = true
   // private notEmptyPost = true
 
-  constructor(private apollo: BackendServiceService, private data: EntertainmentFilterServiceService) { }
+  constructor(private apollo: BackendServiceService, private data: EntertainmentFilterServiceService) { 
+  }
 
   ngAfterViewInit() {
     this.apollo.getAllEntertainment().subscribe(
@@ -36,40 +38,25 @@ export class HiburanComponent implements AfterViewInit {
     );
 
   }
-  //   onScroll() {
-  //     if (this.notscrolly && this.notEmptyPost) {
-  //       this.notscrolly = false;
-  //       this.loadNextPost();
-  //    }
-  //   }
+  array = [];
+  sum = 15;
+  scrollDistance = 0.1;
 
-  //   loadNextPost() {
-  //    const url = 'http://tlino.96.lt/api/getnextpost';
-  //    // return last post from the array
-  //    const lastPost = this.allpost[this.allpost.length - 1];
-  //    // get id of last post
-  //    //  backend of this app use this id to get next 6 post
-  //    const lastPostId = lastPost.id;
-  //    // sent this id as key value pare using formdata()
-  //    const dataToSend = new FormData();
-  //    dataToSend.append('id', lastPostId);
-  //    // call http request
-  //    this.http.post(url, dataToSend)
-  //    .subscribe( (data: any) => {
+  appendItems(startIndex, endIndex) {
+    for (let i = startIndex; i < this.sum; ++i) {
+      this.array = [...this.array, ...[this.list[i]]];
+    }
+  }
+  
+  onScrollDown (ev) {
+    console.log('scrolled down!!', ev);
+    const start = this.sum;
+    this.sum += 20;
+    if(this.sum > this.list.length)
+    this.sum = this.list.length
+    this.appendItems(start, this.sum);
+  }
 
-  //       const newPost = data[0];
-
-  //       this.spinner.hide();
-
-  //       if (newPost.length === 0 ) {
-  //         this.notEmptyPost =  false;
-  //       }
-  //       // add newly fetched posts to the existing post
-  //       this.allpost = this.allpost.concat(newPost);
-
-  //       this.notscrolly = true;
-  //     });
-  //  }
   initMap() {
     console.log("Lat: " + this.latitude);
     console.log("Long: " + this.longitude);
@@ -126,6 +113,8 @@ export class HiburanComponent implements AfterViewInit {
   newlyVar() {
     this.list = this.datas;
     console.table(this.list)
+    this.appendItems(0, this.sum);
+    // console.table(this.array)
   }
 
   doFilter() {
@@ -222,7 +211,9 @@ export class HiburanComponent implements AfterViewInit {
     this.item = item
     console.log(item)
     this.imageChoosen = item.photoLink1
-    this.initMap()
+
+    console.log(this.detail)
+    // this.initMap()
   }
 
   closeDetail() {

@@ -6,6 +6,8 @@ import gql from 'graphql-tag';
 import { Admin } from '../models/admin';
 import { Entertainment } from '../models/entertainment';
 import { Train } from '../models/train';
+import { Hotel } from '../models/hotel';
+import { Car } from '../models/car';
 
 
 @Injectable({
@@ -132,24 +134,25 @@ export class BackendServiceService {
     return this.apollo.query<Query>(
       {
         query: gql`
-          query{
-            getAllEntertainment{
-              id
-              name
-              price
-              description
-              latitude
-              longitude
-              location
-              photoLink1
-              photoLink2
-              photoLink3
-              photoLink4
-              photoLink5
-              photoLink6
-              category
-            }
+        query{
+          getAllEntertainment{
+            id
+            name
+            price
+            description
+            latitude
+            longitude
+            location
+            photoLink1
+            photoLink2
+            photoLink3
+            photoLink4
+            photoLink5
+            photoLink6
+            category
+            dateLast
           }
+        }
         `
       }
     )
@@ -172,6 +175,7 @@ export class BackendServiceService {
             $photoLink6: String!
             $price: Int!
             $description: String!
+            $dateLast: String!
           ){
             createEntertainment(
               name: $name
@@ -185,8 +189,9 @@ export class BackendServiceService {
               photoLink5: $photoLink5
               photoLink6: $photoLink6
               price: $price
-              description: $description)
-            {
+              description: $description
+              dateLast: $dateLast
+              ){
               name
               id
             }
@@ -204,7 +209,8 @@ export class BackendServiceService {
           "photoLink5": newEntertainment.photoLink5,
           "photoLink6": newEntertainment.photoLink6,
           "price": newEntertainment.price,
-          "description": newEntertainment.description 
+          "description": newEntertainment.description,
+          "dateLast": newEntertainment.dateLast 
         }
       }
     )
@@ -279,6 +285,169 @@ export class BackendServiceService {
           "timeArrive": item.timeArrive,
           "timeGo": item.timeGo,
           "tipe": item.tipe
+        }
+      }
+    )
+  }
+  
+  //Hotel
+  getAllHotel(): Observable<Query>{
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query{
+            getAllHotel{
+              name
+              image
+              rating
+              price
+              review
+              tipe
+              jaringanHotel
+              resepsionis
+              ac
+              lift
+              tempatParkir
+              restorant
+              spa
+              kolamRenang
+              wifi
+              freeLunch
+              location
+              address
+              information
+            }
+          }
+        `
+      }
+    )
+  }
+
+  createHotel(item: Hotel ): Observable<any>{
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation createHotel(
+            $name: String!
+            $image: String!
+            $rating: Int!
+            $price: Int!
+            $review: String!
+            $tipe: String!
+            $jaringanHotel: String!
+            $resepsionis: String!
+            $ac: String!
+            $lift: String!
+            $tempatParkir: String!
+            $restoran: String!
+            $spa: String!
+            $kolamRenang: String!
+            $wifi: String!
+            $freeLunch: String!
+            $location: String!
+            $address: String!
+            $information: String!
+          ){
+            createHotel(
+              name: $name
+              image: $image
+              rating: $rating
+              price: $price
+              review: $review
+              tipe: $tipe
+              jaringanHotel: $jaringanHotel
+              resepsionis: $resepsionis
+              ac: $ac
+              lift: $lift
+              tempatParkir: $tempatParkir
+              restoran: $restoran
+              spa: $spa
+              kolamRenang: $kolamRenang
+              wifi: $wifi
+              freeLunch: $freeLunch
+              location: $location
+              address: $address
+              information: $information
+            ){
+              name
+              id
+            }
+          }
+        `,
+        variables:{
+          "name" : item.name,
+          "image" : item.image,
+          "rating" : item.rating,
+          "price" : item.price,
+          "review" : item.review,
+          "tipe" : item.tipe,
+          "jaringanHotel" : item.jaringanHotel,
+          "resepsionis" : item.resepsionis,
+          "ac" : item.ac,
+          "lift" : item.lift,
+          "tempatParkir" : item.tempatParkir,
+          "restoran" : item.restorant,
+          "spa" : item.spa,
+          "kolamRenang" : item.kolamRenang,
+          "wifi" : item.wifi,
+          "freeLunch" : item.freeLunch,
+          "location" : item.location,
+          "address": item.address,
+          "information": item.information
+        }
+      }
+    )
+  }
+  
+  //Car
+  getAllCar(): Observable<Query>{
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query{
+            getAllCar{
+              id
+              name
+              image
+              capacity
+              price
+              bagasi
+            }
+          }
+        `
+      }
+    )
+  }
+
+  createCar(item: Car ): Observable<any>{
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation createCar(
+            $name: String!
+            $capacity: Int!
+            $bagasi: Int!
+            $price: Int!
+            $image: String!
+          ){
+            createCar(
+              name: $name
+              capacity: $capacity
+              bagasi: $bagasi
+              price: $price
+              image: $image
+            ){
+              name
+              id
+            }
+          }
+        `,
+        variables:{
+          "name" : item.name,
+          "image" : item.image,
+          "capacity" : item.capacity,
+          "bagasi" : item.bagasi,
+          "price" : item.price
         }
       }
     )

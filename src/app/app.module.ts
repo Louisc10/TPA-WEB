@@ -50,6 +50,12 @@ import { EntertaimentItemComponent } from './components/searchItem/entertaiment-
 import { EntertaimentFilterComponent } from './components/searchFilter/entertaiment-filter/entertaiment-filter.component';
 import { MapsLeafletComponent } from './components/maps-leaflet/maps-leaflet.component';
 import { TrainFilterComponent } from './components/searchFilter/train-filter/train-filter.component';
+import { HotelFilterComponent } from './components/searchFilter/hotel-filter/hotel-filter.component';
+import { HotelTableComponent } from './components/admin/hotel-table/hotel-table.component';
+import { FlightTableComponent } from './components/admin/flight-table/flight-table.component';
+import { TrainTableComponent } from './components/admin/train-table/train-table.component';
+import { BlogTableComponent } from './components/admin/blog-table/blog-table.component';
+import { EventTableComponent } from './components/admin/event-table/event-table.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +98,12 @@ import { TrainFilterComponent } from './components/searchFilter/train-filter/tra
     EntertaimentFilterComponent,
     MapsLeafletComponent,
     TrainFilterComponent,
+    HotelFilterComponent,
+    HotelTableComponent,
+    FlightTableComponent,
+    TrainTableComponent,
+    BlogTableComponent,
+    EventTableComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,4 +15,5 @@ export class Entertainment {
     photoLink5: String
     photoLink6: String
     price: number
+    dateLast: string
 }
