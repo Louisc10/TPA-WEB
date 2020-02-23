@@ -56,6 +56,7 @@ import { FlightTableComponent } from './components/admin/flight-table/flight-tab
 import { TrainTableComponent } from './components/admin/train-table/train-table.component';
 import { BlogTableComponent } from './components/admin/blog-table/blog-table.component';
 import { EventTableComponent } from './components/admin/event-table/event-table.component';
+import { HiburanImageSliderComponent } from './components/hiburan/hiburan-image-slider/hiburan-image-slider.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { EventTableComponent } from './components/admin/event-table/event-table.
     TrainTableComponent,
     BlogTableComponent,
     EventTableComponent,
+    HiburanImageSliderComponent,
   ],
   imports: [
     BrowserModule,

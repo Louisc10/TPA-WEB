@@ -33,9 +33,9 @@ export class TrainTableComponent implements AfterViewInit {
       this.rawData = Query.data.getAllTrain
       await this.insertData()
 
-      await this.delay(5000)
+      // await this.delay(5000)
 
-      await this.cg()
+      // await this.cg()
 
     });
   }
@@ -65,6 +65,6 @@ export class TrainTableComponent implements AfterViewInit {
     this.data.paginator = this.paginator
     this.data.sort = this.sort
 
-    
+    this.cg()
   }
 }

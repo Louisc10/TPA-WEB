@@ -11,19 +11,23 @@
                 <td mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
     
-            <ng-container matColumnDef="departTime" >
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Depart </th>
-                <td mat-cell *matCellDef="let element"> {{element.departTime.getHours()}} : {{element.departTime.getMinutes()}} </td>
+            <ng-container matColumnDef="image" >
+                <th mat-header-cell *matHeaderCellDef > Image </th>
+                <td mat-cell *matCellDef="let element"> <img src="{{element.image}}" style="width: 150px; height: 100px;"> </td>
             </ng-container>
     
-            <ng-container matColumnDef="arriveTime" >
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Arrive </th>
-                <td mat-cell *matCellDef="let element"> {{element.arriveTime.getHours()}} : {{element.arriveTime.getMinutes()}} </td>
+            <ng-container matColumnDef="loc" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+                <td mat-cell *matCellDef="let element"> {{element.loc}} </td>
             </ng-container>
     
-            <ng-container matColumnDef="class">
-                <th mat-header-cell *matHeaderCellDef> Class </th>
-                <td mat-cell *matCellDef="let element"> {{element.class}} </td>
+            <ng-container matColumnDef="time">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date and Time </th>
+                <td mat-cell *matCellDef="let element"> {{element.time.getDate()}} - {{element.time.getMonth()}} {{element.time.getYear()+ 1890}}, {{element.time.getHours()}}:{{element.time.getMinutes()}} </td>
+            </ng-container>
+            <ng-container>
+                <button>Update</button>
+                <button>Delete</button>
             </ng-container>
     
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

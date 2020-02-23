@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
 <div *ngIf="!detail">
+    <app-hiburan-image-slider></app-hiburan-image-slider>
     <widget-entertainment (click)="doClick()"></widget-entertainment>
     <div *ngIf="click">
         <app-entertaiment-filter></app-entertaiment-filter>

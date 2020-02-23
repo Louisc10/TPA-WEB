@@ -2,15 +2,16 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Entertainment } from 'src/app/models/entertainment';
+import { timeInterval } from 'rxjs/operators';
 
-export interface TrainTable {
+export interface EventTable {
   name: String
   image: String
-  location: String
-  date: Date
+  loc: String
+  time: Date
 }
 
-let EXAMPLE_DATA: TrainTable[] 
+let EXAMPLE_DATA: EventTable[] =[]  
 
 @Component({
   selector: 'app-event-table',
@@ -26,18 +27,14 @@ export class EventTableComponent implements AfterViewInit {
 
   complete: boolean = false
 
-  displayedColumns: string[] = ['name', 'image', 'location', 'date'];
+  displayedColumns: string[] = ['name', 'image', 'loc', 'time'];
   
   constructor(private apolo: BackendServiceService) {}
 
   ngAfterViewInit() {
     this.apolo.getAllEntertainment().subscribe(async Query => {
-      this.rawData = Query.data.getAllEvent
+      this.rawData = Query.data.getAllEntertainment
       await this.insertData()
-
-      await this.delay(5000)
-
-      await this.cg()
 
     });
   }
@@ -52,14 +49,16 @@ export class EventTableComponent implements AfterViewInit {
 
   insertData() {
     this.rawData.forEach(element => {
-      let xVal: TrainTable
+      let xVal: EventTable
       xVal = {
         name: element.name,
         image: element.photoLink1,
-        location: element.location,
-        date: new Date(element.dateLast)
+        loc: element.location,
+        time: new Date(element.dateLast)
       }
       EXAMPLE_DATA.push(xVal)
+      let x= new Date()
+      x.getMonth()
     });
     console.table(this.rawData);
 
@@ -67,6 +66,6 @@ export class EventTableComponent implements AfterViewInit {
     this.data.paginator = this.paginator
     this.data.sort = this.sort
 
-    
+    this.cg()
   }
 }

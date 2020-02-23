@@ -41,9 +41,9 @@ export class HotelTableComponent implements AfterViewInit {
       this.rawData = Query.data.getAllHotel
       await this.insertData()
 
-      await this.delay(5000)
+      // await this.delay(5000)
 
-      await this.cg()
+      // await this.cg()
 
     });
   }
@@ -79,7 +79,7 @@ export class HotelTableComponent implements AfterViewInit {
     this.data.paginator = this.paginator
     this.data.sort = this.sort
 
-    
+    this.cg()
   }
 
   facilitesBuilder(element: Hotel) {
