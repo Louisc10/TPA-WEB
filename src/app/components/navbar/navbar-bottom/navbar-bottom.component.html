@@ -22,7 +22,7 @@
 
         <div class="user" *ngIf="userPresent()" (click)="signOut()">
             <div class="name">{{ user.firstName }} {{ user.lastName }}</div>
-            <img class="icon" src="{{ user.photoUrl }}">
+            <div class="icon">{{ user.firstName.charAt[0] }}{{ user.lastName.charAt[0] }}</div>
         </div>
     </div>
 </div>

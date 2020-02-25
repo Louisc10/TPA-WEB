@@ -7,13 +7,13 @@
         </div>
         <div class="hasLabel {{status}}">
             <mat-form-field>
-                <input matInput name="password" type="{{visible}}" placeholder="Password">
+                <input matInput id="passinput" type="{{visible}}" placeholder="Password">
                 <mat-icon matSuffix (click)="changeCondition()">{{condition}}</mat-icon>
             </mat-form-field>
         </div>
     </div>
     <div class="input-wrap">
-        <button type="button" class="btn-custom" (click)="checkLogin()">Lanjutkan</button>
+        <button class="btn-custom" (click)="checkLogin()">Lanjutkan</button>
     </div>
     <div class="hr-with-txt"><span>atau dengan</span></div>
     <div class="social-network-wrap">

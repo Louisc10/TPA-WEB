@@ -277,14 +277,86 @@ export class BackendServiceService {
           }
         `,
         variables:{
+          "src": item.src,
           "dst": item.dst,
           "kelas": item.kelas,
           "name": item.name,
           "price": item.price,
-          "src": item.src,
           "timeArrive": item.timeArrive,
           "timeGo": item.timeGo,
           "tipe": item.tipe
+        }
+      }
+    )
+  }
+
+  updateTrain(id: number, name: string, kelas: string, price: number,
+    timeGo: string, timeArrive: string): Observable<any>{
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation updateTrain(
+            $id: Int!
+            $name String!
+            $kelas String!
+            $price Int!
+            $timeGo String!
+            $timeArrive String!
+          ){
+            updateTrain(
+              name: $name
+              price: $price
+              kelas: $kelas
+              timeGo: $timeGo
+              timeArrive: $timeArrive
+            ){
+              name
+              id
+              dst
+              src
+              kelas
+              price
+              tipe
+              timeGo
+              timeArrive
+            }
+          }
+        `,
+        variables:{
+          "kelas": kelas,
+          "name": name,
+          "price": price,
+          "timeArrive": timeArrive,
+          "timeGo": timeGo
+        }
+      }
+    )
+  }
+
+  deleteTrain(id: number): Observable<any>{
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation removeTrain(
+            $id: Int!
+          ){
+            removeTrain(
+              id: $id
+            ){
+              name
+              id
+              dst
+              src
+              kelas
+              price
+              tipe
+              timeGo
+              timeArrive
+            }
+          }
+        `,
+        variables:{
+          "id": id
         }
       }
     )

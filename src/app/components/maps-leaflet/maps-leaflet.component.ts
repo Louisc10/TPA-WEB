@@ -1,5 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import * as L from 'leaflet';
+import { log } from 'util';
 
 const iconRetinaUrl = 'assets/img/marker_2x.png';
 const iconUrl = 'assets/img/marker.png';
@@ -21,48 +22,29 @@ L.Marker.prototype.options.icon = iconDefault;
   templateUrl: './maps-leaflet.component.html',
   styleUrls: ['./maps-leaflet.component.sass']
 })
-export class MapsLeafletComponent implements AfterViewInit {
+export class MapsLeafletComponent implements OnInit {
   map: any;
   latitude: any = -6.201987;
   longitude: any = 106.781616;
+  userPosition
 
   constructor() {
   }
 
-  ngAfterViewInit(): void {
-    this.initMap()
-    // this.markerService.makeCapitalMarkers(this.map)
-  }
+  ngOnInit(): void {
+    navigator.geolocation.getCurrentPosition((suc) => {
+      this.userPosition = suc
+      this.map = L.map('map').setView([this.userPosition.coords.latitude, this.userPosition.coords.longitude], 13);
 
-  getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
-    }
-    else{
-      console.log("Geolocation not Supported")
-    }
-  }
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        minZoom: 3,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(this.map);
   
-  showPosition(position) {
-    this.latitude =  position.coords.latitude
-    this.longitude = position.coords.longitude
-    console.log("Lat: "+this.latitude)
-    console.log("Long: "+this.longitude);
-  }
-
-  initMap() {
-    this.getLocation()
-    this.map = L.map('map').setView([this.latitude, this.longitude], 13);
-
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      minZoom: 3,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
-
-    L.marker([this.latitude, this.longitude]).addTo(this.map).openPopup();
-
+      L.marker([this.userPosition.coords.latitude, this.userPosition.coords.longitude]).addTo(this.map).openPopup();
+    })
 
 
   }

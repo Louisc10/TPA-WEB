@@ -28,6 +28,24 @@ export class KeretaApiComponent implements OnInit {
     );
 
   }
+  array = [];
+  sum = 15;
+  scrollDistance = 0.1;
+
+  appendItems(startIndex, endIndex) {
+    for (let i = startIndex; i < this.sum; ++i) {
+      this.array = [...this.array, ...[this.list[i]]];
+    }
+  }
+  
+  onScrollDown (ev) {
+    console.log('scrolled down!!', ev);
+    const start = this.sum;
+    this.sum += 20;
+    if(this.sum > this.list.length)
+    this.sum = this.list.length
+    this.appendItems(start, this.sum);
+  }
 
 
   doFilter() {
@@ -172,6 +190,7 @@ export class KeretaApiComponent implements OnInit {
         this.data.thomasPresent = true
       }
     }
+    this.appendItems(0, this.sum);
   }
 
   msg = [""]

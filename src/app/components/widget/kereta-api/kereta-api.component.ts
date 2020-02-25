@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { City } from '../hotel/hotel.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'widget-kereta-api',
@@ -19,7 +20,8 @@ export class KeretaApiWidget implements OnInit {
   
 
 
-  constructor(private apollo: BackendServiceService) {
+  constructor(private apollo: BackendServiceService,
+    private route: Router) {
   }
   
   ngOnInit() {
@@ -52,8 +54,8 @@ export class KeretaApiWidget implements OnInit {
   }
 
   kik(){
-    let val = document.getElementById("date1");
-    // val.text
-    alert(this.date1)
+    if(this.route.url != "/keretaapi")
+    this.route.navigate(["/keretaapi"]);
+
   }
 }

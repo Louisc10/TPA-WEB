@@ -17,10 +17,10 @@
                     </mat-expansion-panel-header>
     
                     <div>
-                        <button mat-button *ngIf="language != 'EN'" (click)="changeToEN()">EN</button>
+                        <button mat-button *ngIf="language != 'EN'" (click)="changeLang('EN')">EN</button>
                     </div>
                     <div>
-                        <button mat-button *ngIf="language != 'ID'" (click)="changeToID()">ID</button>
+                        <button mat-button *ngIf="language != 'ID'" (click)="changeLang('ID')">ID</button>
                     </div>
                 </mat-expansion-panel>
 
@@ -34,13 +34,13 @@
                     </mat-expansion-panel-header>
                     
                     <div>
-                        <button mat-button *ngIf="currency != 'USD'" (click)="changeToUSD()">USD</button>
+                        <button mat-button *ngIf="currency != 'USD'" (click)="changeCur('USD')">USD</button>
                     </div>
                     <div>
-                        <button mat-button *ngIf="currency != 'IDR'" (click)="changeToIDR()">IDR</button>
+                        <button mat-button *ngIf="currency != 'IDR'" (click)="changeCur('IDR')">IDR</button>
                     </div>
                     <div>
-                        <button mat-button *ngIf="currency != 'SGD'" (click)="changeToSGD()">SGD</button>
+                        <button mat-button *ngIf="currency != 'SGD'" (click)="changeCur('SGD')">SGD</button>
                     </div>
                 </mat-expansion-panel>
                 

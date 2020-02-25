@@ -3,6 +3,7 @@ import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 export class City {
   name: string;
@@ -30,7 +31,7 @@ export class EntertainmentWidget implements AfterViewInit {
     { name: 'Bandung', id: 1, longitude: '106.816635', latitude: '-6.595038' }
   ]
 
-  constructor(private apollo: BackendServiceService) {
+  constructor(private apollo: BackendServiceService, private route: Router) {
   }
 
   filteredOptions: Observable<City[]>;
@@ -81,8 +82,8 @@ export class EntertainmentWidget implements AfterViewInit {
   }
 
   kik() {
-    let val = document.getElementById("date1");
-    // val.text
-    alert(this.date1)
+    if(this.route.url != "/hiburan")
+    this.route.navigate(["/hiburan"]);
+
   }
 }

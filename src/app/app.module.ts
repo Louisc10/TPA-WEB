@@ -57,6 +57,9 @@ import { TrainTableComponent } from './components/admin/train-table/train-table.
 import { BlogTableComponent } from './components/admin/blog-table/blog-table.component';
 import { EventTableComponent } from './components/admin/event-table/event-table.component';
 import { HiburanImageSliderComponent } from './components/hiburan/hiburan-image-slider/hiburan-image-slider.component';
+import { InsertTrainFormComponent } from './components/admin/train-table/insert-train-form/insert-train-form.component';
+import { MatFormFieldModule } from '@angular/material';
+import { ProfilComponent } from './components/other/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +109,8 @@ import { HiburanImageSliderComponent } from './components/hiburan/hiburan-image-
     BlogTableComponent,
     EventTableComponent,
     HiburanImageSliderComponent,
+    InsertTrainFormComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,7 +125,8 @@ import { HiburanImageSliderComponent } from './components/hiburan/hiburan-image-
     GraphQLModule,
     FormsModule,
     ReactiveFormsModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatFormFieldModule,
     ],
   providers: [],
   bootstrap: [AppComponent],
@@ -133,6 +139,7 @@ import { HiburanImageSliderComponent } from './components/hiburan/hiburan-image-
     KeretaApiWidget,
     CardRightComponent,
     RegisterComponent,
+    InsertTrainFormComponent
   ]
 })
 export class AppModule { }

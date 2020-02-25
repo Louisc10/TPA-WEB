@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CardRightComponent } from '../../daftar-login/card-right/card-right.component';
 import { MatDialog } from '@angular/material';
 import { AuthService, SocialUser } from 'angularx-social-login';
+import { UserCacheService } from 'src/app/service/user-cache.service';
+import { ProfilComponent } from '../../other/profil/profil.component';
+import { Admin } from 'src/app/models/admin';
 
 @Component({
   selector: 'app-navbar-bottom',
@@ -10,8 +13,12 @@ import { AuthService, SocialUser } from 'angularx-social-login';
 })
 export class NavbarBottomComponent implements OnInit {
 
-  constructor(private dialog : MatDialog, private authService: AuthService) { }
+  constructor(
+    private dialog : MatDialog,
+    private authService: AuthService,
+    private userService: UserCacheService) { }
   private user: SocialUser;
+  private users: Admin;
   private loggedIn: boolean;
 
   ngOnInit() {
@@ -20,6 +27,8 @@ export class NavbarBottomComponent implements OnInit {
       this.loggedIn = (user != null);
       console.log(user);
     });
+    // this.users = this.userService.user
+    // this.loggedIn = (this.user != null);
   }
 
   openLogin(){
@@ -31,6 +40,6 @@ export class NavbarBottomComponent implements OnInit {
   }
 
   signOut(): void {
-    this.authService.signOut();
+    this.dialog.open(ProfilComponent);
   }
 }

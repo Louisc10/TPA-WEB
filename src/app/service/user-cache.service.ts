@@ -8,6 +8,7 @@ export class UserCacheService {
 
   constructor() { }
   user: Admin
-
+	currency: string ="IDR"
+	language: string = "ID"
   
 }

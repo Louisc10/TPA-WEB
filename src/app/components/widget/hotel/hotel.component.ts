@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { async } from '@angular/core/testing';
 import { Query } from 'src/app/models/query';
+import { Router } from '@angular/router';
 
 export interface City {
   name: string;
@@ -29,7 +30,8 @@ export class HotelWidget implements OnInit {
   
 
 
-  constructor(private apollo: BackendServiceService) {
+  constructor(private apollo: BackendServiceService,
+    private route: Router) {
   }
   
   ngOnInit() {
@@ -68,8 +70,8 @@ export class HotelWidget implements OnInit {
   }
 
   kik(){
-    let val = document.getElementById("date1");
-    // val.text
-    alert(this.date1)
+    if(this.route.url != "/hotel")
+    this.route.navigate(["/hote;"]);
+
   }
 }
