@@ -15,6 +15,7 @@ import { HelpCenterComponent } from './components/help-center/help-center.compon
 import { HotelWidget } from './components/widget/hotel/hotel.component'
 import { EntertaimentItemComponent } from './components/searchItem/entertaiment-item/entertaiment-item.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { TextEditorComponent } from './components/other/text-editor/text-editor.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'unduhaplikasi', component: UnduhAplikasiComponent },
   { path: 'promo', component: PromoListComponent },
   { path: 'help', component: HelpCenterComponent },
+  { path: 'texteditor', component: TextEditorComponent },
   { path: 'hiburan/detail', component: EntertaimentItemComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

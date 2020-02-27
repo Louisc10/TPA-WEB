@@ -39,7 +39,7 @@
 
         </div>
         <div infinite-scroll [infiniteScrollDistance]="scrollDistance" (scrolled)="onScrollDown()">
-            <div *ngFor="let item of array"
+            <div *ngFor="let item of list"
                 style="width: 46%; margin: 1%; border: 1px solid black; border-radius: 10px; padding: 5px;">
                 <div>
                     <div style="font-weight: bold;">{{item.name}}</div>
@@ -64,7 +64,11 @@
                     {{msg[item.id]}}
                 </div>
                 <div>
-                    <button (click)="openTransit(item)">View Transit</button>
+                    <div class="tooltip">
+                        <button (click)="openTransit(item)">Transit</button>
+                        <span class="tooltiptext">Check Transit</span>
+                    </div>
+
                     <button (click)="openDetail(item)">Click</button>
                 </div>
             </div>

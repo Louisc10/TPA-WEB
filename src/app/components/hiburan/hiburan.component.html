@@ -41,7 +41,7 @@
         <div>
             <div infinite-scroll [infiniteScrollDistance]="scrollDistance" (scrolled)="onScrollDown()">
                 <div>
-                    <div *ngFor="let item of array"
+                    <div *ngFor="let item of list"
                         style="width: 46%; margin: 1%; border: 1px solid black; border-radius: 10px; padding: 5px;"
                         (click)="openDetail(item)">
                         <div>

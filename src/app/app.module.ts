@@ -60,6 +60,7 @@ import { HiburanImageSliderComponent } from './components/hiburan/hiburan-image-
 import { InsertTrainFormComponent } from './components/admin/train-table/insert-train-form/insert-train-form.component';
 import { MatFormFieldModule } from '@angular/material';
 import { ProfilComponent } from './components/other/profil/profil.component';
+import { TextEditorComponent } from './components/other/text-editor/text-editor.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { ProfilComponent } from './components/other/profil/profil.component';
     HiburanImageSliderComponent,
     InsertTrainFormComponent,
     ProfilComponent,
+    TextEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -139,7 +141,9 @@ import { ProfilComponent } from './components/other/profil/profil.component';
     KeretaApiWidget,
     CardRightComponent,
     RegisterComponent,
-    InsertTrainFormComponent
+    InsertTrainFormComponent,
+    ProfilComponent,
+    TextEditorComponent
   ]
 })
 export class AppModule { }

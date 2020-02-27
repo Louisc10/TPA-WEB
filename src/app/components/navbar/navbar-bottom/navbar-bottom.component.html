@@ -17,12 +17,12 @@
         <div class="right-link"><a [routerLink]="['/tixpoint']" routerLinkActive="router-link-active" >Tix Point</a></div>
         <div class="right-link"><a [routerLink]="['/cekorder']" routerLinkActive="router-link-active" >Cek Order</a></div>
         
-        <div class="right-link" *ngIf="userPresent() == false" (click) = "openLogin()">Login</div>
+        <div class="right-link" *ngIf="loggedIn == false" (click) = "openLogin()">Login</div>
         <div class="right-link" *ngIf="userPresent() == false" id="daftar" (click) = "openLogin()" >Daftar</div>
 
-        <div class="user" *ngIf="userPresent()" (click)="signOut()">
-            <div class="name">{{ user.firstName }} {{ user.lastName }}</div>
-            <div class="icon">{{ user.firstName.charAt[0] }}{{ user.lastName.charAt[0] }}</div>
+        <div class="user" *ngIf="loggedIn" (click)="signOut()">
+            <div class="name">{{ users.frontname }} {{ users.backname }}</div>
+            <div class="icon">{{getInitial()}}</div>
         </div>
     </div>
 </div>

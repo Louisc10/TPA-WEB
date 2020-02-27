@@ -118,27 +118,27 @@ export class EntertaimentFilterComponent implements OnInit {
 
   ngOnInit() {
   }
-  autoTicks = this.data.autoTicks;
-  disabled = this.data.disabled;
-  invert = this.data.invert;
-  max = this.data.max;
-  min = this.data.min;
-  showTicks = this.data.showTicks;
-  step = this.data.step;
-  thumbLabel = this.data.thumbLabel;
-  value = this.data.value;
-  value1 = this.data.value1;
-  vertical = this.data.vertical;
-  tickInterval = this.data.tickInterval;
+  // autoTicks = this.data.autoTicks;
+  // disabled = this.data.disabled;
+  // invert = this.data.invert;
+  // max = this.data.max;
+  // min = this.data.min;
+  // showTicks = this.data.showTicks;
+  // step = this.data.step;
+  // thumbLabel = this.data.thumbLabel;
+  // value = this.data.value;
+  // value1 = this.data.value1;
+  // vertical = this.data.vertical;
+  // tickInterval = this.data.tickInterval;
 
-  date1 = this.data.date1;
-  date2 = this.data.date2;
+  // date1 = this.data.date1;
+  // date2 = this.data.date2;
 
-  activities = this.data.activities;
-  attractions = this.data.attractions;
-  events = this.data.events;
+  // activities = this.data.activities;
+  // attractions = this.data.attractions;
+  // events = this.data.events;
 
-  penawaran = this.data.penawaran;
+  // penawaran = this.data.penawaran;
 
 
 

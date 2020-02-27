@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { Admin } from 'src/app/models/admin';
 import { UserCacheService } from 'src/app/service/user-cache.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-right',
@@ -24,27 +25,28 @@ export class CardRightComponent implements OnInit {
   private visible: String = "password";
   private condition: String = "remove_red_eye";
 
-  constructor(private authService: AuthService, 
-    private apollo: BackendServiceService, 
-    private dialog : MatDialog, 
+  constructor(private authService: AuthService,
+    private apollo: BackendServiceService,
+    private dialog: MatDialog,
     public dialogRef: MatDialogRef<CardRightComponent>,
-    private userCac: UserCacheService) { }
- 
+    private userCac: UserCacheService,
+    private rou: Router) { }
+
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.regApollo()
   }
- 
+
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.regApollo()
-  } 
- 
+  }
+
   signOut(): void {
     this.authService.signOut();
   }
 
-  private regApollo(){
+  private regApollo() {
     this.authService.authState.subscribe((user) => {
       this.user = user;
     });
@@ -55,74 +57,81 @@ export class CardRightComponent implements OnInit {
     admin.PhoneNumber = ""
     admin.Password = this.user.email
     this.apollo.createAdmin(admin).subscribe(
-      async Query=>{
+      async Query => {
         this.account = Query.data.createAdmin
         await console.table(this.account)
       }
     );
   }
 
-  checkLogin(): void{
+  checkLogin(): void {
     this.username = (<HTMLInputElement>document.getElementById("userinput")).value;
     this.password = ((this.status == "") ?
-    (<HTMLInputElement>document.getElementById("passinput")).value : "");
-    
-    if(this.username==""){
+      (<HTMLInputElement>document.getElementById("passinput")).value : "");
+
+    if (this.username == "") {
       alert("Can't Be Empty");
     }
-    else if( this.isValidEmail(this.username) || this.isValidPhone(this.username) ) {
+    else if (this.isValidEmail(this.username) || this.isValidPhone(this.username)) {
       this.apollo.getAdmin(this.username).subscribe(
-        async Query=>{
+        async Query => {
           this.account = Query.data.getAdmin
-          await console.table(this.account)
-          if(this.account.length == 1){
-            this.status = "";
-          }
-          else{
-            this.status = " hidden";
-            this.dialog.open(RegisterComponent)
-          }
-
-          if(this.password != ""){
-            console.log(this.username)
-            if(this.account[0]["password"] == this.password){
-              alert("Success");
-              this.userCac.user = this.account
-              sessionStorage.setItem("user",this.account)
-              this.dialogRef.close()
-
-            }
-            else{
-              if(this.status == ""){
-                alert("False & Failed");
-                (<HTMLInputElement>document.getElementById("passinput")).value = "";
-              }
-              else{
-                alert("Provide Password")
-              }
-            }
-          }
-          this.account = null
+          await this.met();
         }
       );
 
     }
-    else{
+    else {
       alert("Not a email or phone number")
     }
-    
+
+  }
+
+  met() {
+    console.table(this.account)
+    if (this.account.length == 1) {
+      this.status = "";
+    }
+    else {
+      this.status = " hidden";
+      this.dialog.open(RegisterComponent)
+    }
+
+    if (this.password != "") {
+      console.log(this.username)
+      if (this.account[0]["password"] == this.password) {
+        alert("Success");
+        this.userCac.user = this.account
+        console.log(this.account)
+        window.localStorage.setItem("user", this.account[0].email);
+
+        this.rou.navigate([this.rou.url])
+        this.dialogRef.close()
+
+      }
+      else {
+        if (this.status == "") {
+          alert("False & Failed");
+          (<HTMLInputElement>document.getElementById("passinput")).value = "";
+        }
+        else {
+          alert("Provide Password")
+        }
+      }
+    }
+    // this.account = null
   }
 
   private isValidPhone(phone: String): boolean {
-    if(phone == ""){
+    if (phone == "") {
       return false
     }
-    else if(phone.length < 10 || phone.length  > 12){
+    else if (phone.length < 10 || phone.length > 12) {
       return false
     }
-    else{
-      for( var i = 0 ; i < phone.length ; i++ ) {
-        if(phone.charAt(i) < '0' || phone.charAt(i) > '9'){
+    else {
+      for (var i = 0; i < phone.length; i++) {
+        if (phone.charAt(i) < '0' || phone.charAt(i) > '9') {
           return false
         }
       }
@@ -132,16 +141,16 @@ export class CardRightComponent implements OnInit {
   }
 
   private isValidEmail(email: String): boolean {
-    if(email.startsWith('@') || email.startsWith('.') || email.endsWith('@') || email.endsWith('.')){
+    if (email.startsWith('@') || email.startsWith('.') || email.endsWith('@') || email.endsWith('.')) {
       return false
     }
-    else if(email.indexOf('@')==-1 || email.indexOf('.') == -1){
+    else if (email.indexOf('@') == -1 || email.indexOf('.') == -1) {
       return false
     }
-    else if(email.indexOf('@', email.indexOf('@') + 1) != -1){
+    else if (email.indexOf('@', email.indexOf('@') + 1) != -1) {
       return false
     }
-    else if(email.charAt(email.indexOf('@') - 1) == '.' || email.charAt(email.indexOf('@') + 1) == '.'){
+    else if (email.charAt(email.indexOf('@') - 1) == '.' || email.charAt(email.indexOf('@') + 1) == '.') {
       return false
     }
 
@@ -150,10 +159,10 @@ export class CardRightComponent implements OnInit {
   }
 
   changeCondition() {
-    if(this.visible == "text"){
+    if (this.visible == "text") {
       this.visible = "password"
     }
-    else{
+    else {
       this.visible = "text"
     }
   }
@@ -164,5 +173,5 @@ export class CardRightComponent implements OnInit {
     });
   }
 
-  
+
 }

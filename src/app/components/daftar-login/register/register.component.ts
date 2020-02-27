@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { nonInputTypeOnVarMessage } from 'graphql/validation/rules/VariablesAreInputTypes';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Admin } from 'src/app/models/admin';
-import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { AuthService, GoogleLoginProvider, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-register',
@@ -12,19 +12,43 @@ import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angular
 export class RegisterComponent implements OnInit {
   account;
   admin: Admin = new Admin();
+  user: SocialUser
 
   constructor(private authService: AuthService, private apollo: BackendServiceService) { }
 
   ngOnInit() {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+    });
   }
   
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.regApollo1()
   }
  
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.regApollo1()
   } 
+
+  private regApollo1() {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+    });
+    var admin: Admin;
+    admin.Email = this.user.email
+    admin.BackName = this.user.lastName
+    admin.FrontName = this.user.firstName
+    admin.PhoneNumber = ""
+    admin.Password = this.user.email
+    this.apollo.createAdmin(admin).subscribe(
+      async Query => {
+        this.account = Query.data.createAdmin
+        await console.table(this.account)
+      }
+    );
+  }
  
   signOut(): void {
     this.authService.signOut();

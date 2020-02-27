@@ -13,8 +13,8 @@ export class KeretaApiComponent implements OnInit {
   private datas: Train[];
   private list: Train[];
   private item: Train;
-  private detail = false;
-  private click = false;
+  private detail: boolean = false;
+  private click: boolean = false;
   private urutkan = "Harga Terendah"
 
   constructor(private apollo: BackendServiceService, private data: TrainFilterService, private bought: BoughtService) { }
@@ -36,6 +36,8 @@ export class KeretaApiComponent implements OnInit {
     for (let i = startIndex; i < this.sum; ++i) {
       this.array = [...this.array, ...[this.list[i]]];
     }
+    console.table(this.array)
+    console.log(this.array[0].name)
   }
   
   onScrollDown (ev) {
@@ -44,7 +46,8 @@ export class KeretaApiComponent implements OnInit {
     this.sum += 20;
     if(this.sum > this.list.length)
     this.sum = this.list.length
-    this.appendItems(start, this.sum);
+    this.array = [...[this.list[this.sum]]]
+    // this.appendItems(start, this.sum);
   }
 
 
@@ -190,7 +193,7 @@ export class KeretaApiComponent implements OnInit {
         this.data.thomasPresent = true
       }
     }
-    this.appendItems(0, this.sum);
+    this.appendItems(0, this.sum)
   }
 
   msg = [""]
@@ -203,7 +206,6 @@ export class KeretaApiComponent implements OnInit {
       this.msg[item.id] = ""
     }
   }
-
   openDetail(item) {
     this.detail = true;
     this.item = item
