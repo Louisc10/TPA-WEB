@@ -1,0 +1,91 @@
+<div style="border: 1px solid chocolate; margin-top: 100px; padding: 20px;">
+    <div style=" display: flex; justify-content: center; align-content: center;">
+        <div style="margin: auto 15px;">Filter</div>
+        <button mat-button (click)="reset()">Reset</button>
+    </div>
+
+    <div style=" display: flex; justify-content: center; align-content: center;">
+        <div>
+            <mat-form-field class="example-margin">
+                <mat-label>Min</mat-label>
+                <input matInput type="number" [(ngModel)]="this.data.value" disabled>
+            </mat-form-field>
+            <mat-slider (input)="changeSlider($event)" class="example-margin" [disabled]="disabled" [invert]="invert"
+                [max]="this.data.value1" [min]="this.data.min" [step]="this.data.step" [thumbLabel]="thumbLabel"
+                [tickInterval]="getSliderTickInterval()" [(ngModel)]="this.data.value" [vertical]="vertical">
+            </mat-slider>
+        </div>
+        <div>
+            <mat-form-field class="example-margin">
+                <mat-label>Max</mat-label>
+                <input matInput type="number" [(ngModel)]="this.data.value1" disabled>
+            </mat-form-field>
+            <mat-slider (input)="changeSlider1($event)" class="example-margin" [disabled]="disabled" [invert]="invert"
+                [max]="this.data.max" [min]="this.data.value" [step]="this.data.step" [thumbLabel]="thumbLabel"
+                [tickInterval]="getSliderTickInterval()" [(ngModel)]="this.data.value1" [vertical]="vertical">
+            </mat-slider>
+        </div>
+    </div>
+
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <mat-form-field>
+            <input id="date1" matInput [matDatepickerFilter]="myFilter1" [matDatepicker]="picker1" placeholder="Dari"
+                [(ngModel)]="this.data.date1">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input id="date2" matInput [matDatepicker]="picker2" placeholder="Ke" [(ngModel)]="this.data.date2">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Kategori
+        </div>
+        <mat-checkbox [(ngModel)]="this.data.activities">
+            Activities
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.attractions">
+            Attractions
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.events">
+            Events
+        </mat-checkbox>
+    </div>
+
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Penawaran Terbaik
+        </div>
+        <mat-checkbox [(ngModel)]="this.data.penawaran">
+            Penawaran & Promosi
+        </mat-checkbox>
+    </div>
+
+    <div>
+        <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+            Tujuan
+        </div>
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+                <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
+                    (change)="todoLeafItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
+                <button mat-icon-button disabled></button>
+            </mat-tree-node>
+
+            <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                <mat-checkbox [checked]="descendantsAllSelected(node)"
+                    [indeterminate]="descendantsPartiallySelected(node)" (change)="todoItemSelectionToggle(node)">
+                    {{node.item}}</mat-checkbox>
+                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
+                    <mat-icon class="mat-icon-rtl-mirror">
+                        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                    </mat-icon>
+                </button>
+            </mat-tree-node>
+        </mat-tree>
+    </div>
+</div>

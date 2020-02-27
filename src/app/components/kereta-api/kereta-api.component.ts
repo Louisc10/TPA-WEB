@@ -200,7 +200,7 @@ export class KeretaApiComponent implements OnInit {
 
   openTransit(item: Train){
     if(this.msg[item.id] == ""){
-      this.msg[item.id] = "No Transit"
+      this.msg[item.id] = item.transit
     }
     else{
       this.msg[item.id] = ""

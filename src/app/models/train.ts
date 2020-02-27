@@ -8,4 +8,5 @@ export class Train {
     timeGo: string
     tipe: string
     id: number
+    transit: string
 }

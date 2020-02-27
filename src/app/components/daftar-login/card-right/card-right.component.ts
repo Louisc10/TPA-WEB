@@ -47,9 +47,10 @@ export class CardRightComponent implements OnInit {
   }
 
   private regApollo() {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-    });
+    // this.authService.authState.subscribe((user) => {
+    //   this.user = user;
+    // });
+    console.table(this.user)
     var admin: Admin;
     admin.Email = this.user.email
     admin.BackName = this.user.lastName

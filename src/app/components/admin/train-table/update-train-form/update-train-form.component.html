@@ -1,0 +1,38 @@
+<div class="Vision">
+    <button (click)="closeDialog()">Back</button>
+    <div class="Header">
+        Update Train
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Name" id="name" [(ngModel)]="data.name" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Source" id="src" [(ngModel)]="data.source" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Destination" id="dst" [(ngModel)]="data.destination" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" step="1000" min="1000" placeholder="Price" id="price" [(ngModel)]="data.price"
+            required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="data.class">
+            <mat-option value="ekonomi">Ekonomi</mat-option>
+            <mat-option value="bisnis">Bisnis</mat-option>
+            <mat-option value="eksekutif">Eksekutif</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <input type="time" id="go" name="go" [(ngModel)]="data.departTime" required>
+    <input type="time" id="arrive" name="arrive" [(ngModel)]="data.arriveTime" required>
+
+    <button (click)="openDialog()">Submit</button>
+</div>

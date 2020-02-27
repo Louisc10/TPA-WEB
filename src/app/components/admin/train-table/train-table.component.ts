@@ -3,15 +3,20 @@ import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { Train } from 'src/app/models/train';
 import { InsertTrainFormComponent } from './insert-train-form/insert-train-form.component';
-import { NgIf } from '@angular/common';
+import { NgIf, Time } from '@angular/common';
 import { async } from '@angular/core/testing';
+import { ConfirmationBoxComponent } from '../other/confirmation-box/confirmation-box.component';
+import { UpdateTrainFormComponent } from './update-train-form/update-train-form.component';
 
 export interface TrainTable {
-  name: String
+  name: string
   departTime: Date
   arriveTime: Date
-  class: String
-  id: Number
+  class: string
+  id: number
+  price: number
+  source: string
+  destination: string
 }
 
 export let EXAMPLE_DATA: TrainTable[] = [];
@@ -24,13 +29,13 @@ export class TrainTableComponent implements AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   rawData: Train[];
-  data= new MatTableDataSource();
+  data = new MatTableDataSource();
 
   complete: boolean = false
 
-  displayedColumns: string[] = ['name', 'departTime', 'arriveTime', 'class','actions'];
-  
-  constructor(private apolo: BackendServiceService, private dialog: MatDialog) {}
+  displayedColumns: string[] = ['name', 'departTime', 'arriveTime', 'class', 'actions'];
+
+  constructor(private apolo: BackendServiceService, private dialog: MatDialog) { }
 
   ngAfterViewInit() {
     this.apolo.getAllTrain().subscribe(async Query => {
@@ -43,13 +48,34 @@ export class TrainTableComponent implements AfterViewInit {
 
     });
   }
+  animal: string;
 
-  cg(){
+  delete_e(element): void {
+    this.animal = ""
+    const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
+      width: '250px',
+      data: { animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+      console.log("CONS: " + this.animal)
+      if (this.animal == "CONFIRM") {
+        this.apolo.deleteTrain(element.id).subscribe(async Query => {
+          await alert("Success")
+        })
+
+      }
+    });
+  }
+
+  cg() {
     this.complete = true
   }
 
   delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   insertData() {
@@ -60,7 +86,10 @@ export class TrainTableComponent implements AfterViewInit {
         departTime: new Date(element.timeGo),
         arriveTime: new Date(element.timeArrive),
         class: element.kelas,
-        id: element.id
+        id: element.id,
+        price: element.price,
+        source: element.src,
+        destination: element.dst
       }
       EXAMPLE_DATA.push(xVal)
     });
@@ -73,7 +102,7 @@ export class TrainTableComponent implements AfterViewInit {
     this.cg()
   }
 
-  insert(){
+  insert() {
     const dialogRef = this.dialog.open(InsertTrainFormComponent, {
       width: '600px'
     });
@@ -83,14 +112,23 @@ export class TrainTableComponent implements AfterViewInit {
     });
   }
 
-  delete_e(element){
-    console.log(element)
-    this.apolo.deleteTrain(element.id).subscribe(async Query => {
-      await console.log(this.data)
-    })
-  }
-  update_e(element){
+  update_e(element) {
+    const dialogRef = this.dialog.open(UpdateTrainFormComponent, {
+      width: '250px',
+      data: { name: element.name, departTime: element.departTime, arriveTime: element.arriveTime, class: element.class, id: element.id , price: element.price, source: element.source, destination: element.destination}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      element = result;
+      console.log("CONS: " + this.animal)
+      if (this.animal == "CONFIRM") {
+        this.apolo.deleteTrain(element.id).subscribe(async Query => {
+          await alert("Success")
+        })
+
+      }
+    });
   }
 
 }

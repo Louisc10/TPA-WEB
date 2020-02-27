@@ -18,7 +18,7 @@ export class BackendServiceService {
   constructor(private apollo: Apollo) { }
 
   //ADMIN
-  getAdmin(email: String): Observable<Query>{
+  getAdmin(email: String): Observable<Query> {
     return this.apollo.query<Query>(
       {
         query: gql`
@@ -39,7 +39,7 @@ export class BackendServiceService {
     )
   }
 
-  getAllAdmin(): Observable<Query>{
+  getAllAdmin(): Observable<Query> {
     return this.apollo.query<Query>(
       {
         query: gql`
@@ -57,7 +57,7 @@ export class BackendServiceService {
     )
   }
 
-  createAdmin(newAdmin: Admin ): Observable<any>{
+  createAdmin(newAdmin: Admin): Observable<any> {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
@@ -78,7 +78,7 @@ export class BackendServiceService {
             }
           }
         `,
-        variables:{
+        variables: {
           "frontname": newAdmin.FrontName,
           "backname": newAdmin.BackName,
           "email": newAdmin.Email,
@@ -90,7 +90,7 @@ export class BackendServiceService {
   }
 
   //CITY
-  getAllCity(): Observable<Query>{
+  getAllCity(): Observable<Query> {
     return this.apollo.query<Query>(
       {
         query: gql`
@@ -106,9 +106,9 @@ export class BackendServiceService {
       }
     )
   }
-  
+
   //Subscription
-  createSubscription(newEmail: String ): Observable<any>{
+  createSubscription(newEmail: String): Observable<any> {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
@@ -122,15 +122,15 @@ export class BackendServiceService {
             }
           }
         `,
-        variables:{
+        variables: {
           "email": newEmail
         }
       }
     )
   }
-  
+
   //Entertainment
-  getAllEntertainment(): Observable<Query>{
+  getAllEntertainment(): Observable<Query> {
     return this.apollo.query<Query>(
       {
         query: gql`
@@ -158,7 +158,7 @@ export class BackendServiceService {
     )
   }
 
-  createEntertainment(newEntertainment: Entertainment ): Observable<any>{
+  createEntertainment(newEntertainment: Entertainment): Observable<any> {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
@@ -197,7 +197,7 @@ export class BackendServiceService {
             }
           }
         `,
-        variables:{
+        variables: {
           "name": newEntertainment.name,
           "latitude": newEntertainment.latitude,
           "longitude": newEntertainment.longitude,
@@ -210,14 +210,14 @@ export class BackendServiceService {
           "photoLink6": newEntertainment.photoLink6,
           "price": newEntertainment.price,
           "description": newEntertainment.description,
-          "dateLast": newEntertainment.dateLast 
+          "dateLast": newEntertainment.dateLast
         }
       }
     )
   }
-  
+
   //Train
-  getAllTrain(): Observable<Query>{
+  getAllTrain(): Observable<Query> {
     return this.apollo.query<Query>(
       {
         query: gql`
@@ -239,7 +239,7 @@ export class BackendServiceService {
     )
   }
 
-  createTrain(item: Train ): Observable<any>{
+  createTrain(item: Train): Observable<any> {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
@@ -276,7 +276,7 @@ export class BackendServiceService {
             }
           }
         `,
-        variables:{
+        variables: {
           "src": item.src,
           "dst": item.dst,
           "kelas": item.kelas,
@@ -290,50 +290,41 @@ export class BackendServiceService {
     )
   }
 
-  updateTrain(id: number, name: string, kelas: string, price: number,
-    timeGo: string, timeArrive: string): Observable<any>{
+  updateTrain(item: Train): Observable<any> {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
-          mutation updateTrain(
-            $id: Int!
-            $name String!
-            $kelas String!
-            $price Int!
-            $timeGo String!
-            $timeArrive String!
-          ){
-            updateTrain(
-              name: $name
-              price: $price
-              kelas: $kelas
-              timeGo: $timeGo
-              timeArrive: $timeArrive
-            ){
-              name
-              id
-              dst
-              src
-              kelas
-              price
-              tipe
-              timeGo
-              timeArrive
-            }
+        mutation updateTrain($id: Int!, $name: String!, $src: String!, $dst: String!, $tipe: String!, $kelas: String!, $price: Int!, $timeGo: String!, $timeArrive: String!) {
+          updateTrain(id: $id, name: $name, price: $price, kelas: $kelas, timeGo: $timeGo, timeArrive: $timeArrive, src: $src, dst: $dst, tipe: $tipe) {
+            name
+            id
+            dst
+            src
+            kelas
+            price
+            tipe
+            timeGo
+            timeArrive
           }
+        }
+        
         `,
-        variables:{
-          "kelas": kelas,
-          "name": name,
-          "price": price,
-          "timeArrive": timeArrive,
-          "timeGo": timeGo
+        variables: {
+          "id": item.id,
+          "kelas": item.kelas,
+          "tipe": item.tipe,
+          "src": item.src,
+          "dst": item.dst,
+          "name": item.name,
+          "price": item.price,
+          "timeArrive": item.timeArrive,
+          "timeGo": item.timeGo
         }
       }
     )
   }
 
-  deleteTrain(id: number): Observable<any>{
+  deleteTrain(id: number): Observable<any> {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
@@ -355,15 +346,15 @@ export class BackendServiceService {
             }
           }
         `,
-        variables:{
+        variables: {
           "id": id
         }
       }
     )
   }
-  
+
   //Hotel
-  getAllHotel(): Observable<Query>{
+  getAllHotel(): Observable<Query> {
     return this.apollo.query<Query>(
       {
         query: gql`
@@ -395,7 +386,7 @@ export class BackendServiceService {
     )
   }
 
-  createHotel(item: Hotel ): Observable<any>{
+  createHotel(item: Hotel): Observable<any> {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
@@ -446,33 +437,33 @@ export class BackendServiceService {
             }
           }
         `,
-        variables:{
-          "name" : item.name,
-          "image" : item.image,
-          "rating" : item.rating,
-          "price" : item.price,
-          "review" : item.review,
-          "tipe" : item.tipe,
-          "jaringanHotel" : item.jaringanHotel,
-          "resepsionis" : item.resepsionis,
-          "ac" : item.ac,
-          "lift" : item.lift,
-          "tempatParkir" : item.tempatParkir,
-          "restoran" : item.restorant,
-          "spa" : item.spa,
-          "kolamRenang" : item.kolamRenang,
-          "wifi" : item.wifi,
-          "freeLunch" : item.freeLunch,
-          "location" : item.location,
+        variables: {
+          "name": item.name,
+          "image": item.image,
+          "rating": item.rating,
+          "price": item.price,
+          "review": item.review,
+          "tipe": item.tipe,
+          "jaringanHotel": item.jaringanHotel,
+          "resepsionis": item.resepsionis,
+          "ac": item.ac,
+          "lift": item.lift,
+          "tempatParkir": item.tempatParkir,
+          "restoran": item.restorant,
+          "spa": item.spa,
+          "kolamRenang": item.kolamRenang,
+          "wifi": item.wifi,
+          "freeLunch": item.freeLunch,
+          "location": item.location,
           "address": item.address,
           "information": item.information
         }
       }
     )
   }
-  
+
   //Car
-  getAllCar(): Observable<Query>{
+  getAllCar(): Observable<Query> {
     return this.apollo.query<Query>(
       {
         query: gql`
@@ -491,7 +482,7 @@ export class BackendServiceService {
     )
   }
 
-  createCar(item: Car ): Observable<any>{
+  createCar(item: Car): Observable<any> {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
@@ -514,12 +505,12 @@ export class BackendServiceService {
             }
           }
         `,
-        variables:{
-          "name" : item.name,
-          "image" : item.image,
-          "capacity" : item.capacity,
-          "bagasi" : item.bagasi,
-          "price" : item.price
+        variables: {
+          "name": item.name,
+          "image": item.image,
+          "capacity": item.capacity,
+          "bagasi": item.bagasi,
+          "price": item.price
         }
       }
     )

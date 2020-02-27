@@ -61,6 +61,9 @@ import { InsertTrainFormComponent } from './components/admin/train-table/insert-
 import { MatFormFieldModule } from '@angular/material';
 import { ProfilComponent } from './components/other/profil/profil.component';
 import { TextEditorComponent } from './components/other/text-editor/text-editor.component';
+import { CarFilterComponent } from './components/searchFilter/car-filter/car-filter.component';
+import { ConfirmationBoxComponent } from './components/admin/other/confirmation-box/confirmation-box.component';
+import { UpdateTrainFormComponent } from './components/admin/train-table/update-train-form/update-train-form.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +116,9 @@ import { TextEditorComponent } from './components/other/text-editor/text-editor.
     InsertTrainFormComponent,
     ProfilComponent,
     TextEditorComponent,
+    CarFilterComponent,
+    ConfirmationBoxComponent,
+    UpdateTrainFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -143,7 +149,9 @@ import { TextEditorComponent } from './components/other/text-editor/text-editor.
     RegisterComponent,
     InsertTrainFormComponent,
     ProfilComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    ConfirmationBoxComponent,
+    UpdateTrainFormComponent
   ]
 })
 export class AppModule { }
