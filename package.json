@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~8.0.1",
     "@angular/platform-browser-dynamic": "~8.0.1",
     "@angular/router": "~8.0.1",
+    "angular-clipboard": "^1.7.0",
     "angularx-social-login": "^2.2.1",
     "apollo-angular": "^1.8.0",
     "apollo-angular-link-http": "^1.9.0",
