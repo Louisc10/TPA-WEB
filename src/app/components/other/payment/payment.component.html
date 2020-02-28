@@ -1,0 +1,114 @@
+<div style="display: flex; justify-content: center; align-items: centers; margin: 10px;">
+    <div style="color: black;" class="db">
+        1. Pesan >  
+    </div>
+    <div [ngStyle]="{'color': con1 ? 'black' : 'rgba(0,0,0,0.4)'}" class="db">
+        2. Bayar >  
+    </div>
+    <div [ngStyle]="{'color': con2 ? 'black' : 'rgba(0,0,0,0.4)'}" class="db">
+        3. Selesai
+    </div>
+</div>
+<div style="display: flex; flex-wrap: wrap;">
+    <div style="border: solid 1px black; padding: 20px;">
+        <div>
+            <h1>Detail Pemesan</h1>
+        </div>
+        <div class="sp">
+            <mat-form-field class="db">
+                <mat-label>Title</mat-label>
+                <select matNativeControl>
+                    <option value="mr.">Mr.</option>
+                    <option value="mrs.">Mrs.</option>
+                </select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Name</mat-label>
+                <input matInput value="">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput value="">
+            </mat-form-field>
+        </div>
+
+        <div class="sp">
+            <mat-form-field class="db">
+                <mat-label>Code Area</mat-label>
+                <select matNativeControl>
+                    <option value="id">ID</option>
+                    <option value="en">EN</option>
+                </select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Phone Number</mat-label>
+                <input matInput value="">
+            </mat-form-field>
+        </div>
+
+
+    </div>
+
+
+    <div style="border: solid 1px black; padding: 20px;">
+        <div>
+            <h1>Kereta</h1>
+        </div>
+        <div class="sp">
+            <div>{{trainSrc}} - {{trainDst}}</div>
+            <div>{{date}}</div>
+            <div>{{time}}</div>
+        </div>
+
+        <div>
+            <h3>Harga</h3>
+        </div>
+        <div>
+            <div>Pergi</div>
+            <div>Dewasa (x1)     IDR {{price}}</div>
+        </div>
+
+        <div>
+            <h3>Biaya Lainnya</h3>
+        </div>
+        <div>
+            <div>Pajak                Termasuk</div>
+            <div>Total Pembayaran IDR {{price}}</div>
+        </div>
+    </div>
+
+
+    <div style="border: solid 1px black; padding: 20px;">
+        <div>
+            <h1>Detail Penumpang</h1>
+        </div>
+        <div class="sp">
+            <mat-form-field class="db">
+                <mat-label>Title</mat-label>
+                <select matNativeControl>
+                    <option value="mr.">Mr.</option>
+                    <option value="mrs.">Mrs.</option>
+                </select>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label>Nama Lengkap</mat-label>
+                <input matInput value="">
+            </mat-form-field>
+        </div>
+
+        <div class="sp">
+            <mat-form-field class="example-full-width">
+                <mat-label>Nomor KTP/SIM/Lainnya</mat-label>
+                <input matInput value="">
+            </mat-form-field>
+        </div>
+
+
+    </div>
+</div>

@@ -1,5 +1,57 @@
-{{model.name}}
+<div>
+    <button (click)="closeDetail()">Home > Entertainment > {{item.name}} </button>
 
-<img src="{{model.photolink1}}">
+</div>
+<div style="display: flex;">
+    <div class="imageViewer" style="width: 60%; height: auto;">
+        <div style="width: 100%; height: auto;">
+            <img src="{{imageChoosen}}"
+                style="width: 100%; border-top-left-radius: 5px ; border-top-right-radius: 5px;">
+        </div>
+        <div style="display: flex; justify-content: space-evenly;">
+            <div class="imageClick" (click)="changePic(1)">
+                <img class="picCLick" src="{{item.photoLink1}}">
+            </div>
+            <div class="imageClick" (click)="changePic(2)">
+                <img class="picCLick" src="{{item.photoLink2}}">
+            </div>
+            <div class="imageClick" (click)="changePic(3)">
+                <img class="picCLick" src="{{item.photoLink3}}">
+            </div>
+            <div class="imageClick" (click)="changePic(4)">
+                <img class="picCLick" src="{{item.photoLink4}}">
+            </div>
+            <div class="imageClick" (click)="changePic(5)">
+                <img class="picCLick" src="{{item.photoLink5}}">
+            </div>
+            <div class="imageClick" (click)="changePic(6)">
+                <img class="picCLick" src="{{item.photoLink6}}">
+            </div>
 
-<button>Texr</button>
+        </div>
+        <div class="">
+            <div style="font-size: 2vw;">{{item.name}}</div>
+            <div style="font-size: 1.7vw; color: rgba(0, 0, 0, 0.5);">{{item.location}}</div>
+        </div>
+    </div>
+    <div
+        style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; width: 40%;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div>Mulai Dari</div>
+            <div>IDR {{item.price}}</div>
+            <div>
+                <button>Cari Tiket</button>
+            </div>
+            <div>Category: {{item.category}}</div>
+        </div>
+
+        <div class="map-container">
+            <div class="map-frame">
+                <div #map id="map"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <p>{{item.description}}</p>
+</div>

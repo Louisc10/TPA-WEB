@@ -3,6 +3,8 @@ import { Entertainment } from 'src/app/models/entertainment';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { EntertainmentFilterServiceService } from 'src/app/service/entertainment-filter-service.service';
 import * as L from 'leaflet';
+import { BoughtService } from 'src/app/service/bought.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hiburan',
@@ -26,7 +28,11 @@ export class HiburanComponent implements AfterViewInit {
   // private notscrolly = true
   // private notEmptyPost = true
 
-  constructor(private apollo: BackendServiceService, private data: EntertainmentFilterServiceService) { 
+  constructor(
+    private apollo: BackendServiceService, 
+    private data: EntertainmentFilterServiceService, 
+    private b: BoughtService, 
+    private router: Router) { 
   }
 
   ngAfterViewInit() {
@@ -207,11 +213,12 @@ export class HiburanComponent implements AfterViewInit {
   }
 
   openDetail(item) {
-    this.detail = true;
+    // this.detail = true;
     this.item = item
     console.log(item)
+    this.b.entertainment = item
     this.imageChoosen = item.photoLink1
-
+    this.router.navigate(['hiburan/detail'])
     console.log(this.detail)
     // this.initMap()
   }

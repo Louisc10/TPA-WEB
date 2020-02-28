@@ -4,5 +4,17 @@
     width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe> -->
 
 <!-- <app-maps></app-maps> -->
-<app-maps-leaflet></app-maps-leaflet>
+<app-maps-leaflet [ngStyle]="{'display': openMap? 'block':'none'}"></app-maps-leaflet>
+<div>
+    <button (click)="statMap()">{{openMap? "Open": "Close"}} Map</button>
+</div>
 <widget-hotel></widget-hotel>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span>
+<span class="fa fa-star"></span>
+
+<app-footer></app-footer>

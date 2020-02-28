@@ -3,6 +3,7 @@ import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Train } from 'src/app/models/train';
 import { TrainFilterService } from 'src/app/service/train-filter.service';
 import { BoughtService } from 'src/app/service/bought.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-kereta-api',
@@ -17,7 +18,11 @@ export class KeretaApiComponent implements OnInit {
   private click: boolean = false;
   private urutkan = "Harga Terendah"
 
-  constructor(private apollo: BackendServiceService, private data: TrainFilterService, private bought: BoughtService) { }
+  constructor(
+    private apollo: BackendServiceService, 
+    private data: TrainFilterService, 
+    private bought: BoughtService, 
+    private route: Router) { }
 
   ngOnInit() {
     this.apollo.getAllTrain().subscribe(
@@ -211,7 +216,7 @@ export class KeretaApiComponent implements OnInit {
     this.item = item
     console.log(item)
     this.bought.train = item
-    
+    this.route.navigate(['payment'])
   }
 
   closeDetail() {

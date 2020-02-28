@@ -64,6 +64,7 @@ import { TextEditorComponent } from './components/other/text-editor/text-editor.
 import { CarFilterComponent } from './components/searchFilter/car-filter/car-filter.component';
 import { ConfirmationBoxComponent } from './components/admin/other/confirmation-box/confirmation-box.component';
 import { UpdateTrainFormComponent } from './components/admin/train-table/update-train-form/update-train-form.component';
+import { PaymentComponent } from './components/other/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,7 @@ import { UpdateTrainFormComponent } from './components/admin/train-table/update-
     CarFilterComponent,
     ConfirmationBoxComponent,
     UpdateTrainFormComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -151,7 +153,8 @@ import { UpdateTrainFormComponent } from './components/admin/train-table/update-
     ProfilComponent,
     TextEditorComponent,
     ConfirmationBoxComponent,
-    UpdateTrainFormComponent
+    UpdateTrainFormComponent,
+    EntertaimentItemComponent,
   ]
 })
 export class AppModule { }

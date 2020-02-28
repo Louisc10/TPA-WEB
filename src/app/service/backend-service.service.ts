@@ -232,6 +232,7 @@ export class BackendServiceService {
               tipe
               timeGo
               timeArrive
+              transit
             }
           }
         `

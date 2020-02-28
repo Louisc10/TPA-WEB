@@ -12,4 +12,8 @@ export class HotelComponent implements OnInit {
   ngOnInit() {
   }
 
+  openMap: boolean = true;
+  statMap(){
+    this.openMap = !this.openMap
+  }
 }

@@ -16,6 +16,7 @@ import { HotelWidget } from './components/widget/hotel/hotel.component'
 import { EntertaimentItemComponent } from './components/searchItem/entertaiment-item/entertaiment-item.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { TextEditorComponent } from './components/other/text-editor/text-editor.component';
+import { PaymentComponent } from './components/other/payment/payment.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'promo', component: PromoListComponent },
   { path: 'help', component: HelpCenterComponent },
   { path: 'texteditor', component: TextEditorComponent },
+  { path: 'payment', component: PaymentComponent },
   { path: 'hiburan/detail', component: EntertaimentItemComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
@@ -57,4 +59,5 @@ export const RoutingComponents = [
   HelpCenterComponent,
   EntertaimentItemComponent,
   AdminComponent,
+  PaymentComponent,
 ]
