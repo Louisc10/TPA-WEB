@@ -1,9 +1,9 @@
 <div style="display: flex; justify-content: center; align-items: centers; margin: 10px;">
     <div style="color: black;" class="db">
-        1. Pesan >  
+        1. Pesan >
     </div>
     <div [ngStyle]="{'color': con1 ? 'black' : 'rgba(0,0,0,0.4)'}" class="db">
-        2. Bayar >  
+        2. Bayar >
     </div>
     <div [ngStyle]="{'color': con2 ? 'black' : 'rgba(0,0,0,0.4)'}" class="db">
         3. Selesai
@@ -24,28 +24,40 @@
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Name</mat-label>
-                <input matInput value="">
+                <input matInput [(ngModel)]="orderName">
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label>Email</mat-label>
-                <input matInput value="">
+                <input matInput [(ngModel)]="orderEmail">
             </mat-form-field>
         </div>
 
         <div class="sp">
-            <mat-form-field class="db">
-                <mat-label>Code Area</mat-label>
-                <select matNativeControl>
-                    <option value="id">ID</option>
-                    <option value="en">EN</option>
-                </select>
-            </mat-form-field>
+            <!-- <mat-label>Code Area</mat-label> -->
+            <mat-expansion-panel style="width: auto; height: auto; display: flex; flex-direction: column;">
+                <mat-expansion-panel-header style="font-size: small;">
+                    <mat-panel-title>
+                        <img src="../../../../assets/images/{{flag}}-flag.webp">
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div>
+                    <button mat-button (click)="changeCur('id')">ID
+                        <img src="../../../../assets/images/id-flag.webp">
+                    </button>
+                </div>
+                <div>
+                    <button mat-button (click)="changeCur('us')">EN
+                        <img src="../../../../assets/images/us-flag.webp">
+                    </button>
+                </div>
+            </mat-expansion-panel>
             <mat-form-field class="example-full-width">
                 <mat-label>Phone Number</mat-label>
-                <input matInput value="">
+                <input matInput [(ngModel)]="orderPhone">
             </mat-form-field>
         </div>
 
@@ -57,10 +69,10 @@
         <div>
             <h1>Kereta</h1>
         </div>
-        <div class="sp">
+        <div class="sp" style="flex-direction: column;">
             <div>{{trainSrc}} - {{trainDst}}</div>
-            <div>{{date}}</div>
-            <div>{{time}}</div>
+            <div>{{date.getDate()}} {{date.getMonth()}} {{date.getFullYear()}}</div>
+            <div>{{date.getHours()}}:{{date.getMinutes()}}</div>
         </div>
 
         <div>
@@ -68,15 +80,26 @@
         </div>
         <div>
             <div>Pergi</div>
-            <div>Dewasa (x1)     IDR {{price}}</div>
+            <div>Dewasa (x1) IDR {{price}}</div>
         </div>
 
         <div>
             <h3>Biaya Lainnya</h3>
         </div>
         <div>
-            <div>Pajak                Termasuk</div>
+            <div>Pajak Termasuk</div>
             <div>Total Pembayaran IDR {{price}}</div>
+        </div>
+        <div>
+            <button mat-button (click)="xas = !xas">Detail</button>
+            <div *ngIf="xas">
+                <div>
+                    {{trainSrc}} -> {{timeGo.getHours()}}:{{timeGo.getMinutes()}}
+                </div>
+                <div>
+                    {{trainDst}} -> {{timeArrive.getHours()}}:{{timeArrive.getMinutes()}}
+                </div>
+            </div>
         </div>
     </div>
 
@@ -98,17 +121,26 @@
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label>Nama Lengkap</mat-label>
-                <input matInput value="">
+                <input matInput [(ngModel)]="passegerName">
             </mat-form-field>
         </div>
 
         <div class="sp">
             <mat-form-field class="example-full-width">
                 <mat-label>Nomor KTP/SIM/Lainnya</mat-label>
-                <input matInput value="">
+                <input matInput [(ngModel)]="passengerId">
             </mat-form-field>
         </div>
 
 
     </div>
+
+    <div>
+        <button mat-button (click)="val()">Lanjutkan</button>
+    </div>
 </div>
+<div [ngStyle]="{'z-index': show? 10: -10}" style="position: relative; display: flex; align-items: center; justify-content: center;">
+    <mat-spinner [ngStyle]="{'display': show? 'block': 'none'}"></mat-spinner>
+</div>
+
+

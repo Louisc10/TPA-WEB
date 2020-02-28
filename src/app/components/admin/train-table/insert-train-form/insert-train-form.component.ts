@@ -86,12 +86,14 @@ export class InsertTrainFormComponent implements OnInit {
       this.apollo.createTrain(train).subscribe(
         async Query => {
           this.datas = Query.data.createTrain
-          await console.table(this.datas)
+          await this.c()
         }
       );
-
-      this.dialogRef.close()
     }
+  }
+  c() {
+    this.dialogRef.close()
+    location.reload()
   }
 
 }

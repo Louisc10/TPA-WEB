@@ -17,6 +17,7 @@ import { EntertaimentItemComponent } from './components/searchItem/entertaiment-
 import { AdminComponent } from './components/admin/admin.component';
 import { TextEditorComponent } from './components/other/text-editor/text-editor.component';
 import { PaymentComponent } from './components/other/payment/payment.component';
+import { BayarComponent } from './components/other/bayar/bayar.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'help', component: HelpCenterComponent },
   { path: 'texteditor', component: TextEditorComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'payment/bayar', component: BayarComponent },
   { path: 'hiburan/detail', component: EntertaimentItemComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
@@ -60,4 +62,5 @@ export const RoutingComponents = [
   EntertaimentItemComponent,
   AdminComponent,
   PaymentComponent,
+  BayarComponent,
 ]

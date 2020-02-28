@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Time } from '@angular/common';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { BoughtService } from 'src/app/service/bought.service';
-import { async } from '@angular/core/testing';
-import { DeclareFunctionStmt } from '@angular/compiler';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.sass']
+  selector: 'app-bayar',
+  templateUrl: './bayar.component.html',
+  styleUrls: ['./bayar.component.sass']
 })
-export class PaymentComponent implements OnInit {
+export class BayarComponent implements OnInit {
 
-  con1: boolean = false
+  con1: boolean = true
   con2: boolean = false
   
+private sec = 60
+
   private users;
   private account;
   private email: string
@@ -35,6 +34,14 @@ export class PaymentComponent implements OnInit {
         await this.x()
       }
     )
+    var a = setInterval(()=>{
+      this.sec--
+      if(this.sec == 0){
+        clearInterval(a)
+        alert("Time Out")
+        this.route.navigate([''])
+      }
+    },1000)
 
   }
 
@@ -112,5 +119,5 @@ export class PaymentComponent implements OnInit {
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
-  
+
 }

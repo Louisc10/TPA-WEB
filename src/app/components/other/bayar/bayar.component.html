@@ -1,0 +1,71 @@
+<div>
+    {{sec}}
+</div>
+
+<div style="border: solid 1px black; padding: 20px;">
+    <div>
+        <h1>Kereta</h1>
+    </div>
+    <div class="sp" style="flex-direction: column;">
+        <div>{{trainSrc}} - {{trainDst}}</div>
+        <div>{{date.getDate()}} {{date.getMonth()}} {{date.getFullYear()}}</div>
+        <div>{{date.getHours()}}:{{date.getMinutes()}}</div>
+    </div>
+
+    <div>
+        <h3>Harga</h3>
+    </div>
+    <div>
+        <div>Pergi</div>
+        <div>Dewasa (x1) IDR {{price}}</div>
+    </div>
+
+    <div>
+        <h3>Biaya Lainnya</h3>
+    </div>
+    <div>
+        <div>Pajak Termasuk</div>
+        <div>Total Pembayaran IDR {{price}}</div>
+    </div>
+    <div>
+        <button mat-button (click)="xas = !xas">Detail</button>
+        <div *ngIf="xas">
+            <div>
+                {{trainSrc}} -> {{timeGo.getHours()}}:{{timeGo.getMinutes()}}
+            </div>
+            <div>
+                {{trainDst}} -> {{timeArrive.getHours()}}:{{timeArrive.getMinutes()}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card payment-group white">
+    <h3 class="payment-group-title">Kartu Kredit/Debit</h3><a
+        href="/pay/creditcard?order_id=101210780&amp;order_hash=588b86becad0065d73883751fbf42365c09202f6">
+        <div class="payment-method-item">
+            <div class="method-type-name"><span class="f1">Kartu Kredit</span>
+                <div class="method-type-logo">
+                    <div class="logo-item"><img src="https://www.tiket.com/images/apps_payment/logo/visa-logo.png"
+                            class="tix-ui-fadeIn"></div>
+                    <div class="logo-item"><img src="https://www.tiket.com/images/apps_payment/logo/mastercard-logo.png"
+                            class="tix-ui-fadeIn"></div>
+                    <div class="logo-item"><img src="https://www.tiket.com/images/apps_payment/logo/amex-logo.png"
+                            class="tix-ui-fadeIn"></div>
+                    <div class="logo-item"><img src="https://www.tiket.com/images/apps_payment/logo/jcb-logo.png"
+                            class="tix-ui-fadeIn"></div>
+                </div><i class="tix tixicon tixicon-right"></i>
+            </div>
+        </div>
+    </a><a href="/pay/debit_online?order_id=101210780&amp;order_hash=588b86becad0065d73883751fbf42365c09202f6">
+        <div class="payment-method-item">
+            <div class="method-type-name"><span class="f1">Kartu Debit</span>
+                <div class="method-type-logo">
+                    <div class="logo-item"><img
+                            src="https://www.tiket.com/images/apps_payment/logo/debit-online-logo.png"
+                            class="tix-ui-fadeIn"></div>
+                </div><i class="tix tixicon tixicon-right"></i>
+            </div>
+        </div>
+    </a>
+</div>

@@ -65,6 +65,7 @@ import { CarFilterComponent } from './components/searchFilter/car-filter/car-fil
 import { ConfirmationBoxComponent } from './components/admin/other/confirmation-box/confirmation-box.component';
 import { UpdateTrainFormComponent } from './components/admin/train-table/update-train-form/update-train-form.component';
 import { PaymentComponent } from './components/other/payment/payment.component';
+import { BayarComponent } from './components/other/bayar/bayar.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +122,7 @@ import { PaymentComponent } from './components/other/payment/payment.component';
     ConfirmationBoxComponent,
     UpdateTrainFormComponent,
     PaymentComponent,
+    BayarComponent,
   ],
   imports: [
     BrowserModule,

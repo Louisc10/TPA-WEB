@@ -7,6 +7,7 @@ import { NgIf, Time } from '@angular/common';
 import { async } from '@angular/core/testing';
 import { ConfirmationBoxComponent } from '../other/confirmation-box/confirmation-box.component';
 import { UpdateTrainFormComponent } from './update-train-form/update-train-form.component';
+import { Router } from '@angular/router';
 
 export interface TrainTable {
   name: string
@@ -35,7 +36,7 @@ export class TrainTableComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['name', 'departTime', 'arriveTime', 'class', 'actions'];
 
-  constructor(private apolo: BackendServiceService, private dialog: MatDialog) { }
+  constructor(private apolo: BackendServiceService, private dialog: MatDialog, private route: Router) { }
 
   ngAfterViewInit() {
     this.apolo.getAllTrain().subscribe(async Query => {
@@ -64,6 +65,7 @@ export class TrainTableComponent implements AfterViewInit {
       if (this.animal == "CONFIRM") {
         this.apolo.deleteTrain(element.id).subscribe(async Query => {
           await alert("Success")
+          await location.reload()
         })
 
       }
@@ -109,6 +111,7 @@ export class TrainTableComponent implements AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       alert("Refresh")
+      location.reload()
     });
   }
 
@@ -125,6 +128,7 @@ export class TrainTableComponent implements AfterViewInit {
       if (this.animal == "CONFIRM") {
         this.apolo.deleteTrain(element.id).subscribe(async Query => {
           await alert("Success")
+          await location.reload()
         })
 
       }
