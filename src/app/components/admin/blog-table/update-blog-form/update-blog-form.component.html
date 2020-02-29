@@ -1,1 +1,17 @@
-<p>update-blog-form works!</p>
+<div class="Vision">
+    <div class="Header">
+        Update Blog
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Image" id="image" [(ngModel)]="data.image" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Title" id="title" [(ngModel)]="data.title" required>
+    </mat-form-field>
+
+    <app-text-editor [receivedParentMessage]="messageToSendP" (messageToEmit)="getMessage($event)"></app-text-editor>
+
+    <button (click)="openDialog()">Submit</button>
+</div>

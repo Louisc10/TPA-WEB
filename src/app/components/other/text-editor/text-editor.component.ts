@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 export let textEditor = (<HTMLInputElement>document.getElementById('sampleeditor'))
 @Component({
@@ -8,12 +8,15 @@ export let textEditor = (<HTMLInputElement>document.getElementById('sampleeditor
 })
 export class TextEditorComponent implements OnInit {
 
+  @Input() receivedParentMessage: string;
   @Output() messageToEmit = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() {
     document.getElementById('sampleeditor').setAttribute('contenteditable', 'true');
     document.getElementById('sampleeditor2').setAttribute('contenteditable', 'true');
+    textEditor = (<HTMLInputElement>document.getElementById('sampleeditor'))
+    textEditor.value=this.receivedParentMessage
   }
 
   format(command, value) {

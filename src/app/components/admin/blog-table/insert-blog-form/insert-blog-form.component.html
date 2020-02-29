@@ -1,1 +1,17 @@
-<p>insert-blog-form works!</p>
+<div class="Vision">
+    <div class="Header">
+        Insert Blog
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Image" id="image" [(ngModel)]="image" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Title" id="title" [(ngModel)]="title" required>
+    </mat-form-field>
+
+    <app-text-editor (messageToEmit)="getMessage($event)"></app-text-editor>
+
+    <button (click)="openDialog()">Submit</button>
+</div>

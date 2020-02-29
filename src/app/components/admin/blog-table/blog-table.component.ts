@@ -61,7 +61,7 @@ export class BlogTableComponent implements AfterViewInit {
       this.animal = result;
       console.log("CONS: " + this.animal)
       if (this.animal == "CONFIRM") {
-        this.apolo.deleteTrain(element.id).subscribe(async Query => {
+        this.apolo.deleteBlog(element.id).subscribe(async Query => {
           await alert("Success")
           await location.reload()
         })
@@ -69,6 +69,7 @@ export class BlogTableComponent implements AfterViewInit {
       }
     });
   }
+
 
   cg() {
     this.complete = true
@@ -79,6 +80,7 @@ export class BlogTableComponent implements AfterViewInit {
   }
 
   insertData() {
+    console.table(this.rawData)
     this.rawData.forEach(element => {
       let xVal: BlogTable
       xVal = {
@@ -111,23 +113,24 @@ export class BlogTableComponent implements AfterViewInit {
   }
 
   update_e(element) {
+    console.table(element)
     const dialogRef = this.dialog.open(UpdateBlogFormComponent, {
-      width: '250px',
-      data: { name: element.name, departTime: element.departTime, arriveTime: element.arriveTime, class: element.class, id: element.id , price: element.price, source: element.source, destination: element.destination}
+      width: '600px',
+      data: { id: element.id, image: element.image, title: element.title, context: element.context, view: element.view }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      element = result;
-      console.log("CONS: " + this.animal)
-      if (this.animal == "CONFIRM") {
-        this.apolo.deleteTrain(element.id).subscribe(async Query => {
-          await alert("Success")
-          await location.reload()
-        })
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   element = result;
+    //   console.log("CONS: " + this.animal)
+    //   if (this.animal == "CONFIRM") {
+    //     this.apolo.deleteTrain(element.id).subscribe(async Query => {
+    //       await alert("Success")
+    //       await location.reload()
+    //     })
 
-      }
-    });
+    //   }
+    // });
   }
 
 }

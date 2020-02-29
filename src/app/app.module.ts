@@ -185,6 +185,8 @@ import { UpdateBlogFormComponent } from './components/admin/blog-table/update-bl
     UpdateEventFormComponent,
     InsertEventFormComponent,
     UpdateHotelFormComponent,
+    InsertBlogFormComponent,
+    UpdateBlogFormComponent,
   ]
 })
 export class AppModule { }

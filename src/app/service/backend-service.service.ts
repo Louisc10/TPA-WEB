@@ -887,35 +887,33 @@ export class BackendServiceService {
     )
   }
 
-  updateBlog(item: Train): Observable<any> {
+  updateBlog(item: Blog): Observable<any> {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
-        mutation updateBlog($id: Int!, $name: String!, $src: String!, $dst: String!, $tipe: String!, $kelas: String!, $price: Int!, $timeGo: String!, $timeArrive: String!) {
-          updateBlog(id: $id, name: $name, price: $price, kelas: $kelas, timeGo: $timeGo, timeArrive: $timeArrive, src: $src, dst: $dst, tipe: $tipe) {
-            name
+        mutation updateBlog(
+          $id: Int!
+          $image: String!
+          $title: String!
+          $content: String!
+        ){
+          updateBlog(
+            id: $id
+            image: $image
+            title: $title
+            content: $content
+        
+          ){
             id
-            dst
-            src
-            kelas
-            price
-            tipe
-            timeGo
-            timeArrive
           }
         }
         
         `,
         variables: {
           "id": item.id,
-          "kelas": item.kelas,
-          "tipe": item.tipe,
-          "src": item.src,
-          "dst": item.dst,
-          "name": item.name,
-          "price": item.price,
-          "timeArrive": item.timeArrive,
-          "timeGo": item.timeGo
+          "content": item.content,
+          "title": item.title,
+          "image": item.image
         }
       }
     )
@@ -925,21 +923,13 @@ export class BackendServiceService {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
-          mutation removeTrain(
+          mutation removeBlog(
             $id: Int!
           ){
-            removeTrain(
+            removeBlog(
               id: $id
             ){
-              name
               id
-              dst
-              src
-              kelas
-              price
-              tipe
-              timeGo
-              timeArrive
             }
           }
         `,
