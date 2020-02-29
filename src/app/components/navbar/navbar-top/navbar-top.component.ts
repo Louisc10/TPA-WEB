@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Admin } from 'src/app/models/admin';
 import { UserCacheService } from 'src/app/service/user-cache.service';
+import { BackendServiceService } from 'src/app/service/backend-service.service';
 
 @Component({
   selector: 'app-navbar-top',
@@ -11,7 +12,8 @@ export class NavbarTopComponent implements OnInit {
 
   currency: string
   language: string
-  constructor(private pref: UserCacheService) {
+  account
+  constructor(private pref: UserCacheService, private apolo: BackendServiceService) {
     console.log(pref);
     if (pref.currency == null || pref.currency == "") {
       pref.currency = "IDR"
@@ -24,6 +26,20 @@ export class NavbarTopComponent implements OnInit {
   }
 
   ngOnInit() {
+    var email = localStorage.getItem("user");
+    email = (email == null) ? "" : email
+    console.log("aaa" + window.localStorage.getItem("user"))
+    this.apolo.getAdmin(email).subscribe(
+      async Query => {
+        this.account = Query.data.getAdmin
+        await this.x()
+      }
+    )
+  }
+  x() {
+    console.table(this.account[0])
+    this.pref.language = this.account[0].language
+    this.language = this.pref.language
   }
 
   changeCur(x) {

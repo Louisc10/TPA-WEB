@@ -29,6 +29,7 @@ export class BackendServiceService {
               backname
               password
               phonenumber
+              language
             }
           }
         `,
@@ -50,6 +51,7 @@ export class BackendServiceService {
               email
               phonenumber
               password
+              language
             }
           }
         `
@@ -99,13 +101,16 @@ export class BackendServiceService {
             $email:String!
             $phonenumber:String!
             $password:String!
+            $language:String!
           ){
             updateAdmin(
               frontname: $frontname
               backname: $backname
               email: $email
               phonenumber: $phonenumber
-              password: $password){
+              password: $password
+              language: $language
+              ){
               email
             }
           }
@@ -115,7 +120,8 @@ export class BackendServiceService {
           "backname": newAdmin.BackName,
           "email": newAdmin.Email,
           "phonenumber": newAdmin.PhoneNumber,
-          "password": newAdmin.Password
+          "password": newAdmin.Password,
+          "language": newAdmin.Language
         }
       }
     )

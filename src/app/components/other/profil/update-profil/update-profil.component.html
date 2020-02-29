@@ -1,19 +1,51 @@
 <div>
     <div>
-        <div>Email</div>
-        <div>{{uz.email}}</div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput disabled [(ngModel)]="uz.Email">
+            </mat-error>
+        </mat-form-field>
     </div>
     <div>
-        <div>First Name</div>
-        <div>{{uz.frontname}}</div>
+        <mat-form-field class="example-full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput [formControl]="nameFormControl" placeholder="Ex. Budi" [(ngModel)]="uz.FrontName">
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+                First Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
     </div>
     <div>
-        <div>Last Name</div>
-        <div>{{uz.backname}}</div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput [formControl]="nameFormControl" placeholder="Ex. Halis" [(ngModel)]="uz.BackName">
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+                Last Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
     </div>
     <div>
-        <div>Phone Number</div>
-        <div>{{uz.phonenumber}}</div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput [formControl]="phoneFormControl" placeholder="Ex. 021123456789"
+                [(ngModel)]="uz.PhoneNumber">
+            <mat-error
+                *ngIf="phoneFormControl.hasError('pattern') || phoneFormControl.hasError('minLength')  || phoneFormControl.hasError('maxLength') && !phoneFormControl.hasError('required')">
+                Please enter a valid phone number
+            </mat-error>
+            <mat-error *ngIf="phoneFormControl.hasError('required')">
+                Phone Number is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Language</mat-label>
+            <mat-select [(value)]="uz.Language">
+                <mat-option  value="ID">ID</mat-option >
+                <mat-option  value="EN">EN</mat-option >
+            </mat-select>
+        </mat-form-field>
     </div>
     <div>
         <button (click)="update()">Update</button>

@@ -4,4 +4,5 @@ export class Admin {
 	BackName:    string
 	PhoneNumber: string
 	Password:    string
+	Language:    string
 }

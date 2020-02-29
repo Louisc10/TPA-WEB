@@ -161,6 +161,7 @@ import { UpdateProfilComponent } from './components/other/profil/update-profil/u
     ConfirmationBoxComponent,
     UpdateTrainFormComponent,
     EntertaimentItemComponent,
+    UpdateProfilComponent,
   ]
 })
 export class AppModule { }
