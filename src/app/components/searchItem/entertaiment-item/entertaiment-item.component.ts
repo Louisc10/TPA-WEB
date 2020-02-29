@@ -18,6 +18,9 @@ export class EntertaimentItemComponent implements OnInit {
   private longitude: any = 106.781616;
   private item: Entertainment
 
+  private qty = 0
+  private date = null
+
   constructor(private datas: BoughtService, private route: Router) { 
     this.item = datas.entertainment
   }
@@ -68,6 +71,20 @@ export class EntertaimentItemComponent implements OnInit {
       x = this.item.photoLink6
     }
     this.imageChoosen = x
+  }
+
+  check(){
+    if(this.qty <= 0 ){
+      alert("must be more than 0")
+    }
+    else if(this.date == null){
+      alert("Pick Date")
+    }
+    else{
+      this.datas.date_1 = this.date
+      this.datas.quantity = this.qty
+      this.route.navigate(['ticketOrder'])
+    }
   }
 
 }

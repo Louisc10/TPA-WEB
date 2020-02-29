@@ -10,5 +10,5 @@
 </div>
   
 <div style="display: flex; align-items: center; justify-content: center;">
-    <textarea class="editor" id="sampleeditor"></textarea>
+    <textarea class="editor" id="sampleeditor" [(ngModel)]="text" (ngModelChange)="sendMessageToParent(messageToSendC)"></textarea>
 </div>

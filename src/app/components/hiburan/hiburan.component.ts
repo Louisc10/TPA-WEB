@@ -1,16 +1,19 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, HostListener } from '@angular/core';
 import { Entertainment } from 'src/app/models/entertainment';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { EntertainmentFilterServiceService } from 'src/app/service/entertainment-filter-service.service';
 import * as L from 'leaflet';
 import { BoughtService } from 'src/app/service/bought.service';
 import { Router } from '@angular/router';
+import { CollectionViewer, DataSource } from '@angular/cdk/collections';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hiburan',
   templateUrl: './hiburan.component.html',
   styleUrls: ['./hiburan.component.sass']
 })
+
 export class HiburanComponent implements AfterViewInit {
   private datas: Entertainment[];
   private list: Entertainment[];
@@ -29,10 +32,10 @@ export class HiburanComponent implements AfterViewInit {
   // private notEmptyPost = true
 
   constructor(
-    private apollo: BackendServiceService, 
-    private data: EntertainmentFilterServiceService, 
-    private b: BoughtService, 
-    private router: Router) { 
+    private apollo: BackendServiceService,
+    private data: EntertainmentFilterServiceService,
+    private b: BoughtService,
+    private router: Router) {
   }
 
   ngAfterViewInit() {
@@ -45,23 +48,35 @@ export class HiburanComponent implements AfterViewInit {
 
   }
   array = [];
-  sum = 15;
+  sum = 5;
   scrollDistance = 0.1;
+
+  @HostListener("window:scroll", [])
+  onScrollDown(ev): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      let start = this.sum;
+      this.sum += 5;
+      if (this.sum > this.list.length)
+        this.sum = this.list.length
+      
+      this.appendItems(start, this.sum);
+    }
+  }
 
   appendItems(startIndex, endIndex) {
     for (let i = startIndex; i < this.sum; ++i) {
       this.array = [...this.array, ...[this.list[i]]];
     }
   }
-  
-  onScrollDown (ev) {
-    console.log('scrolled down!!', ev);
-    const start = this.sum;
-    this.sum += 20;
-    if(this.sum > this.list.length)
-    this.sum = this.list.length
-    this.appendItems(start, this.sum);
-  }
+
+  // onScrollDown(ev) {
+  //   console.log('scrolled down!!', ev);
+  //   const start = this.sum;
+  //   this.sum += 20;
+  //   if (this.sum > this.list.length)
+  //     this.sum = this.list.length
+  //   this.appendItems(start, this.sum);
+  // }
 
   initMap() {
     console.log("Lat: " + this.latitude);
@@ -88,6 +103,10 @@ export class HiburanComponent implements AfterViewInit {
     else if (x == ("Harga: Tinggi ke Rendah")) {
       this.expensiveToCheap()
     }
+
+    this.array = []
+    this.sum = 5
+    this.appendItems(0, this.sum)
   }
 
   changePic(x) {
@@ -119,7 +138,8 @@ export class HiburanComponent implements AfterViewInit {
   newlyVar() {
     this.list = this.datas;
     console.table(this.list)
-    this.appendItems(0, this.sum);
+    this.doFilter()
+    // this.appendItems(0, this.sum);
     // console.table(this.array)
   }
 

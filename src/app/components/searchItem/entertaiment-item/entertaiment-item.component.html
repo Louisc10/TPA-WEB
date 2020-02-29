@@ -34,8 +34,7 @@
             <div style="font-size: 1.7vw; color: rgba(0, 0, 0, 0.5);">{{item.location}}</div>
         </div>
     </div>
-    <div
-        style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; width: 40%;">
+    <div style="display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; width: 40%;">
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div>Mulai Dari</div>
             <div>IDR {{item.price}}</div>
@@ -54,9 +53,26 @@
 </div>
 <div>
     <mat-tab-group>
-        <mat-tab label="Description"> <p>{{item.description}}</p> </mat-tab>
+        <mat-tab label="Description">
+            <p>{{item.description}}</p>
+        </mat-tab>
         <mat-tab label="S&K"> Term and Conditionssss HEHHEHHE </mat-tab>
         <mat-tab label="Third"> Content 3 </mat-tab>
-      </mat-tab-group>
-    
+    </mat-tab-group>
+</div>
+<div>
+    <mat-form-field class="example-full-width">
+        <mat-label>Quantity</mat-label>
+        <input matInput type="number" [(ngModel)]="qty">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="dp" [(ngModel)]="date">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-button (click)="check()">Check</button>
+
 </div>

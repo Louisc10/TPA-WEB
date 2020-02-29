@@ -1,4 +1,5 @@
 export class Hotel {
+    id: number
     name: String
     image: String
     rating: number

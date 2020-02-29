@@ -219,6 +219,7 @@ export class BackendServiceService {
             $photoLink6: String!
             $price: Int!
             $description: String!
+            $category: String!
             $dateLast: String!
           ){
             createEntertainment(
@@ -233,6 +234,7 @@ export class BackendServiceService {
               photoLink5: $photoLink5
               photoLink6: $photoLink6
               price: $price
+              category: $category
               description: $description
               dateLast: $dateLast
               ){
@@ -253,6 +255,7 @@ export class BackendServiceService {
           "photoLink5": newEntertainment.photoLink5,
           "photoLink6": newEntertainment.photoLink6,
           "price": newEntertainment.price,
+          "category": newEntertainment.category,
           "description": newEntertainment.description,
           "dateLast": newEntertainment.dateLast
         }
@@ -296,7 +299,7 @@ export class BackendServiceService {
       }
     )
   }
-  
+
   deleteEntertainment(id: number): Observable<any> {
     return this.apollo.mutate<any>(
       {
@@ -565,6 +568,58 @@ export class BackendServiceService {
     )
   }
 
+  updateHotel(item: Hotel): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+        mutation updateHotel(
+          $id: Int!
+          $name: String!
+          $rating: Int!
+          $price: Int!
+        ){
+          updateHotel(
+            id: $id
+            name: $name
+            rating: $rating
+            price: $price
+          ){
+            name
+            id
+          }
+        }
+        `,
+        variables: {
+          "id": item.id,
+          "name": item.name,
+          "rating": item.rating,
+          "price": item.price
+        }
+      }
+    )
+  }
+
+  deleteHotel(id: number): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation removeHotel(
+            $id: Int!
+          ){
+            removeHotel(
+              id: $id
+            ){
+              id
+            }
+          }
+        `,
+        variables: {
+          "id": id
+        }
+      }
+    )
+  }
+
   //Car
   getAllCar(): Observable<Query> {
     return this.apollo.query<Query>(
@@ -646,7 +701,7 @@ export class BackendServiceService {
     detailname: string,
     detailid: string,
     trainid: number,
-    ): Observable<any> {
+  ): Observable<any> {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
@@ -677,6 +732,81 @@ export class BackendServiceService {
           "detailid": detailid,
           "detailname": detailname,
           "trainid": trainid,
+        }
+      }
+    )
+  }
+
+  //Ticket
+  getAllBoughtEvent(): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+        query{
+          getAllBoughtEvent{
+            id
+            name
+            email
+            phonenumber
+            detailname
+            detailid
+            datetime
+            quantity
+            eventid
+          }
+        }
+        `
+      }
+    )
+  }
+
+  //Bought Event
+  createBoughtEvent(
+    name: string,
+    email: string,
+    phonenumber: string,
+    detailname: string,
+    detailid: string,
+    eventid: number,
+    datetime: string,
+    quantity: number,
+  ): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation createBoughtEvent(
+            $name:String!
+            $email:String!
+            $phonenumber:String!
+            $detailname:String!
+            $detailid:String!
+            $eventid:Int!
+            $datetime:String!
+            $quantity:Int!
+          ){
+            createBoughtEvent(
+              name: $name
+              email: $email
+              phonenumber: $phonenumber
+              detailname: $detailname
+              detailid: $detailid
+              quantity: $quantity
+              eventid: $eventid
+              datetime: $datetime
+            ){
+              email
+            }
+          }
+        `,
+        variables: {
+          "name": name,
+          "email": email,
+          "phonenumber": phonenumber,
+          "detailid": detailid,
+          "detailname": detailname,
+          "eventid": eventid,
+          "datetime": datetime,
+          "quantity": quantity,
         }
       }
     )

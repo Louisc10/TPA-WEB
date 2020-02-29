@@ -1,3 +1,6 @@
+<div>
+    <button (click)="back()">Back</button>
+</div>
 <div class="Vision">
     <div class="Header">
         Insert Ticket
@@ -8,19 +11,19 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput placeholder="Latitude" id="src" [(ngModel)]="latitude" required>
+        <input matInput placeholder="Latitude" id="latitude" [(ngModel)]="latitude" required>
     </mat-form-field>
     
     <mat-form-field>
-        <input matInput placeholder="Longitude" id="dst" [(ngModel)]="longitude" required>
+        <input matInput placeholder="Longitude" id="longitude" [(ngModel)]="longitude" required>
     </mat-form-field>
         
     <mat-form-field>
-        <input matInput placeholder="Location" id="src" [(ngModel)]="location" required>
+        <input matInput placeholder="Location" id="location" [(ngModel)]="location" required>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput placeholder="PhotoLink" id="dst" [(ngModel)]="dst" required>
+        <input matInput placeholder="PhotoLink" id="photolink" [(ngModel)]="photolink" required>
     </mat-form-field>
 
     <mat-form-field>
@@ -28,20 +31,22 @@
             required>
     </mat-form-field>
 
-    <app-text-editor></app-text-editor>
+    <app-text-editor (messageToEmit)="getMessage($event)"></app-text-editor>
 
     <mat-form-field>
         <mat-label>Select an option</mat-label>
-        <mat-select [(value)]="kelas">
-            <mat-option value="ekonomi">Ekonomi</mat-option>
-            <mat-option value="bisnis">Bisnis</mat-option>
-            <mat-option value="eksekutif">Eksekutif</mat-option>
+        <mat-select [(value)]="category">
+            <mat-option value="events">Event</mat-option>
+            <mat-option value="activities">Activity</mat-option>
+            <mat-option value="attractions">Attraction</mat-option>
         </mat-select>
     </mat-form-field>
-
-
-    <input type="time" id="go" name="go" [(ngModel)]="go" required>
-    <input type="time" id="arrive" name="arrive" [(ngModel)]="arrive" required>
+    <mat-form-field>
+        <mat-label>dateLast</mat-label>
+        <input id="date1" matInput [matDatepicker]="picker1" [(ngModel)]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
 
     <button (click)="openDialog()">Submit</button>
 </div>

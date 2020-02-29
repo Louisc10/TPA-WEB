@@ -15,8 +15,8 @@ export class SuccessComponent implements OnInit {
   constructor(private route: Router, private bought: BoughtService) { }
 
   ngOnInit() {
-    if(this.bought.train == null){
-      this.route.navigate(['keretaapi'])
+    if(this.bought.train == null && this.bought.entertainment == null){
+      this.route.navigate([''])
     }
     this.bought.date_1 = null
     this.bought.date_2 = null

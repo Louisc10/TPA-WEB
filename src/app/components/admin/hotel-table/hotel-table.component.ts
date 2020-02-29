@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { map, delay } from 'rxjs/operators'
 import { Observable, of as observableOf, merge } from 'rxjs'
 import { Hotel } from 'src/app/models/hotel';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
+import { ConfirmationBoxComponent } from '../other/confirmation-box/confirmation-box.component';
+import { UpdateHotelFormComponent } from './update-hotel-form/update-hotel-form.component';
 
 export interface HotelTable {
   name: String
@@ -34,7 +36,7 @@ export class HotelTableComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['name', 'image', 'location', 'rating', 'address', 'facilities', 'tipe', 'information'];
   
-  constructor(private apolo: BackendServiceService) {}
+  constructor(private apolo: BackendServiceService, private dialog: MatDialog) {}
 
   ngAfterViewInit() {
     this.apolo.getAllHotel().subscribe(async Query => {
@@ -138,6 +140,52 @@ export class HotelTableComponent implements AfterViewInit {
 
     console.log(x)
     return x
+  }
+  
+  animal
+  delete_e(element): void {
+    this.animal = ""
+    const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
+      width: '250px',
+      data: { animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+      console.log("CONS: " + this.animal)
+      if (this.animal == "CONFIRM") {
+        this.apolo.deleteEntertainment(element.id).subscribe(async Query => {
+          await alert("Success")
+          await location.reload()
+        })
+
+      }
+    });
+  }
+  
+  update_e(element) {
+    const dialogRef = this.dialog.open(UpdateHotelFormComponent, {
+      width: '250px',
+      data: { id: element.id, name: element.name, rating: element.rating, price: element.price}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed');
+      // element = result;
+      // console.log("CONS: " + this.animal)
+      // if (this.animal == "CONFIRM") {
+        this.apolo.deleteTrain(element.id).subscribe(async Query => {
+          await alert("Success")
+          await location.reload()
+        })
+
+      // }
+    });
+  }
+
+  insert(){
+    
   }
 
 }

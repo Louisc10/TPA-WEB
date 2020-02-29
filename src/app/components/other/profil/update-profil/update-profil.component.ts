@@ -6,6 +6,7 @@ import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { Admin } from 'src/app/models/admin';
+import { NumberCheckerService } from 'src/app/service/number-checker.service';
 
 @Component({
   selector: 'app-update-profil',
@@ -31,7 +32,8 @@ export class UpdateProfilComponent implements OnInit {
   account;
   constructor(private authService: AuthService, private user: UserCacheService,
     public dialogRef: MatDialogRef<UpdateProfilComponent>,
-    private apolo: BackendServiceService, private rou: Router) { }
+    private apolo: BackendServiceService, private rou: Router,
+    private xx: NumberCheckerService) { }
 
   ngOnInit() {
     var email = localStorage.getItem("user");
@@ -58,6 +60,8 @@ export class UpdateProfilComponent implements OnInit {
   }
 
   update() {
+    // this.xx.init(this.uz.PhoneNumber)
+    // console.log(this.xx.getCheck())
     this.apolo.updateAdmin(this.uz).subscribe(
       async Query => {
         this.account = Query.data.updateAdmin

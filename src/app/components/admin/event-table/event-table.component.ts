@@ -6,6 +6,7 @@ import { timeInterval } from 'rxjs/operators';
 import { ConfirmationBoxComponent } from '../other/confirmation-box/confirmation-box.component';
 import { UpdateEventFormComponent } from './update-event-form/update-event-form.component';
 import { InsertEventFormComponent } from './insert-event-form/insert-event-form.component';
+import { Router } from '@angular/router';
 
 export interface EventTable {
   name: String
@@ -36,7 +37,7 @@ export class EventTableComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['name', 'image', 'loc', 'time', 'actions'];
   
-  constructor(private apolo: BackendServiceService, private dialog: MatDialog) {}
+  constructor(private apolo: BackendServiceService, private dialog: MatDialog, private route: Router) {}
 
   ngAfterViewInit() {
     this.apolo.getAllEntertainment().subscribe(async Query => {
@@ -109,27 +110,31 @@ export class EventTableComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      element = result;
-      console.log("CONS: " + this.animal)
-      if (this.animal == "CONFIRM") {
+      // console.log('The dialog was closed');
+      // element = result;
+      // console.log("CONS: " + this.animal)
+      // if (this.animal == "CONFIRM") {
         this.apolo.deleteTrain(element.id).subscribe(async Query => {
           await alert("Success")
           await location.reload()
         })
 
-      }
+      // }
     });
   }
 
   insert() {
-    const dialogRef = this.dialog.open(InsertEventFormComponent, {
-      width: '600px'
-    });
+    // const dialogRef = this.dialog.open(InsertEventFormComponent, {
+    //   width: '600px'
+    // });
 
-    dialogRef.afterClosed().subscribe(result => {
-      alert("Refresh")
-      location.reload()
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   alert("Refresh")
+    //   location.reload()
+    // });
+    this.route.navigate(['admin/insertEvent'])
   }
+
+  
+
 }

@@ -19,9 +19,13 @@ import { TextEditorComponent } from './components/other/text-editor/text-editor.
 import { PaymentComponent } from './components/other/payment/payment.component';
 import { BayarComponent } from './components/other/bayar/bayar.component';
 import { SuccessComponent } from './components/other/success/success.component';
+import { InsertEventFormComponent } from './components/admin/event-table/insert-event-form/insert-event-form.component';
+import { EventOrderComponent } from './components/searchItem/entertainmentItem/event-order/event-order.component';
+import { EventBayarComponent } from './components/searchItem/entertainmentItem/event-order/event-bayar/event-bayar.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
+  { path: 'admin/insertEvent', component: InsertEventFormComponent },
   { path: 'home', component: HomeComponent },
   { path: 'pesawat', component: PesawatComponent },
   { path: 'hotel', component: HotelComponent },
@@ -35,6 +39,8 @@ const routes: Routes = [
   { path: 'promo', component: PromoListComponent },
   { path: 'help', component: HelpCenterComponent },
   { path: 'texteditor', component: TextEditorComponent },
+  { path: 'ticketOrder', component: EventOrderComponent },
+  { path: 'ticketOrder/bayar', component: EventBayarComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'payment/bayar', component: BayarComponent },
   { path: 'payment/bayar/success', component: SuccessComponent },
@@ -66,4 +72,6 @@ export const RoutingComponents = [
   PaymentComponent,
   BayarComponent,
   SuccessComponent,
+  EventBayarComponent,
+  EventOrderComponent,
 ]

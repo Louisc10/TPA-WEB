@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { ScrollingModule} from '@angular/cdk/scrolling';
 
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -70,6 +71,11 @@ import { SuccessComponent } from './components/other/success/success.component';
 import { UpdateProfilComponent } from './components/other/profil/update-profil/update-profil.component';
 import { UpdateEventFormComponent } from './components/admin/event-table/update-event-form/update-event-form.component';
 import { InsertEventFormComponent } from './components/admin/event-table/insert-event-form/insert-event-form.component';
+import { InfiniteComponent } from './components/other/infinite/infinite.component';
+import { EventOrderComponent } from './components/searchItem/entertainmentItem/event-order/event-order.component';
+import { EventBayarComponent } from './components/searchItem/entertainmentItem/event-order/event-bayar/event-bayar.component';
+import { UpdateHotelFormComponent } from './components/admin/hotel-table/update-hotel-form/update-hotel-form.component';
+import { InsertHotelFormComponent } from './components/admin/hotel-table/insert-hotel-form/insert-hotel-form.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +137,11 @@ import { InsertEventFormComponent } from './components/admin/event-table/insert-
     UpdateProfilComponent,
     UpdateEventFormComponent,
     InsertEventFormComponent,
+    InfiniteComponent,
+    EventOrderComponent,
+    EventBayarComponent,
+    UpdateHotelFormComponent,
+    InsertHotelFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -147,6 +158,7 @@ import { InsertEventFormComponent } from './components/admin/event-table/insert-
     ReactiveFormsModule,
     InfiniteScrollModule,
     MatFormFieldModule,
+    ScrollingModule,
     ],
   providers: [],
   bootstrap: [AppComponent],

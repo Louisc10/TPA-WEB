@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Train } from 'src/app/models/train';
 import { TrainFilterService } from 'src/app/service/train-filter.service';
@@ -33,27 +33,39 @@ export class KeretaApiComponent implements OnInit {
     );
 
   }
+  
   array = [];
-  sum = 15;
+  sum = 5;
   scrollDistance = 0.1;
+
+  @HostListener("window:scroll", [])
+  onScrollDown(ev): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      let start = this.sum;
+      this.sum += 5;
+      if (this.sum > this.list.length)
+        this.sum = this.list.length
+      
+      this.appendItems(start, this.sum);
+    }
+  }
 
   appendItems(startIndex, endIndex) {
     for (let i = startIndex; i < this.sum; ++i) {
       this.array = [...this.array, ...[this.list[i]]];
     }
-    console.table(this.array)
-    console.log(this.array[0].name)
   }
+
   
-  onScrollDown (ev) {
-    console.log('scrolled down!!', ev);
-    const start = this.sum;
-    this.sum += 20;
-    if(this.sum > this.list.length)
-    this.sum = this.list.length
-    this.array = [...[this.list[this.sum]]]
-    // this.appendItems(start, this.sum);
-  }
+  // onScrollDown (ev) {
+  //   console.log('scrolled down!!', ev);
+  //   const start = this.sum;
+  //   this.sum += 20;
+  //   if(this.sum > this.list.length)
+  //   this.sum = this.list.length
+  //   this.array = [...[this.list[this.sum]]]
+  //   // this.appendItems(start, this.sum);
+  // }
 
 
   doFilter() {
@@ -170,6 +182,10 @@ export class KeretaApiComponent implements OnInit {
     else if (x == "Kedatangan Paling Akhir") {
       this.timeCount("timeArrive", 2)
     }
+    
+    this.array = []
+    this.sum = 5
+    this.appendItems(0, this.sum)
   }
 
   doClick() {
@@ -179,7 +195,6 @@ export class KeretaApiComponent implements OnInit {
   newlyVar() {
     this.list = this.datas;
     console.table(this.list)
-    this.cheapToExpensive()
     this.data.parayanganPresent = false
     this.data.serayuPresent = false
     this.data.tayoPresent = false
@@ -198,7 +213,7 @@ export class KeretaApiComponent implements OnInit {
         this.data.thomasPresent = true
       }
     }
-    this.appendItems(0, this.sum)
+    this.doFilter()
   }
 
   msg = [""]
