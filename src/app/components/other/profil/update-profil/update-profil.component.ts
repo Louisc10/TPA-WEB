@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { UserCacheService } from 'src/app/service/user-cache.service';
 import { AuthService } from 'angularx-social-login';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Router } from '@angular/router';
-import { UpdateProfilComponent } from './update-profil/update-profil.component';
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.sass']
+  selector: 'app-update-profil',
+  templateUrl: './update-profil.component.html',
+  styleUrls: ['./update-profil.component.sass']
 })
-export class ProfilComponent implements OnInit {
+export class UpdateProfilComponent implements OnInit {
 
   uz
   account;
   constructor(private authService: AuthService, private user: UserCacheService,
-    private dialog: MatDialog,
-    public dialogRef: MatDialogRef<ProfilComponent>,
+    public dialogRef: MatDialogRef<UpdateProfilComponent>,
     private apolo: BackendServiceService, private rou: Router) { }
 
   ngOnInit() {
@@ -36,26 +34,9 @@ export class ProfilComponent implements OnInit {
     this.uz = this.user.user = this.account[0]
   }
 
-  signOut() {
-    this.user.user = null
-    this.user.currency = "IDR"
-    this.user.language = "ID"
-    this.uz = null
-
-    if (this.authService.authState != null)
-      this.authService.signOut();
-
-    localStorage.setItem("user", null)
-    this.dialogRef.close()
-  }
-
   update() {
-    const updateRef = this.dialog.open(UpdateProfilComponent, {
-      width: '250px'
-    });
+    if(this)
 
-    updateRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    this.dialogRef.close()
   }
 }

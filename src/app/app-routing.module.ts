@@ -18,6 +18,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { TextEditorComponent } from './components/other/text-editor/text-editor.component';
 import { PaymentComponent } from './components/other/payment/payment.component';
 import { BayarComponent } from './components/other/bayar/bayar.component';
+import { SuccessComponent } from './components/other/success/success.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'texteditor', component: TextEditorComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'payment/bayar', component: BayarComponent },
+  { path: 'payment/bayar/success', component: SuccessComponent },
   { path: 'hiburan/detail', component: EntertaimentItemComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
@@ -63,4 +65,5 @@ export const RoutingComponents = [
   AdminComponent,
   PaymentComponent,
   BayarComponent,
+  SuccessComponent,
 ]

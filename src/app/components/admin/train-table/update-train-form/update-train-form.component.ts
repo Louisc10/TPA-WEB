@@ -94,7 +94,7 @@ export class UpdateTrainFormComponent implements OnInit {
   }
   c() {
     this.dialogRef.close()
-    location.reload()
+    location.reload(true)
   }
 
   closeDialog() {

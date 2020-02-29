@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { BoughtService } from 'src/app/service/bought.service';
 import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-bayar',
@@ -12,8 +14,8 @@ export class BayarComponent implements OnInit {
 
   con1: boolean = true
   con2: boolean = false
-  
-private sec = 60
+
+  private sec = 60
 
   private users;
   private account;
@@ -22,9 +24,12 @@ private sec = 60
     private apolo: BackendServiceService,
     private bought: BoughtService,
     private route: Router) { }
-    
+
 
   ngOnInit() {
+    if (this.bought.train == null) {
+      this.route.navigate(['keretaapi'])
+    }
     this.email = localStorage.getItem("user");
     this.email = (this.email == null) ? "" : this.email
     console.log("aaa" + window.localStorage.getItem("user"))
@@ -34,14 +39,14 @@ private sec = 60
         await this.x()
       }
     )
-    var a = setInterval(()=>{
+    var a = setInterval(() => {
       this.sec--
-      if(this.sec == 0){
+      if (this.sec == 0) {
         clearInterval(a)
         alert("Time Out")
         this.route.navigate([''])
       }
-    },1000)
+    }, 1000)
 
   }
 
@@ -49,8 +54,8 @@ private sec = 60
     console.log("Email : " + this.email);
     this.users = this.account[0]
     console.table(this.users)
-    
-    if(this.users != null){
+
+    if (this.users != null) {
       this.orderEmail = this.email
       this.orderName = this.users.frontname + " " + this.users.backname
       this.orderPhone = this.users.phonenumber
@@ -64,15 +69,15 @@ private sec = 60
     this.price = this.bought.train.price
   }
 
-  orderName: string =""
-  orderEmail: string =""
-  orderPhone: string=""
+  orderName: string = ""
+  orderEmail: string = ""
+  orderPhone: string = ""
 
-  passegerName: string=""
-  passengerId: string=""
+  passegerName: string = ""
+  passengerId: string = ""
 
-  trainSrc: string=""
-  trainDst: string=""
+  trainSrc: string = ""
+  trainDst: string = ""
 
   date: Date = new Date()
   timeGo
@@ -81,26 +86,26 @@ private sec = 60
 
   flag = "id"
   show: boolean = false
-  xas:boolean = false
+  xas: boolean = false
 
-  changeCur(x){
+  changeCur(x) {
     this.flag = x
   }
 
-  val(){
-    if(this.orderName == ""){
+  val() {
+    if (this.orderName == "") {
       alert("Fill Orderer Name")
     }
-    else if(this.orderEmail == ""){
+    else if (this.orderEmail == "") {
       alert("Fill Orderer Email")
     }
-    else if(this.orderPhone == ""){
+    else if (this.orderPhone == "") {
       alert("Fill Orderer Phone")
     }
-    else if(this.passegerName == ""){
+    else if (this.passegerName == "") {
       alert("Fill Passanger Name")
     }
-    else if(this.passengerId == ""){
+    else if (this.passengerId == "") {
       alert("Fill Passanger Id")
     }
     else {
@@ -112,12 +117,20 @@ private sec = 60
       })
     }
   }
-  sad(){
+  sad() {
     this.route.navigate(['payment/bayar'])
   }
-  
+
   delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  payment() {
+    this.apolo.createTicket(this.orderName, this.orderEmail, this.orderPhone, this.passegerName, this.passengerId, this.bought.train.id).subscribe(
+      async Query => {
+        await this.route.navigate(['payment/bayar/success'])
+      }
+    );
   }
 
 }

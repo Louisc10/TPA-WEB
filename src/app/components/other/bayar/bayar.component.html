@@ -1,3 +1,15 @@
+<div style="display: flex; justify-content: center; align-items: centers; margin: 10px;">
+    <div style="color: black;" class="db">
+        1. Pesan >
+    </div>
+    <div [ngStyle]="{'color': con1 ? 'black' : 'rgba(0,0,0,0.4)'}" class="db">
+        2. Bayar >
+    </div>
+    <div [ngStyle]="{'color': con2 ? 'black' : 'rgba(0,0,0,0.4)'}" class="db">
+        3. Selesai
+    </div>
+</div>
+
 <div>
     {{sec}}
 </div>
@@ -41,31 +53,29 @@
 </div>
 
 <div class="card payment-group white">
-    <h3 class="payment-group-title">Kartu Kredit/Debit</h3><a
-        href="/pay/creditcard?order_id=101210780&amp;order_hash=588b86becad0065d73883751fbf42365c09202f6">
-        <div class="payment-method-item">
-            <div class="method-type-name"><span class="f1">Kartu Kredit</span>
-                <div class="method-type-logo">
-                    <div class="logo-item"><img src="https://www.tiket.com/images/apps_payment/logo/visa-logo.png"
-                            class="tix-ui-fadeIn"></div>
-                    <div class="logo-item"><img src="https://www.tiket.com/images/apps_payment/logo/mastercard-logo.png"
-                            class="tix-ui-fadeIn"></div>
-                    <div class="logo-item"><img src="https://www.tiket.com/images/apps_payment/logo/amex-logo.png"
-                            class="tix-ui-fadeIn"></div>
-                    <div class="logo-item"><img src="https://www.tiket.com/images/apps_payment/logo/jcb-logo.png"
-                            class="tix-ui-fadeIn"></div>
-                </div><i class="tix tixicon tixicon-right"></i>
-            </div>
+    <h3 class="payment-group-title">Kartu Kredit/Debit</h3>
+    <div class="payment-method-item">
+        <div class="method-type-name"><span class="f1">Kartu Kredit</span>
+            <div class="method-type-logo">
+                <div class="logo-item" (click)="payment()"><img
+                        src="https://www.tiket.com/images/apps_payment/logo/visa-logo.png" class="tix-ui-fadeIn"></div>
+                <div class="logo-item" (click)="payment()"><img
+                        src="https://www.tiket.com/images/apps_payment/logo/mastercard-logo.png" class="tix-ui-fadeIn">
+                </div>
+                <div class="logo-item" (click)="payment()"><img
+                        src="https://www.tiket.com/images/apps_payment/logo/amex-logo.png" class="tix-ui-fadeIn"></div>
+                <div class="logo-item" (click)="payment()"><img
+                        src="https://www.tiket.com/images/apps_payment/logo/jcb-logo.png" class="tix-ui-fadeIn"></div>
+            </div><i class="tix tixicon tixicon-right"></i>
         </div>
-    </a><a href="/pay/debit_online?order_id=101210780&amp;order_hash=588b86becad0065d73883751fbf42365c09202f6">
-        <div class="payment-method-item">
-            <div class="method-type-name"><span class="f1">Kartu Debit</span>
-                <div class="method-type-logo">
-                    <div class="logo-item"><img
-                            src="https://www.tiket.com/images/apps_payment/logo/debit-online-logo.png"
-                            class="tix-ui-fadeIn"></div>
-                </div><i class="tix tixicon tixicon-right"></i>
-            </div>
+    </div>
+    <div class="payment-method-item">
+        <div class="method-type-name"><span class="f1">Kartu Debit</span>
+            <div class="method-type-logo">
+                <div class="logo-item" (click)="payment()"><img
+                        src="https://www.tiket.com/images/apps_payment/logo/debit-online-logo.png"
+                        class="tix-ui-fadeIn"></div>
+            </div><i class="tix tixicon tixicon-right"></i>
         </div>
-    </a>
+    </div>
 </div>

@@ -89,6 +89,38 @@ export class BackendServiceService {
     )
   }
 
+  updateAdmin(newAdmin: Admin): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation updateAdmin(
+            $frontname:String!
+            $backname:String!
+            $email:String!
+            $phonenumber:String!
+            $password:String!
+          ){
+            updateAdmin(
+              frontname: $frontname
+              backname: $backname
+              email: $email
+              phonenumber: $phonenumber
+              password: $password){
+              email
+            }
+          }
+        `,
+        variables: {
+          "frontname": newAdmin.FrontName,
+          "backname": newAdmin.BackName,
+          "email": newAdmin.Email,
+          "phonenumber": newAdmin.PhoneNumber,
+          "password": newAdmin.Password
+        }
+      }
+    )
+  }
+
   //CITY
   getAllCity(): Observable<Query> {
     return this.apollo.query<Query>(
@@ -517,7 +549,68 @@ export class BackendServiceService {
     )
   }
 
-
+  //Ticket
+  getAllTicket(): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query{
+            getAllTicket{
+              id
+              name
+              email
+              phonenumber
+              detailname
+              detailid
+              trainid
+            }
+          }
+        `
+      }
+    )
+  }
+  createTicket(
+    name: string,
+    email: string,
+    phonenumber: string,
+    detailname: string,
+    detailid: string,
+    trainid: number,
+    ): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation createTicket(
+            $name:String!
+            $email:String!
+            $phonenumber:String!
+            $detailname:String!
+            $detailid:String!
+            $trainid:Int!
+          ){
+            createTicket(
+              name: $name
+              email: $email
+              phonenumber: $phonenumber
+              detailname: $detailname
+              detailid: $detailid
+              trainid: $trainid
+            ){
+              email
+            }
+          }
+        `,
+        variables: {
+          "name": name,
+          "email": email,
+          "phonenumber": phonenumber,
+          "detailid": detailid,
+          "detailname": detailname,
+          "trainid": trainid,
+        }
+      }
+    )
+  }
 
 
 

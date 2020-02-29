@@ -1,0 +1,19 @@
+<div style="display: flex; justify-content: center; align-items: centers; margin: 10px;">
+    <div style="color: black;" class="db">
+        1. Pesan >
+    </div>
+    <div [ngStyle]="{'color': con1 ? 'black' : 'rgba(0,0,0,0.4)'}" class="db">
+        2. Bayar >
+    </div>
+    <div [ngStyle]="{'color': con2 ? 'black' : 'rgba(0,0,0,0.4)'}" class="db">
+        3. Selesai
+    </div>
+</div>
+<div>
+    <div>
+       <h1> Success</h1>
+    </div>
+    <div (click)="return()" style="background-color: aqua; cursor: pointer;">
+        Return to Home
+    </div>
+</div>

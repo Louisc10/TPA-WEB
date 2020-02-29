@@ -8,10 +8,10 @@ import { Train } from '../models/train';
 export class BoughtService {
 
   constructor() { }
-  entertainment: Entertainment
-  train: Train
-  quantity: number
-  date_1: Date
-  date_2: Date
+  entertainment: Entertainment = null
+  train: Train = null
+  quantity: number = null
+  date_1: Date = null
+  date_2: Date = null
 
 }

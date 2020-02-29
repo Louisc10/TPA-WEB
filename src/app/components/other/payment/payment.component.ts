@@ -26,6 +26,9 @@ export class PaymentComponent implements OnInit {
     
 
   ngOnInit() {
+    if (this.bought.train == null) {
+      this.route.navigate(['keretaapi'])
+    }
     this.email = localStorage.getItem("user");
     this.email = (this.email == null) ? "" : this.email
     console.log("aaa" + window.localStorage.getItem("user"))

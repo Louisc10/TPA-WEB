@@ -66,6 +66,8 @@ import { ConfirmationBoxComponent } from './components/admin/other/confirmation-
 import { UpdateTrainFormComponent } from './components/admin/train-table/update-train-form/update-train-form.component';
 import { PaymentComponent } from './components/other/payment/payment.component';
 import { BayarComponent } from './components/other/bayar/bayar.component';
+import { SuccessComponent } from './components/other/success/success.component';
+import { UpdateProfilComponent } from './components/other/profil/update-profil/update-profil.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +125,8 @@ import { BayarComponent } from './components/other/bayar/bayar.component';
     UpdateTrainFormComponent,
     PaymentComponent,
     BayarComponent,
+    SuccessComponent,
+    UpdateProfilComponent,
   ],
   imports: [
     BrowserModule,
