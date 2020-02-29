@@ -1,14 +1,21 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Entertainment } from 'src/app/models/entertainment';
 import { timeInterval } from 'rxjs/operators';
+import { ConfirmationBoxComponent } from '../other/confirmation-box/confirmation-box.component';
+import { UpdateEventFormComponent } from './update-event-form/update-event-form.component';
+import { InsertEventFormComponent } from './insert-event-form/insert-event-form.component';
 
 export interface EventTable {
   name: String
   image: String
   loc: String
   time: Date
+  id: number
+  latitude: String
+  longitude: String
+  price: number
 }
 
 let EXAMPLE_DATA: EventTable[] =[]  
@@ -27,9 +34,9 @@ export class EventTableComponent implements AfterViewInit {
 
   complete: boolean = false
 
-  displayedColumns: string[] = ['name', 'image', 'loc', 'time'];
+  displayedColumns: string[] = ['name', 'image', 'loc', 'time', 'actions'];
   
-  constructor(private apolo: BackendServiceService) {}
+  constructor(private apolo: BackendServiceService, private dialog: MatDialog) {}
 
   ngAfterViewInit() {
     this.apolo.getAllEntertainment().subscribe(async Query => {
@@ -54,7 +61,11 @@ export class EventTableComponent implements AfterViewInit {
         name: element.name,
         image: element.photoLink1,
         loc: element.location,
-        time: new Date(element.dateLast)
+        time: new Date(element.dateLast),
+        id: element.id,
+        latitude: element.latitude,
+        longitude: element.longitude,
+        price: element.price
       }
       EXAMPLE_DATA.push(xVal)
       let x= new Date()
@@ -67,5 +78,58 @@ export class EventTableComponent implements AfterViewInit {
     this.data.sort = this.sort
 
     this.cg()
+  }
+
+  animal: string;
+  delete_e(element): void {
+    this.animal = ""
+    const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
+      width: '250px',
+      data: { animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+      console.log("CONS: " + this.animal)
+      if (this.animal == "CONFIRM") {
+        this.apolo.deleteEntertainment(element.id).subscribe(async Query => {
+          await alert("Success")
+          await location.reload()
+        })
+
+      }
+    });
+  }
+  
+  update_e(element) {
+    const dialogRef = this.dialog.open(UpdateEventFormComponent, {
+      width: '250px',
+      data: { id: element.id, name: element.name, loc: element.loc, latitude: element.latitude, longitude: element.longitude, price: element.price}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      element = result;
+      console.log("CONS: " + this.animal)
+      if (this.animal == "CONFIRM") {
+        this.apolo.deleteTrain(element.id).subscribe(async Query => {
+          await alert("Success")
+          await location.reload()
+        })
+
+      }
+    });
+  }
+
+  insert() {
+    const dialogRef = this.dialog.open(InsertEventFormComponent, {
+      width: '600px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      alert("Refresh")
+      location.reload()
+    });
   }
 }

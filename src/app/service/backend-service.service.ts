@@ -260,6 +260,64 @@ export class BackendServiceService {
     )
   }
 
+  updateEntertainment(newEntertainment: Entertainment): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation updateEntertainment(
+            $id: Int!
+            $name: String!
+            $latitude: String!
+            $longitude: String!
+            $location: String!
+            $price: Int!
+          ){
+            updateEntertainment(
+              id: $id
+              name: $name
+              latitude: $latitude
+              longitude: $longitude
+              location: $location
+              price: $price
+              ){
+              name
+              id
+            }
+          }
+        `,
+        variables: {
+          "id": newEntertainment.id,
+          "name": newEntertainment.name,
+          "latitude": newEntertainment.latitude,
+          "longitude": newEntertainment.longitude,
+          "location": newEntertainment.location,
+          "price": newEntertainment.price
+        }
+      }
+    )
+  }
+  
+  deleteEntertainment(id: number): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation removeEntertainment(
+            $id: Int!
+          ){
+            removeEntertainment(
+              id: $id
+            ){
+              id
+            }
+          }
+        `,
+        variables: {
+          "id": id
+        }
+      }
+    )
+  }
+
   //Train
   getAllTrain(): Observable<Query> {
     return this.apollo.query<Query>(

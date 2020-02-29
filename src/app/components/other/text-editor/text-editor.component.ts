@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+export let textEditor =  (<HTMLInputElement>document.getElementById('sampleeditor'))
 @Component({
   selector: 'app-text-editor',
   templateUrl: './text-editor.component.html',
@@ -29,9 +30,10 @@ export class TextEditorComponent implements OnInit {
   statusI: boolean = false
   statusS: boolean = false
   statusU: boolean = false
+  statusSup: boolean = false
   
   textEdit(format){
-    const textEditor =  (<HTMLInputElement>document.getElementById('sampleeditor'))
+    textEditor =  (<HTMLInputElement>document.getElementById('sampleeditor'))
     if(format == "b"){
       this.statusB = !this.statusB
       if(this.statusB){
@@ -66,6 +68,15 @@ export class TextEditorComponent implements OnInit {
       }
       else{
         textEditor.value = textEditor.value + "</s>"
+      }
+    }
+    else if(format == "sup"){
+      this.statusSup = !this.statusSup
+      if(this.statusSup){
+        textEditor.value = textEditor.value + "<sup>"
+      }
+      else{
+        textEditor.value = textEditor.value + "</sup>"
       }
     }
     else if(format == "c"){

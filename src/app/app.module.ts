@@ -68,6 +68,8 @@ import { PaymentComponent } from './components/other/payment/payment.component';
 import { BayarComponent } from './components/other/bayar/bayar.component';
 import { SuccessComponent } from './components/other/success/success.component';
 import { UpdateProfilComponent } from './components/other/profil/update-profil/update-profil.component';
+import { UpdateEventFormComponent } from './components/admin/event-table/update-event-form/update-event-form.component';
+import { InsertEventFormComponent } from './components/admin/event-table/insert-event-form/insert-event-form.component';
 
 @NgModule({
   declarations: [
@@ -127,6 +129,8 @@ import { UpdateProfilComponent } from './components/other/profil/update-profil/u
     BayarComponent,
     SuccessComponent,
     UpdateProfilComponent,
+    UpdateEventFormComponent,
+    InsertEventFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -162,6 +166,8 @@ import { UpdateProfilComponent } from './components/other/profil/update-profil/u
     UpdateTrainFormComponent,
     EntertaimentItemComponent,
     UpdateProfilComponent,
+    UpdateEventFormComponent,
+    InsertEventFormComponent,
   ]
 })
 export class AppModule { }

@@ -1,0 +1,29 @@
+<div class="Vision">
+    <button (click)="closeDialog()">Back</button>
+    <div class="Header">
+        Update Event
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Name" id="name" [(ngModel)]="data.name" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Location" id="loc" [(ngModel)]="data.loc" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Latitude" id="lat" [(ngModel)]="data.latitude" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Longitude" id="long" [(ngModel)]="data.longitude" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" step="1000" min="1000" placeholder="Price" id="price" [(ngModel)]="data.price"
+            required>
+    </mat-form-field>
+
+    <button (click)="openDialog()">Submit</button>
+</div>
