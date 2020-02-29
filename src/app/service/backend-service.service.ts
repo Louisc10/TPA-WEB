@@ -8,6 +8,7 @@ import { Entertainment } from '../models/entertainment';
 import { Train } from '../models/train';
 import { Hotel } from '../models/hotel';
 import { Car } from '../models/car';
+import { Blog } from '../models/blog';
 
 
 @Injectable({
@@ -466,6 +467,7 @@ export class BackendServiceService {
         query: gql`
           query{
             getAllHotel{
+              id
               name
               image
               rating
@@ -485,6 +487,8 @@ export class BackendServiceService {
               location
               address
               information
+              longitude
+              latitude
             }
           }
         `
@@ -516,6 +520,8 @@ export class BackendServiceService {
             $location: String!
             $address: String!
             $information: String!
+            $longitude: String!
+            $latitude: String!
           ){
             createHotel(
               name: $name
@@ -537,6 +543,8 @@ export class BackendServiceService {
               location: $location
               address: $address
               information: $information
+              Longitude: $longitude
+              Latitude: $latitude
             ){
               name
               id
@@ -562,6 +570,8 @@ export class BackendServiceService {
           "freeLunch": item.freeLunch,
           "location": item.location,
           "address": item.address,
+          "longitude": item.longitude,
+          "latitude": item.latitude,
           "information": item.information
         }
       }
@@ -807,6 +817,134 @@ export class BackendServiceService {
           "eventid": eventid,
           "datetime": datetime,
           "quantity": quantity,
+        }
+      }
+    )
+  }
+
+  //Blog
+  getAllBlog(): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query{
+            getAllBlog{
+              id
+              image
+              title
+              content
+              view
+            }
+          }
+        `
+      }
+    )
+  }
+
+  getAllBlogById(id): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query getBlogById($id:Int!){
+            getBlogById(id: $id){
+              id
+              image
+              title
+              content
+              view
+            }
+          }
+        `
+      }
+    )
+  }
+
+  createBlog(item: Blog): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+        mutation createBlog(
+          $image: String!
+          $title: String!
+          $content: String!
+        ){
+          createBlog(
+            image: $image
+            title: $title
+            content: $content
+        
+          ){
+            id
+          }
+        }
+        `,
+        variables: {
+          "content": item.content,
+          "title": item.title,
+          "image": item.image
+        }
+      }
+    )
+  }
+
+  updateBlog(item: Train): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+        mutation updateBlog($id: Int!, $name: String!, $src: String!, $dst: String!, $tipe: String!, $kelas: String!, $price: Int!, $timeGo: String!, $timeArrive: String!) {
+          updateBlog(id: $id, name: $name, price: $price, kelas: $kelas, timeGo: $timeGo, timeArrive: $timeArrive, src: $src, dst: $dst, tipe: $tipe) {
+            name
+            id
+            dst
+            src
+            kelas
+            price
+            tipe
+            timeGo
+            timeArrive
+          }
+        }
+        
+        `,
+        variables: {
+          "id": item.id,
+          "kelas": item.kelas,
+          "tipe": item.tipe,
+          "src": item.src,
+          "dst": item.dst,
+          "name": item.name,
+          "price": item.price,
+          "timeArrive": item.timeArrive,
+          "timeGo": item.timeGo
+        }
+      }
+    )
+  }
+
+  deleteBlog(id: number): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation removeTrain(
+            $id: Int!
+          ){
+            removeTrain(
+              id: $id
+            ){
+              name
+              id
+              dst
+              src
+              kelas
+              price
+              tipe
+              timeGo
+              timeArrive
+            }
+          }
+        `,
+        variables: {
+          "id": id
         }
       }
     )

@@ -7,6 +7,7 @@ import { Hotel } from 'src/app/models/hotel';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { ConfirmationBoxComponent } from '../other/confirmation-box/confirmation-box.component';
 import { UpdateHotelFormComponent } from './update-hotel-form/update-hotel-form.component';
+import { Router } from '@angular/router';
 
 export interface HotelTable {
   name: String
@@ -17,6 +18,8 @@ export interface HotelTable {
   address: String
   information: String
   facilities: String
+  id: number
+  price: number
 }
 
 export let EXAMPLE_DATA: HotelTable[] = [];
@@ -34,9 +37,9 @@ export class HotelTableComponent implements AfterViewInit {
 
   complete: boolean = false
 
-  displayedColumns: string[] = ['name', 'image', 'location', 'rating', 'address', 'facilities', 'tipe', 'information'];
+  displayedColumns: string[] = ['name', 'image', 'location', 'rating', 'address', 'facilities', 'tipe', 'information', 'actions'];
   
-  constructor(private apolo: BackendServiceService, private dialog: MatDialog) {}
+  constructor(private apolo: BackendServiceService, private dialog: MatDialog, private route: Router) {}
 
   ngAfterViewInit() {
     this.apolo.getAllHotel().subscribe(async Query => {
@@ -64,6 +67,8 @@ export class HotelTableComponent implements AfterViewInit {
       let fac: String
       fac = this.facilitesBuilder(element)
       xVal = {
+        id: element.id,
+        price: element.price,
         name: element.name,
         image: element.image,
         rating: element.rating,
@@ -155,7 +160,7 @@ export class HotelTableComponent implements AfterViewInit {
       this.animal = result;
       console.log("CONS: " + this.animal)
       if (this.animal == "CONFIRM") {
-        this.apolo.deleteEntertainment(element.id).subscribe(async Query => {
+        this.apolo.deleteHotel(element.id).subscribe(async Query => {
           await alert("Success")
           await location.reload()
         })
@@ -185,7 +190,8 @@ export class HotelTableComponent implements AfterViewInit {
   }
 
   insert(){
-    
+    this.route.navigate(['admin/insertHotel'])
+
   }
 
 }

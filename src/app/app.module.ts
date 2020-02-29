@@ -76,6 +76,8 @@ import { EventOrderComponent } from './components/searchItem/entertainmentItem/e
 import { EventBayarComponent } from './components/searchItem/entertainmentItem/event-order/event-bayar/event-bayar.component';
 import { UpdateHotelFormComponent } from './components/admin/hotel-table/update-hotel-form/update-hotel-form.component';
 import { InsertHotelFormComponent } from './components/admin/hotel-table/insert-hotel-form/insert-hotel-form.component';
+import { InsertBlogFormComponent } from './components/admin/blog-table/insert-blog-form/insert-blog-form.component';
+import { UpdateBlogFormComponent } from './components/admin/blog-table/update-blog-form/update-blog-form.component';
 
 @NgModule({
   declarations: [
@@ -142,6 +144,8 @@ import { InsertHotelFormComponent } from './components/admin/hotel-table/insert-
     EventBayarComponent,
     UpdateHotelFormComponent,
     InsertHotelFormComponent,
+    InsertBlogFormComponent,
+    UpdateBlogFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -180,6 +184,7 @@ import { InsertHotelFormComponent } from './components/admin/hotel-table/insert-
     UpdateProfilComponent,
     UpdateEventFormComponent,
     InsertEventFormComponent,
+    UpdateHotelFormComponent,
   ]
 })
 export class AppModule { }

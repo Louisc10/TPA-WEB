@@ -19,4 +19,6 @@ export class Hotel {
     location: String
     address: String
     information: String
+    latitude: String
+    longitude: String
 }

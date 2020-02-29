@@ -1,1 +1,88 @@
-<p>insert-hotel-form works!</p>
+<div>
+    <button (click)="back()">Back</button>
+</div>
+<div class="Vision">
+    <div class="Header">
+        Insert Ticket
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Name" id="name" [(ngModel)]="name" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="PhotoLink" id="photolink" [(ngModel)]="photolink" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" placeholder="Rating" id="rating" [(ngModel)]="rating" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" step="1000" min="1000" placeholder="Price" id="price" [(ngModel)]="price"
+            required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Review" id="review" [(ngModel)]="review" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Location" id="location" [(ngModel)]="location" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Latitude" id="latitude" [(ngModel)]="latitude" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Longitude" id="longitude" [(ngModel)]="longitude" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Address" id="address" [(ngModel)]="address" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Information" id="information" [(ngModel)]="information" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Tipe</mat-label>
+        <mat-select [(value)]="tipe">
+            <mat-option>None</mat-option>
+            <mat-option value="hotel">Hotel</mat-option>
+            <mat-option value="villa">Villa</mat-option>
+            <mat-option value="resort">Resort</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Jaringan Hotel</mat-label>
+        <mat-select [(value)]="jaringan">
+            <mat-option>None</mat-option>
+            <mat-option value="Independent">Independent</mat-option>
+            <mat-option value="Red Doorz">Red Doorz</mat-option>
+            <mat-option value="Zuzu">Zuzu</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div>
+        <div>
+            <mat-label>Facility</mat-label>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+            <mat-checkbox [(ngModel)]="Resepsionis">Resepsionis</mat-checkbox>
+            <mat-checkbox [(ngModel)]="AC">AC</mat-checkbox>
+            <mat-checkbox [(ngModel)]="Lift">Lift</mat-checkbox>
+            <mat-checkbox [(ngModel)]="TempatParkir">Tempat Parkir</mat-checkbox>
+            <mat-checkbox [(ngModel)]="Restoran">Restoran</mat-checkbox>
+            <mat-checkbox [(ngModel)]="Spa">Spa</mat-checkbox>
+            <mat-checkbox [(ngModel)]="KolanRenang">Kolam Renang</mat-checkbox>
+            <mat-checkbox [(ngModel)]="Wifi">Wifi</mat-checkbox>
+            <mat-checkbox [(ngModel)]="FreeLunch">FreeLunch</mat-checkbox>
+        </div>
+    </div>
+
+    <button (click)="openDialog()">Submit</button>
+</div>

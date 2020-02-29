@@ -1,1 +1,22 @@
-<p>update-hotel-form works!</p>
+<div class="Vision">
+    <button (click)="closeDialog()">Back</button>
+    <div class="Header">
+        Update Hotel
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Name" id="name" [(ngModel)]="data.name" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" placeholder="Rating" id="price" [(ngModel)]="data.rating"
+            required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" step="1000" min="1000" placeholder="Price" id="price" [(ngModel)]="data.price"
+            required>
+    </mat-form-field>
+
+    <button (click)="openDialog()">Submit</button>
+</div>

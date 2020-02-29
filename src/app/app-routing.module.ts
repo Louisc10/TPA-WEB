@@ -22,10 +22,12 @@ import { SuccessComponent } from './components/other/success/success.component';
 import { InsertEventFormComponent } from './components/admin/event-table/insert-event-form/insert-event-form.component';
 import { EventOrderComponent } from './components/searchItem/entertainmentItem/event-order/event-order.component';
 import { EventBayarComponent } from './components/searchItem/entertainmentItem/event-order/event-bayar/event-bayar.component';
+import { InsertHotelFormComponent } from './components/admin/hotel-table/insert-hotel-form/insert-hotel-form.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'admin/insertEvent', component: InsertEventFormComponent },
+  { path: 'admin/insertHotel', component: InsertHotelFormComponent },
   { path: 'home', component: HomeComponent },
   { path: 'pesawat', component: PesawatComponent },
   { path: 'hotel', component: HotelComponent },
@@ -74,4 +76,6 @@ export const RoutingComponents = [
   SuccessComponent,
   EventBayarComponent,
   EventOrderComponent,
+  InsertHotelFormComponent,
+  InsertEventFormComponent,
 ]
