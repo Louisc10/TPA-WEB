@@ -40,6 +40,8 @@ export class NavbarTopComponent implements OnInit {
     console.table(this.account[0])
     this.pref.language = this.account[0].language
     this.language = this.pref.language
+    this.pref.currency = this.account[0].currency
+    this.currency = this.pref.currency
   }
 
   changeCur(x) {

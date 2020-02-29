@@ -3,7 +3,6 @@
         <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
             <input matInput disabled [(ngModel)]="uz.Email">
-            </mat-error>
         </mat-form-field>
     </div>
     <div>
@@ -42,8 +41,18 @@
         <mat-form-field>
             <mat-label>Language</mat-label>
             <mat-select [(value)]="uz.Language">
-                <mat-option  value="ID">ID</mat-option >
-                <mat-option  value="EN">EN</mat-option >
+                <mat-option value="ID">ID</mat-option>
+                <mat-option value="EN">EN</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Currency</mat-label>
+            <mat-select [(value)]="uz.Currency">
+                <mat-option value="USD">USD</mat-option>
+                <mat-option value="IDR">IDR</mat-option>
+                <mat-option value="SGD">SGD</mat-option>
             </mat-select>
         </mat-form-field>
     </div>

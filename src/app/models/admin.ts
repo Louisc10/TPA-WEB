@@ -5,4 +5,5 @@ export class Admin {
 	PhoneNumber: string
 	Password:    string
 	Language:    string
+	Currency:    string
 }

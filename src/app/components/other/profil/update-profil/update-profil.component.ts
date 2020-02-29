@@ -53,6 +53,7 @@ export class UpdateProfilComponent implements OnInit {
     this.uz.PhoneNumber = this.account[0].phonenumber
     this.uz.Password = this.account[0].password
     this.uz.Language = this.account[0].language
+    this.uz.Currency = this.account[0].currency
     console.table(this.uz)
   }
 
