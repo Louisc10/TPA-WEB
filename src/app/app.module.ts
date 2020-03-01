@@ -85,6 +85,7 @@ import { ShareButtonsModule } from '@ngx-share/buttons';
 import { BlogHomeComponent } from './components/blog/blog-home/blog-home.component';
 import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.component';
 import { ShareButtonComponent } from './components/other/share-button/share-button.component';
+import { ChattingComponent } from './components/other/chatting/chatting.component';
 
 @NgModule({
   declarations: [
@@ -156,6 +157,7 @@ import { ShareButtonComponent } from './components/other/share-button/share-butt
     BlogHomeComponent,
     BlogDetailComponent,
     ShareButtonComponent,
+    ChattingComponent,
   ],
   imports: [
     BrowserModule,
