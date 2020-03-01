@@ -97,20 +97,21 @@ export class InsertHotelFormComponent implements OnInit {
       train.information = this.information
       train.tipe = this.tipe
       train.jaringanHotel = this.jaringan
-      train.resepsionis = this.Resepsionis ? "Yes" : "No" 
-      train.ac = this.AC ? "Yes" : "No" 
-      train.lift = this.Lift ? "Yes" : "No" 
-      train.tempatParkir = this.TempatParkir ? "Yes" : "No" 
-      train.restorant = this.Restoran ? "Yes" : "No" 
-      train.spa = this.Spa ? "Yes" : "No" 
-      train.kolamRenang = this.KolanRenang ? "Yes" : "No" 
-      train.wifi = this.Wifi ? "Yes" : "No" 
-      train.freeLunch = this.FreeLunch ? "Yes" : "No" 
+      train.resepsionis = this.Resepsionis ? "Yes" : "No"
+      train.ac = this.AC ? "Yes" : "No"
+      train.lift = this.Lift ? "Yes" : "No"
+      train.tempatParkir = this.TempatParkir ? "Yes" : "No"
+      train.restorant = this.Restoran ? "Yes" : "No"
+      train.spa = this.Spa ? "Yes" : "No"
+      train.kolamRenang = this.KolanRenang ? "Yes" : "No"
+      train.wifi = this.Wifi ? "Yes" : "No"
+      train.freeLunch = this.FreeLunch ? "Yes" : "No"
+      train
 
-
+      console.table(train)
       this.apolo.createHotel(train).subscribe(
         async Query => {
-          this.account = Query.data.createEntertainment
+          this.account = Query.data.createHotel
           await this.c()
         }
       );
@@ -118,8 +119,8 @@ export class InsertHotelFormComponent implements OnInit {
   }
 
   c() {
-    alert("Insert Succes")
-    this.route.navigate(['admin'])
+    alert("[!] New Hotel!")
+    location.reload()
 
   }
 }

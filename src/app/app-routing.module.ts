@@ -23,6 +23,8 @@ import { InsertEventFormComponent } from './components/admin/event-table/insert-
 import { EventOrderComponent } from './components/searchItem/entertainmentItem/event-order/event-order.component';
 import { EventBayarComponent } from './components/searchItem/entertainmentItem/event-order/event-bayar/event-bayar.component';
 import { InsertHotelFormComponent } from './components/admin/hotel-table/insert-hotel-form/insert-hotel-form.component';
+import { BlogHomeComponent } from './components/blog/blog-home/blog-home.component';
+import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
@@ -47,6 +49,8 @@ const routes: Routes = [
   { path: 'payment/bayar', component: BayarComponent },
   { path: 'payment/bayar/success', component: SuccessComponent },
   { path: 'hiburan/detail', component: EntertaimentItemComponent },
+  { path: 'blog/view/home', component: BlogHomeComponent },
+  { path: 'blog/view/detail/:id', component: BlogDetailComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

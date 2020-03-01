@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -79,6 +79,13 @@ import { InsertHotelFormComponent } from './components/admin/hotel-table/insert-
 import { InsertBlogFormComponent } from './components/admin/blog-table/insert-blog-form/insert-blog-form.component';
 import { UpdateBlogFormComponent } from './components/admin/blog-table/update-blog-form/update-blog-form.component';
 
+import { ShareModule } from '@ngx-share/core';
+import { ShareButtonModule } from '@ngx-share/button';
+import { ShareButtonsModule } from '@ngx-share/buttons';
+import { BlogHomeComponent } from './components/blog/blog-home/blog-home.component';
+import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.component';
+import { ShareButtonComponent } from './components/other/share-button/share-button.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -146,6 +153,9 @@ import { UpdateBlogFormComponent } from './components/admin/blog-table/update-bl
     InsertHotelFormComponent,
     InsertBlogFormComponent,
     UpdateBlogFormComponent,
+    BlogHomeComponent,
+    BlogDetailComponent,
+    ShareButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -163,6 +173,10 @@ import { UpdateBlogFormComponent } from './components/admin/blog-table/update-bl
     InfiniteScrollModule,
     MatFormFieldModule,
     ScrollingModule,
+    HttpClientJsonpModule,
+    ShareButtonsModule,
+    ShareButtonModule,
+    ShareModule,
     ],
   providers: [],
   bootstrap: [AppComponent],

@@ -107,7 +107,7 @@ export class BlogTableComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      alert("Refresh")
+      alert("[!] New Blog Post!")
       location.reload()
     });
   }

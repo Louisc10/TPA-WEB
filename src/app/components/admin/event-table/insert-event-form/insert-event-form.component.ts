@@ -90,8 +90,7 @@ export class InsertEventFormComponent implements OnInit {
   }
 
   c() {
-    alert("Insert Succes")
-    this.route.navigate(['admin'])
-
+    alert("[!] New Event Post!")
+    location.reload()
   }
 }

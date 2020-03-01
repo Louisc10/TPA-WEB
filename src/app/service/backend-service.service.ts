@@ -500,56 +500,56 @@ export class BackendServiceService {
     return this.apollo.mutate<any>(
       {
         mutation: gql`
-          mutation createHotel(
-            $name: String!
-            $image: String!
-            $rating: Int!
-            $price: Int!
-            $review: String!
-            $tipe: String!
-            $jaringanHotel: String!
-            $resepsionis: String!
-            $ac: String!
-            $lift: String!
-            $tempatParkir: String!
-            $restoran: String!
-            $spa: String!
-            $kolamRenang: String!
-            $wifi: String!
-            $freeLunch: String!
-            $location: String!
-            $address: String!
-            $information: String!
-            $longitude: String!
-            $latitude: String!
+        mutation createHotel(
+          $name: String!
+          $image: String!
+          $rating: Int!
+          $price: Int!
+          $review: String!
+          $tipe: String!
+          $jaringanHotel: String!
+          $resepsionis: String!
+          $ac: String!
+          $lift: String!
+          $tempatParkir: String!
+          $restoran: String!
+          $spa: String!
+          $kolamRenang: String!
+          $wifi: String!
+          $freeLunch: String!
+          $location: String!
+          $address: String!
+          $information: String!
+          $longitude: String!
+          $latitude: String!
+        ){
+          createHotel(
+            name: $name
+            image: $image
+            rating: $rating
+            price: $price
+            review: $review
+            tipe: $tipe
+            jaringanHotel: $jaringanHotel
+            resepsionis: $resepsionis
+            ac: $ac
+            lift: $lift
+            tempatParkir: $tempatParkir
+            restoran: $restoran
+            spa: $spa
+            kolamRenang: $kolamRenang
+            wifi: $wifi
+            freeLunch: $freeLunch
+            location: $location
+            address: $address
+            information: $information
+            longitude: $longitude
+            latitude: $latitude
           ){
-            createHotel(
-              name: $name
-              image: $image
-              rating: $rating
-              price: $price
-              review: $review
-              tipe: $tipe
-              jaringanHotel: $jaringanHotel
-              resepsionis: $resepsionis
-              ac: $ac
-              lift: $lift
-              tempatParkir: $tempatParkir
-              restoran: $restoran
-              spa: $spa
-              kolamRenang: $kolamRenang
-              wifi: $wifi
-              freeLunch: $freeLunch
-              location: $location
-              address: $address
-              information: $information
-              Longitude: $longitude
-              Latitude: $latitude
-            ){
-              name
-              id
-            }
+            name
+            id
           }
+        }
         `,
         variables: {
           "name": item.name,

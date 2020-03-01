@@ -92,7 +92,7 @@ export class InsertTrainFormComponent implements OnInit {
     }
   }
   c() {
-    this.dialogRef.close()
+    alert("[!] New Train!")
     location.reload()
   }
 
