@@ -91,6 +91,7 @@ import { UpdateFlightFormComponent } from './components/admin/flight-table/updat
 import { ActivitiesComponent } from './components/hiburan/recomended/activities/activities.component';
 import { AttractionComponent } from './components/hiburan/recomended/attraction/attraction.component';
 import { EventComponent } from './components/hiburan/recomended/event/event.component';
+import { FileUploadComponent } from './components/other/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -168,6 +169,7 @@ import { EventComponent } from './components/hiburan/recomended/event/event.comp
     ActivitiesComponent,
     AttractionComponent,
     EventComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,

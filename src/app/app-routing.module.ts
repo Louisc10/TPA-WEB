@@ -26,6 +26,7 @@ import { InsertHotelFormComponent } from './components/admin/hotel-table/insert-
 import { BlogHomeComponent } from './components/blog/blog-home/blog-home.component';
 import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.component';
 import { ChattingComponent } from './components/other/chatting/chatting.component';
+import { FileUploadComponent } from './components/other/file-upload/file-upload.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'tixpoint', component: TixPointComponent },
   { path: 'cekorder', component: CekOrderComponent },
   { path: 'daftarlogin', component: DaftarLoginComponent },
+  { path: 'fileupload', component: FileUploadComponent },
   { path: 'unduhaplikasi', component: UnduhAplikasiComponent },
   { path: 'promo/detail/:id', component: PromoListComponent },
   { path: 'help', component: HelpCenterComponent },
