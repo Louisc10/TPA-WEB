@@ -12,6 +12,7 @@ import { Blog } from '../models/blog';
 import { Title } from '@angular/platform-browser';
 import { Promo } from '../models/promo';
 import { Pesawat } from '../models/pesawat';
+import { Chat } from '../models/chat';
 
 
 @Injectable({
@@ -1186,6 +1187,93 @@ export class BackendServiceService {
         `,
         variables: {
           "id": id
+        }
+      }
+    )
+  }
+
+  //Chat
+  getAllChat(): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+        {
+          getAllChat{
+            content
+            id
+            recv
+            sender
+          }
+        }
+        `
+      }
+    )
+  }
+
+  getChat(id): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query getChat($id:Int!){
+              getChat{
+                content
+                id
+                recv
+                sender
+              }
+            }
+        `
+      }
+    )
+  }
+
+  createChat(item: Chat): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+        mutation createChat(
+          $sender: Int!
+          $recv: Int!
+          $content: String!
+        ){
+          createChat(
+            sender :$sender
+            recv: $recv
+            content: $content
+          ){
+            id
+          }
+        }
+        `,
+        variables: {
+          "sender": item.sender,
+          "recv": item.recv,
+          "content": item.content,
+        }
+      }
+    )
+  }
+
+  updateChat(item: Chat): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+        mutation updatePesawat(
+          $id: Int!
+          $content: String!
+        ){
+          updatePesawat(
+            id: $id
+            content :$content
+          ){
+            id
+            
+          }
+        }
+        `,
+        variables: {
+          "id": item.id,
+          "content": item.content,
         }
       }
     )

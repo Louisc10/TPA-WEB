@@ -11,10 +11,11 @@ export class ChattingComponent implements OnInit {
 
   messageControl = new FormControl();
   messageLists: Array<any> = [];
-
+  aMessage: boolean = false
   constructor(private  chatService: ChattingService) { }
 
   ngOnInit() {
+    this.messageControl.setValue("");
     this.chatService.listen('chat').subscribe(m => {
       this.messageLists.push(m);
     });
@@ -23,5 +24,10 @@ export class ChattingComponent implements OnInit {
   sendMessage() {
     this.chatService.emit('chat', this.messageControl.value);
     this.messageControl.setValue("");
+    this.c()
+  }
+  
+  c(){
+    this.aMessage = (this.messageControl.value != "")
   }
 }

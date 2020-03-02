@@ -88,6 +88,9 @@ import { ShareButtonComponent } from './components/other/share-button/share-butt
 import { ChattingComponent } from './components/other/chatting/chatting.component';
 import { InsertFlightFormComponent } from './components/admin/flight-table/insert-flight-form/insert-flight-form.component';
 import { UpdateFlightFormComponent } from './components/admin/flight-table/update-flight-form/update-flight-form.component';
+import { ActivitiesComponent } from './components/hiburan/recomended/activities/activities.component';
+import { AttractionComponent } from './components/hiburan/recomended/attraction/attraction.component';
+import { EventComponent } from './components/hiburan/recomended/event/event.component';
 
 @NgModule({
   declarations: [
@@ -162,6 +165,9 @@ import { UpdateFlightFormComponent } from './components/admin/flight-table/updat
     ChattingComponent,
     InsertFlightFormComponent,
     UpdateFlightFormComponent,
+    ActivitiesComponent,
+    AttractionComponent,
+    EventComponent,
   ],
   imports: [
     BrowserModule,

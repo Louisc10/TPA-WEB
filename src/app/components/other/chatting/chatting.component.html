@@ -1,5 +1,5 @@
 <div>
     <p *ngFor="let message of messageLists">{{ message }}</p>
 </div>
-<input type="text" [formControl]="messageControl">
-<button (click)="sendMessage()">Send</button>
+<input type="text" [formControl]="messageControl" (keyup)="c()">
+<button *ngIf="aMessage" (click)="sendMessage()">Send</button>

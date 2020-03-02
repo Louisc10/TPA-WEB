@@ -17,12 +17,12 @@
                     <mat-option value="event">Events</mat-option>
                 </mat-select>
             </mat-form-field>
-    
+
         </div>
         <div>
             <mat-form-field>
-                <input matInput placeholder="Cari berdasarkan Kota" 
-                     [matAutocomplete]="auto" [formControl]="cityControl">
+                <input matInput placeholder="Cari berdasarkan Kota" [matAutocomplete]="auto"
+                    [formControl]="cityControl">
                 <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let city of cities" [value]="city.name">
                         {{city.name}}

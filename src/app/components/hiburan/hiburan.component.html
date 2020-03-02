@@ -4,7 +4,7 @@
     <widget-entertainment (click)="doClick()"></widget-entertainment>
     <div *ngIf="click">
         <app-entertaiment-filter></app-entertaiment-filter>
-        <div style="display: flex; justify-content: center; margin: 10px;">
+        <div style="display: flex; justify-content: center; margin-top: 10px;">
             <button (click)="doFilter()">Do Filter</button>
         </div>
         <div>
@@ -39,24 +39,9 @@
 
         </div>
         <div>
-            <!-- <cdk-virtual-scroll-viewport itemSize="100">
-                <li *cdkVirtualFor="let item of list">
-                    <div style="width: 46%; margin: 1%; border: 1px solid black; border-radius: 10px; padding: 5px;" (click)="openDetail(item)">
-                        <div>
-                            <img src="{{item.photoLink1}}" alt="{{item.name}}"
-                                style="width: 100%; border-top-left-radius: 5px ; border-top-right-radius: 5px;">
-                        </div>
-                        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                            <div style="color: darkorange; font-size: 2vw;">{{item.name}}</div>
-                            <div style="color: chocolate; font-size: 1vw;">{{item.price}}</div>
-                        </div>
-                    </div>
-                </li>
-            </cdk-virtual-scroll-viewport> -->
-            <!-- <div class="container">
 
-                <infinite-scroll (scrolled)="onScroll()" style="height: 400px; overflow-y: auto">
-                    <div *ngFor="let item of array"
+            <div>
+                <div *ngFor="let item of array"
                     style="width: 46%; margin: 1%; border: 1px solid black; border-radius: 10px; padding: 5px;"
                     (click)="openDetail(item)">
                     <div>
@@ -68,33 +53,17 @@
                         <div style="color: chocolate; font-size: 1vw;">{{item.price}}</div>
                     </div>
                 </div>
-                </infinite-scroll>
-           
-             </div> -->
-
-            <!-- <div infinite-scroll [infiniteScrollDistance]="scrollDistance" (scrolled)="onScrollDown()"> -->
-                <div>
-                    <div *ngFor="let item of array"
-                        style="width: 46%; margin: 1%; border: 1px solid black; border-radius: 10px; padding: 5px;"
-                        (click)="openDetail(item)">
-                        <div>
-                            <img src="{{item.photoLink1}}" alt="{{item.name}}"
-                                style="width: 100%; border-top-left-radius: 5px ; border-top-right-radius: 5px;">
-                        </div>
-                        <div
-                            style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                            <div style="color: darkorange; font-size: 2vw;">{{item.name}}</div>
-                            <div style="color: chocolate; font-size: 1vw;">{{item.price}}</div>
-                        </div>
-                    </div>
-                </div>
-            <!-- </div> -->
+            </div>
 
         </div>
-        <div *ngIf="!click">
-            <app-partner-event></app-partner-event>
-            <app-footer></app-footer>
-        </div>
+    </div>
+    <div *ngIf="!click" style="margin-top: 100px;">
+        
+        <app-partner-event></app-partner-event>
+        <app-activities></app-activities>
+        <app-attraction></app-attraction>
+        <app-event></app-event>
+        <app-footer></app-footer>
     </div>
 </div>
 <div *ngIf="detail === true">

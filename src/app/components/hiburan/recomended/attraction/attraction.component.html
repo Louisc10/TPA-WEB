@@ -1,0 +1,18 @@
+<div style="display: flex; justify-content: center; align-items: center;">
+    Attraction
+</div>
+<div style="display: flex;flex-wrap: wrap; flex-direction: row; justify-content: center;">
+    <div *ngFor="let item of list"
+        style="width: 30%; margin: 1%; border: 1px solid black; border-radius: 10px; padding: 5px;"
+        (click)="openDetail(item)">
+        <div>
+            <img src="{{item.photoLink1}}" alt="{{item.name}}"
+                style="width: 100%; border-top-left-radius: 5px ; border-top-right-radius: 5px;">
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div style="color: darkorange; font-size: 2vw;">{{item.name}}</div>
+            <div style="color: chocolate; font-size: 1vw;">{{item.price}}</div>
+        </div>
+    </div>
+
+</div>
