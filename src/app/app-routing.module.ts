@@ -25,6 +25,7 @@ import { EventBayarComponent } from './components/searchItem/entertainmentItem/e
 import { InsertHotelFormComponent } from './components/admin/hotel-table/insert-hotel-form/insert-hotel-form.component';
 import { BlogHomeComponent } from './components/blog/blog-home/blog-home.component';
 import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.component';
+import { ChattingComponent } from './components/other/chatting/chatting.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
@@ -40,11 +41,12 @@ const routes: Routes = [
   { path: 'cekorder', component: CekOrderComponent },
   { path: 'daftarlogin', component: DaftarLoginComponent },
   { path: 'unduhaplikasi', component: UnduhAplikasiComponent },
-  { path: 'promo', component: PromoListComponent },
+  { path: 'promo/detail/:id', component: PromoListComponent },
   { path: 'help', component: HelpCenterComponent },
   { path: 'texteditor', component: TextEditorComponent },
   { path: 'ticketOrder', component: EventOrderComponent },
   { path: 'ticketOrder/bayar', component: EventBayarComponent },
+  { path: 'chat', component: ChattingComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'payment/bayar', component: BayarComponent },
   { path: 'payment/bayar/success', component: SuccessComponent },

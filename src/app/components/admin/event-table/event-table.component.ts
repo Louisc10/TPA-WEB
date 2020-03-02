@@ -39,7 +39,13 @@ export class EventTableComponent implements AfterViewInit {
   
   constructor(private apolo: BackendServiceService, private dialog: MatDialog, private route: Router) {}
 
+  email
   ngAfterViewInit() {
+    this.email = localStorage.getItem("user");
+    this.email = (this.email == null) ? "" : this.email
+    if(this.email != "admin@admin.com"){
+      this.route.navigate([''])
+    }
     this.apolo.getAllEntertainment().subscribe(async Query => {
       this.rawData = Query.data.getAllEntertainment
       await this.insertData()

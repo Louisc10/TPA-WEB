@@ -1,3 +1,42 @@
-<p>promo-list works!</p>
+<app-navbar></app-navbar>
+
+<div style="display: flex; flex-wrap: wrap ; justify-content: center; align-items: center;">
+    <div style="width: 100%; height: 200px; display: flex; justify-content: center; align-items: center;">
+        <img src="{{promo.image}}" alt="{{promo.title}}" style="height: 100%; ">
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 10px;">
+        <div>
+            <h1>{{promo.title}}</h1>
+        </div>
+        <div>
+            Code: {{promo.code}}
+        </div>
+        <div>
+            Platform: {{promo.platform}}
+        </div>
+    </div>
+    <div style="padding: 20px;">
+        <p>{{promo.detail}}</p>
+    </div>
+</div>
+<div style="margin: 50px;">
+    <app-share-button></app-share-button>
+
+</div>
+
+<div style="display: flex; flex-wrap: wrap ; justify-content: center; align-items: center;">
+    <div *ngFor="let item of array" style="width: 500px; height: 220px; display: flex;
+     margin: 10px; justify-content: center; flex-direction: column; align-items: center;
+     border: solid 1px black; padding: 10px;" (click)="openDetail(item.id)">
+        <div style="width: 480px; height: 200px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+            <img src="{{item.image}}" alt="{{item.title}}" style="height: 100%; ">
+        </div>
+        <div>
+            {{item.title}}
+        </div>
+    </div>
+</div>
+
 
 <app-footer></app-footer>

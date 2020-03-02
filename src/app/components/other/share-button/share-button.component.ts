@@ -21,7 +21,7 @@ export class ShareButtonComponent implements OnInit {
   }
 
   mail(){
-    window.open('mailto:?subject=Cara Membuat ID LINE Messenger Menjadi Link Url Web&BODY=I found this article interesting and thought of sharing it with you. Check it out: "'+ this.link+'"')
+    window.open('mailto:?subject=Check it out: "'+ this.link+'"')
   }
   
   whatapp(){

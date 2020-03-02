@@ -9,6 +9,9 @@ import { Train } from '../models/train';
 import { Hotel } from '../models/hotel';
 import { Car } from '../models/car';
 import { Blog } from '../models/blog';
+import { Title } from '@angular/platform-browser';
+import { Promo } from '../models/promo';
+import { Pesawat } from '../models/pesawat';
 
 
 @Injectable({
@@ -822,6 +825,78 @@ export class BackendServiceService {
     )
   }
 
+  //Promo
+  getAllPromo(): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query{
+            getAllPromo{
+              id
+              image
+              title
+              code
+              detail
+              platform
+            }
+          }
+        `
+      }
+    )
+  }
+
+  getAllPromoById(id): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query getPromoById($id:Int!){
+            getPromoById(id: $id){
+              id
+              image
+              title
+              code
+              detail
+              platform
+            }
+          }
+        `
+      }
+    )
+  }
+
+  createPromo(item: Promo): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+        mutation createPromo(
+          $image: String!
+          $title: String!
+          $code: String!
+          $detail: String!
+          $platform: String!
+        ){
+          createPromo(
+            image: $image
+            title: $title
+            code: $code
+            detail: $detail
+            platform: $platform
+          ){
+            id
+          }
+        }
+        `,
+        variables: {
+          "image": item.image,
+          "title": item.title,
+          "code": item.code,
+          "detail": item.detail,
+          "platform": item.platform,
+        }
+      }
+    )
+  }
+
   //Blog
   getAllBlog(): Observable<Query> {
     return this.apollo.query<Query>(
@@ -919,6 +994,31 @@ export class BackendServiceService {
     )
   }
 
+  addViewBlog(item: Blog): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+        mutation addViewBlog(
+          $id: Int!
+          $view: Int!
+        ){
+          addViewBlog(
+            id: $id
+            view: $view
+          ){
+            id
+          }
+        }
+        
+        `,
+        variables: {
+          "id": item.id,
+          "view": item.view,
+        }
+      }
+    )
+  }
+
   deleteBlog(id: number): Observable<any> {
     return this.apollo.mutate<any>(
       {
@@ -927,6 +1027,157 @@ export class BackendServiceService {
             $id: Int!
           ){
             removeBlog(
+              id: $id
+            ){
+              id
+            }
+          }
+        `,
+        variables: {
+          "id": id
+        }
+      }
+    )
+  }
+
+  //Pesawat
+  getAllPesawat(): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query{
+            getAllPesawat{
+              id
+              maskapai
+              src
+              dst
+              price
+              code
+              transit
+              timeGo
+              timeArrive
+            }
+          }
+        `
+      }
+    )
+  }
+
+  getPesawatById(id): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+          query getPesawatById($id:Int!){
+            getBlogById(id: $id){
+              id
+              image
+              title
+              content
+              view
+            }
+          }
+        `
+      }
+    )
+  }
+
+  createPesawat(item: Pesawat): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+        mutation createPesawat(
+          $maskapai: String!
+          $src: String!
+          $dst: String!
+          $price: Int!
+          $code: String!
+          $transit: String!
+          $timeGo: String!
+          $timeArrive: String!
+        ){
+          createPesawat(
+            price :$price
+            code: $code
+            transit: $transit
+            timeGo: $timeGo
+            maskapai: $maskapai
+            dst: $dst
+            src: $src
+            timeArrive: $timeArrive
+          ){
+            id
+            
+          }
+        }
+        `,
+        variables: {
+          "price": item.price,
+          "code": item.code,
+          "transit": item.transit,
+          "timeGo": item.timeGo,
+          "maskapai": item.maskapai,
+          "dst": item.dst,
+          "src": item.src,
+          "timeArrive": item.timeArrive
+        }
+      }
+    )
+  }
+
+  updatePesawat(item: Pesawat): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+        mutation updatePesawat(
+          $id: Int!
+          $maskapai: String!
+          $src: String!
+          $dst: String!
+          $price: Int!
+          $code: String!
+          $transit: String!
+          $timeGo: String!
+          $timeArrive: String!
+        ){
+          updatePesawat(
+            id: $id
+            price :$price
+            code: $code
+            transit: $transit
+            timeGo: $timeGo
+            maskapai: $maskapai
+            dst: $dst
+            src: $src
+            timeArrive: $timeArrive
+          ){
+            id
+            
+          }
+        }
+        `,
+        variables: {
+          "id": item.id,
+          "price": item.price,
+          "code": item.code,
+          "transit": item.transit,
+          "timeGo": item.timeGo,
+          "maskapai": item.maskapai,
+          "dst": item.dst,
+          "src": item.src,
+          "timeArrive": item.timeArrive
+        }
+      }
+    )
+  }
+
+  deletePesawat(id: number): Observable<any> {
+    return this.apollo.mutate<any>(
+      {
+        mutation: gql`
+          mutation removePesawat(
+            $id: Int!
+          ){
+            removePesawat(
               id: $id
             ){
               id

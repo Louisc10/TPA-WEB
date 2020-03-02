@@ -39,7 +39,13 @@ export class InsertHotelFormComponent implements OnInit {
   constructor(private route: Router,
     private apolo: BackendServiceService) { }
 
+  email
   ngOnInit() {
+    this.email = localStorage.getItem("user");
+    this.email = (this.email == null) ? "" : this.email
+    if(this.email != "admin@admin.com"){
+      this.route.navigate([''])
+    }
   }
 
   back() {

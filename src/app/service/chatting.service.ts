@@ -26,5 +26,9 @@ export class ChattingService {
     this.socket.emit(eventName, data);
   }
 
+  public removeListener(e: string){
+    this.socket.removeListener(e)
+  }
+
 
 }

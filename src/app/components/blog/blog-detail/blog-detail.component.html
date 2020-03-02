@@ -12,3 +12,37 @@
 </div>
 
 <app-share-button></app-share-button>
+
+<div>-- Trending Now --</div>
+<div>
+    <div style="width: 500px; height: 220px; display: flex;
+     margin: 10px; justify-content: center; flex-direction: column; align-items: center;
+     border: solid 1px black; padding: 10px;" (click)="openDetail(reversed[1].id)">
+        <div style="width: 250px; height: 200px; display: flex; justify-content: center; align-items: center;">
+            <img src="{{reversed[1].image}}" alt="{{reversed[1].title}}" style="height: 100%; ">
+        </div>
+        <div>
+            {{reversed[1].title}}
+        </div>
+    </div>
+    <div style="width: 500px; height: 220px; display: flex;
+     margin: 10px; justify-content: center; flex-direction: column; align-items: center;
+     border: solid 1px black; padding: 10px;" (click)="openDetail(reversed[2].id)">
+        <div style="width: 250px; height: 200px; display: flex; justify-content: center; align-items: center;">
+            <img src="{{reversed[2].image}}" alt="{{reversed[2].title}}" style="height: 100%; ">
+        </div>
+        <div>
+            {{reversed[2].title}}
+        </div>
+    </div>
+    <div style="width: 500px; height: 220px; display: flex;
+     margin: 10px; justify-content: center; flex-direction: column; align-items: center;
+     border: solid 1px black; padding: 10px;" (click)="openDetail(reversed[4].id)">
+        <div style="width: 250px; height: 200px; display: flex; justify-content: center; align-items: center;">
+            <img src="{{reversed[4].image}}" alt="{{reversed[4].title}}" style="height: 100%; ">
+        </div>
+        <div>
+            {{reversed[4].title}}
+        </div>
+    </div>
+</div>

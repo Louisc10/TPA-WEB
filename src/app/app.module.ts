@@ -86,6 +86,8 @@ import { BlogHomeComponent } from './components/blog/blog-home/blog-home.compone
 import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.component';
 import { ShareButtonComponent } from './components/other/share-button/share-button.component';
 import { ChattingComponent } from './components/other/chatting/chatting.component';
+import { InsertFlightFormComponent } from './components/admin/flight-table/insert-flight-form/insert-flight-form.component';
+import { UpdateFlightFormComponent } from './components/admin/flight-table/update-flight-form/update-flight-form.component';
 
 @NgModule({
   declarations: [
@@ -158,6 +160,8 @@ import { ChattingComponent } from './components/other/chatting/chatting.componen
     BlogDetailComponent,
     ShareButtonComponent,
     ChattingComponent,
+    InsertFlightFormComponent,
+    UpdateFlightFormComponent,
   ],
   imports: [
     BrowserModule,
