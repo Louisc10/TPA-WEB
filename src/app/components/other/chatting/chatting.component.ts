@@ -26,8 +26,9 @@ export class ChattingComponent implements OnInit {
     this.messageControl.setValue("");
     this.c()
   }
-  
+
   c(){
     this.aMessage = (this.messageControl.value != "")
   }
 }
+ 
