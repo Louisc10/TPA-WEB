@@ -134,5 +134,10 @@ export class TrainTableComponent implements AfterViewInit {
       }
     });
   }
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.data.filter = filterValue.trim().toLowerCase();
+  }
 
 }

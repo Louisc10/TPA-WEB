@@ -1,1 +1,33 @@
-<p>update-flight-form works!</p>
+<div class="Vision">
+    <button (click)="closeDialog()">Back</button>
+    <div class="Header">
+        Update Flight
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Company" id="name" [(ngModel)]="data.maskapai" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Source" id="src" [(ngModel)]="data.source" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Destination" id="dst" [(ngModel)]="data.destination" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Transit" id="transit" [(ngModel)]="data.transit" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" step="1000" min="1000" placeholder="Price" id="price" [(ngModel)]="data.price"
+            required>
+    </mat-form-field>
+
+
+    <input type="date" id="go" name="go" [(ngModel)]="data.departTime" required>
+    <input type="date" id="arrive" name="arrive" [(ngModel)]="data.arriveTime" required>
+
+    <button (click)="openDialog()">Submit</button>
+</div>

@@ -92,6 +92,7 @@ import { ActivitiesComponent } from './components/hiburan/recomended/activities/
 import { AttractionComponent } from './components/hiburan/recomended/attraction/attraction.component';
 import { EventComponent } from './components/hiburan/recomended/event/event.component';
 import { FileUploadComponent } from './components/other/file-upload/file-upload.component';
+import { ImageModalComponent } from './components/other/chatting/image-modal/image-modal.component';
 
 @NgModule({
   declarations: [
@@ -170,6 +171,7 @@ import { FileUploadComponent } from './components/other/file-upload/file-upload.
     AttractionComponent,
     EventComponent,
     FileUploadComponent,
+    ImageModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -215,6 +217,9 @@ import { FileUploadComponent } from './components/other/file-upload/file-upload.
     UpdateHotelFormComponent,
     InsertBlogFormComponent,
     UpdateBlogFormComponent,
+    InsertFlightFormComponent,
+    UpdateFlightFormComponent,
+    ImageModalComponent,
   ]
 })
 export class AppModule { }

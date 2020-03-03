@@ -1,1 +1,35 @@
-<p>insert-flight-form works!</p>
+<div class="Vision">
+    <button (click)="closeDialog()">Back</button>
+    <div class="Header">
+        Insert Flight
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Company" id="name" [(ngModel)]="maskapai" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Source" id="src" [(ngModel)]="source" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Destination" id="dst" [(ngModel)]="destination" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Transit" id="transit" [(ngModel)]="transit" required>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" step="1000" min="1000" placeholder="Price" id="price" [(ngModel)]="price"
+            required>
+    </mat-form-field>
+
+
+    <input type="date" id="go" name="go" [(ngModel)]="departTime" required>
+    <input type="time" id="go1" name="go1" [(ngModel)]="departTime1" required>
+    <input type="date" id="arrive" name="arrive" [(ngModel)]="arriveTime" required>
+    <input type="time" id="arrive1" name="arrive1" [(ngModel)]="arriveTime1" required>
+
+    <button (click)="openDialog()">Submit</button>
+</div>

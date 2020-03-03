@@ -33,20 +33,28 @@ export class FlightTableComponent implements AfterViewInit {
 
   complete: boolean = false
 
-  displayedColumns: string[] = ['name', 'departTime', 'arriveTime', 'class', 'actions'];
+  displayedColumns: string[] = ['image', 'company', 'depart', 'arrive', 'duration', 'actions'];
 
-  constructor(private apolo: BackendServiceService, private dialog: MatDialog, private route: Router) { }
+  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-  ngAfterViewInit() {
+  constructor(private apolo: BackendServiceService, private dialog: MatDialog, private route: Router) {
     this.apolo.getAllPesawat().subscribe(async Query => {
       this.rawData = Query.data.getAllPesawat
       await this.insertData()
-
+      
       // await this.delay(5000)
-
+      
       // await this.cg()
-
+      
     });
+    
+  }
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.data.filter = filterValue.trim().toLowerCase();
+  }
+  ngAfterViewInit() {
   }
   animal: string;
 
@@ -95,13 +103,47 @@ export class FlightTableComponent implements AfterViewInit {
       }
       EXAMPLE_DATA.push(xVal)
     });
-    console.table(this.rawData);
+    console.table(EXAMPLE_DATA);
 
     this.data = new MatTableDataSource(EXAMPLE_DATA)
     this.data.paginator = this.paginator
     this.data.sort = this.sort
 
     this.cg()
+
+    EXAMPLE_DATA[0].departTime.getDate()
+    EXAMPLE_DATA[0].departTime.getMinutes()
+    EXAMPLE_DATA[0].departTime.getHours()
+  }
+
+  getDate(e: PesawatTable) {
+    var d = new Date(e.departTime);
+
+    var d2 = new Date(e.arriveTime);
+
+    var dif = d2.getTime() - d.getTime();
+
+    var time = dif / (1000);
+
+    var hour = time / (60 * 60)
+
+    var min = (time % (60 * 60)) / 60;
+    return Math.floor(hour) + "h " + Math.floor(min) + "m"
+
+
+  }
+
+  getPic(e: PesawatTable) {
+
+    if (e.maskapai === "Garuda") {
+      return "../../../../assets/images/garuda.jpg"
+    }
+    else if (e.maskapai === "Sriwijaya") {
+      return "../../../../assets/images/sriwijaya.jpg"
+    }
+    else {
+      return "../../../../assets/images/favicon.ico"
+    }
   }
 
   insert() {
@@ -118,7 +160,12 @@ export class FlightTableComponent implements AfterViewInit {
   update_e(element) {
     const dialogRef = this.dialog.open(UpdateFlightFormComponent, {
       width: '250px',
-      data: { name: element.name, departTime: element.departTime, arriveTime: element.arriveTime, class: element.class, id: element.id , price: element.price, source: element.source, destination: element.destination}
+      data: {
+        id: element.id, departTime: element.departTime,
+        arriveTime: element.arriveTime, maskapai: element.maskapai,
+        source: element.source, destination: element.destination,
+        code: element.code, transit: element.transit, price: element.price
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

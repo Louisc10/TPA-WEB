@@ -111,6 +111,11 @@ export class BlogTableComponent implements AfterViewInit {
       location.reload()
     });
   }
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.data.filter = filterValue.trim().toLowerCase();
+  }
 
   update_e(element) {
     console.table(element)

@@ -6,6 +6,14 @@
     <button *ngIf="aMessage" (click)="sendMessage()">Send</button>
 </div>
 <div>
-    Image
-    <input type="file"  id="myfile" (click)="sendMessage()">
+    <button (click)="fileInput.click()" mat-button>Input Image</button>
+    <input style="display: none" type="file" (change)="onFileChanged($event)" accept="image/*" size="1000" #fileInput>
+</div>
+
+<div *ngIf="image!=''" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div style="width: 500px;">
+        <img src={{image}} style="width: 100%;" (click)="openlargeImage()">
+    </div>
+    <a href="{{image}}" download>Download</a>
+
 </div>
