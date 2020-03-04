@@ -128,7 +128,7 @@ export class TrainTableComponent implements AfterViewInit {
       if (this.animal == "CONFIRM") {
         this.apolo.deleteTrain(element.id).subscribe(async Query => {
           await alert("Success")
-          await location.reload()
+          // await location.reload()
         })
 
       }

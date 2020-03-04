@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Hotel } from 'src/app/models/hotel';
 import { FormControl } from '@angular/forms';
+import { ChattingService } from 'src/app/service/chatting.service';
 
 @Component({
   selector: 'app-insert-hotel-form',
@@ -37,7 +38,10 @@ export class InsertHotelFormComponent implements OnInit {
   facilities = new FormControl();
 
   constructor(private route: Router,
-    private apolo: BackendServiceService) { }
+    private apolo: BackendServiceService,
+    private note: ChattingService) { 
+      this.note.listen('hotel').subscribe(M=>alert(M))
+    }
 
   email
   ngOnInit() {
@@ -125,7 +129,7 @@ export class InsertHotelFormComponent implements OnInit {
   }
 
   c() {
-    alert("[!] New Hotel!")
+    this.note.emit('hotel','[!] New Hotel!')
     location.reload()
 
   }

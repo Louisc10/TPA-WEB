@@ -5,6 +5,7 @@ import { async } from '@angular/core/testing';
 import { Entertainment } from 'src/app/models/entertainment';
 import { Train } from 'src/app/models/train';
 import { transformOperation } from 'apollo-link/lib/linkUtils';
+import { ChattingService } from 'src/app/service/chatting.service';
 
 @Component({
   selector: 'app-insert-event-form',
@@ -25,7 +26,10 @@ export class InsertEventFormComponent implements OnInit {
   picker = null
 
   constructor(private route: Router,
-    private apolo: BackendServiceService) { }
+    private apolo: BackendServiceService,
+    private note: ChattingService) { 
+      this.note.listen('event').subscribe(M=>alert(M))
+    }
 
   ngOnInit() {
   }
@@ -90,7 +94,7 @@ export class InsertEventFormComponent implements OnInit {
   }
 
   c() {
-    alert("[!] New Event Post!")
+    this.note.emit('event','[!] New Event Post!')
     location.reload()
   }
 }

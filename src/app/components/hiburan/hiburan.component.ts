@@ -7,6 +7,7 @@ import { BoughtService } from 'src/app/service/bought.service';
 import { Router } from '@angular/router';
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { ChattingService } from 'src/app/service/chatting.service';
 
 @Component({
   selector: 'app-hiburan',
@@ -35,8 +36,10 @@ export class HiburanComponent implements AfterViewInit {
     private apollo: BackendServiceService,
     private data: EntertainmentFilterServiceService,
     private b: BoughtService,
-    private router: Router) {
-  }
+    private router: Router,
+    private note: ChattingService) { 
+      this.note.listen('event').subscribe(M=>alert(M))
+    }
 
   ngAfterViewInit() {
     this.apollo.getAllEntertainment().subscribe(

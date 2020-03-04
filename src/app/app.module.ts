@@ -93,6 +93,7 @@ import { AttractionComponent } from './components/hiburan/recomended/attraction/
 import { EventComponent } from './components/hiburan/recomended/event/event.component';
 import { FileUploadComponent } from './components/other/file-upload/file-upload.component';
 import { ImageModalComponent } from './components/other/chatting/image-modal/image-modal.component';
+import { HomeChatroomComponent } from './components/other/chatting/home-chatroom/home-chatroom.component';
 
 @NgModule({
   declarations: [
@@ -172,6 +173,7 @@ import { ImageModalComponent } from './components/other/chatting/image-modal/ima
     EventComponent,
     FileUploadComponent,
     ImageModalComponent,
+    HomeChatroomComponent,
   ],
   imports: [
     BrowserModule,

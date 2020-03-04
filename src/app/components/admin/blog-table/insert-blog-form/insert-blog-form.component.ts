@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { MatDialogRef } from '@angular/material';
 import { Blog } from 'src/app/models/blog';
+import { ChattingService } from 'src/app/service/chatting.service';
 
 @Component({
   selector: 'app-insert-blog-form',
@@ -19,7 +20,10 @@ export class InsertBlogFormComponent implements OnInit {
   datas
 
   constructor(private apollo: BackendServiceService,
-    public dialogRef: MatDialogRef<InsertBlogFormComponent>) { }
+    public dialogRef: MatDialogRef<InsertBlogFormComponent>,
+    private note: ChattingService) { 
+      this.note.listen('blog').subscribe(M=>alert(M))
+    }
 
   ngOnInit() {
   }
@@ -60,6 +64,8 @@ export class InsertBlogFormComponent implements OnInit {
   }
   c() {
     this.dialogRef.close()
+
+    this.note.emit('blog', '[!] New Blog!');
     location.reload()
   }
 

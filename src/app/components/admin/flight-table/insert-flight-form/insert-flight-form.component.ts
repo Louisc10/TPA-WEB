@@ -3,6 +3,7 @@ import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { MatDialogRef } from '@angular/material';
 import { Pesawat } from 'src/app/models/pesawat';
 import { Time } from '@angular/common';
+import { ChattingService } from 'src/app/service/chatting.service';
 
 @Component({
   selector: 'app-insert-flight-form',
@@ -23,7 +24,10 @@ export class InsertFlightFormComponent implements OnInit {
   datas
 
   constructor(private apollo: BackendServiceService,
-    public dialogRef: MatDialogRef<InsertFlightFormComponent>) { }
+    public dialogRef: MatDialogRef<InsertFlightFormComponent>,
+    private note: ChattingService) { 
+      this.note.listen('plane').subscribe(M=>alert(M))
+    }
 
   ngOnInit() {
   }
@@ -90,7 +94,8 @@ export class InsertFlightFormComponent implements OnInit {
     }
   }
   c() {
-    alert("[!] New Pesawat!")
+    // alert("[!] New Pesawat!")
+    this.note.emit('plane','[!] New Pesawat!')
     location.reload()
   }
   makeid(length) {

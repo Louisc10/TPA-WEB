@@ -83,7 +83,7 @@ export class ChattingComponent implements OnInit {
 
   openlargeImage(){
     const dialogRef = this.dialog.open(ImageModalComponent, {
-      width: '80%',
+      width: "700px",
       data:  this.image
     });
   }

@@ -4,6 +4,7 @@ import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Train } from 'src/app/models/train';
 import { Mutation } from 'apollo-angular';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatInputModule } from '@angular/material';
+import { ChattingService } from 'src/app/service/chatting.service';
 
 @Component({
   selector: 'app-insert-train-form',
@@ -22,9 +23,13 @@ export class InsertTrainFormComponent implements OnInit {
   datas
 
   constructor(private apollo: BackendServiceService,
-    public dialogRef: MatDialogRef<InsertTrainFormComponent>) { }
+    public dialogRef: MatDialogRef<InsertTrainFormComponent>,
+    public note: ChattingService) { }
 
   ngOnInit() {
+    this.note.listen('train').subscribe(m => {
+      alert(m);
+    });
   }
 
   openDialog() {
@@ -92,8 +97,11 @@ export class InsertTrainFormComponent implements OnInit {
     }
   }
   c() {
-    alert("[!] New Train!")
-    location.reload()
+    // alert("[!] New Train!")
+
+    this.note.emit('train', '[!] New Train!');
+    this.dialogRef.close()
+    // location.reload()
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChattingService } from 'src/app/service/chatting.service';
 
 @Component({
   selector: 'app-hotel',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private note: ChattingService) { 
+      this.note.listen('hotel').subscribe(M=>alert(M))
+    }
 
   ngOnInit() {
   }

@@ -4,6 +4,7 @@ import { Train } from 'src/app/models/train';
 import { TrainFilterService } from 'src/app/service/train-filter.service';
 import { BoughtService } from 'src/app/service/bought.service';
 import { Router } from '@angular/router';
+import { ChattingService } from 'src/app/service/chatting.service';
 
 @Component({
   selector: 'app-kereta-api',
@@ -22,7 +23,8 @@ export class KeretaApiComponent implements OnInit {
     private apollo: BackendServiceService, 
     private data: TrainFilterService, 
     private bought: BoughtService, 
-    private route: Router) { }
+    private route: Router,
+    private note: ChattingService) { }
 
   ngOnInit() {
     this.apollo.getAllTrain().subscribe(
@@ -32,7 +34,13 @@ export class KeretaApiComponent implements OnInit {
       }
     );
 
+    this.note.listen('train').subscribe(m => {
+      alert(m);
+    });
+
   }
+
+
   
   array = [];
   sum = 5;

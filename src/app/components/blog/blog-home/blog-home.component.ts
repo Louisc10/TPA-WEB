@@ -6,6 +6,7 @@ import { Query } from 'src/app/models/query';
 import { MatDialog } from '@angular/material';
 import { InsertBlogFormComponent } from '../../admin/blog-table/insert-blog-form/insert-blog-form.component';
 import { Router } from '@angular/router';
+import { ChattingService } from 'src/app/service/chatting.service';
 
 @Component({
   selector: 'app-blog-home',
@@ -18,7 +19,10 @@ export class BlogHomeComponent implements AfterViewInit {
   reversed: Blog[] = []
   constructor(private apolo: BackendServiceService,
     private dialog: MatDialog,
-    private route: Router) { }
+    private route: Router,
+    private note: ChattingService) { 
+      this.note.listen('blog').subscribe(M=>alert(M))
+    }
 
   ngAfterViewInit() {
     this.apolo.getAllBlog().subscribe(
