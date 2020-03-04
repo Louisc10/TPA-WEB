@@ -12,13 +12,23 @@ export class City {
   latitude: string;
 }
 
+
+interface Pokemon {
+  value: string;
+}
+
+interface PokemonGroup {
+  name: string;
+  pokemon: Pokemon[];
+}
+
 @Component({
   selector: 'widget-entertainment',
   templateUrl: './entertainment.component.html',
   styleUrls: ['./entertainment.component.sass']
 })
 export class EntertainmentWidget implements AfterViewInit {
- cityControl = new FormControl();
+  cityControl = new FormControl();
   date1;
   date2;
   selectedCity1: string = "";
@@ -31,6 +41,32 @@ export class EntertainmentWidget implements AfterViewInit {
     { name: 'Bandung', id: 1, longitude: '106.816635', latitude: '-6.595038' }
   ]
 
+  pokemonControl = new FormControl();
+  pokemonGroups: PokemonGroup[] = [
+    {
+      name: 'Indonesia',
+      pokemon: [
+        { value: 'Jakarta' },
+        { value: 'Bali' },
+        { value: 'Banten' }
+      ]
+    },
+    {
+      name: 'Singapore',
+      pokemon: [
+        { value: 'Singapore' },
+        { value: 'Central-business' }
+      ]
+    },
+    {
+      name: 'Malaysia',
+      pokemon: [
+        { value: 'Penang' },
+        { value: 'Perak' }
+      ]
+    },
+  ];
+  items: string[] = ['Jakarta', 'Bali', 'Banten', 'Singapore', 'Central-business', 'Penang', 'Perak']
   constructor(private apollo: BackendServiceService, private route: Router) {
   }
 
@@ -82,8 +118,8 @@ export class EntertainmentWidget implements AfterViewInit {
   }
 
   kik() {
-    if(this.route.url != "/hiburan")
-    this.route.navigate(["/hiburan"]);
+    if (this.route.url != "/hiburan")
+      this.route.navigate(["/hiburan"]);
 
   }
 }

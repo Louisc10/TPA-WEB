@@ -48,7 +48,7 @@ export class KeretaApiComponent implements OnInit {
 
   @HostListener("window:scroll", [])
   onScrollDown(ev): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
       let start = this.sum;
       this.sum += 5;
       if (this.sum > this.list.length)

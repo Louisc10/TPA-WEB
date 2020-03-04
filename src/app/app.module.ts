@@ -96,6 +96,7 @@ import { ImageModalComponent } from './components/other/chatting/image-modal/ima
 import { HomeChatroomComponent } from './components/other/chatting/home-chatroom/home-chatroom.component';
 import { ShowCityComponent } from './components/hiburan/show-city/show-city.component';
 import { BestComponent } from './components/hiburan/recomended/best/best.component';
+import { HotelRecommendedComponent } from './components/home/hotel-recommended/hotel-recommended.component';
 
 @NgModule({
   declarations: [
@@ -178,6 +179,7 @@ import { BestComponent } from './components/hiburan/recomended/best/best.compone
     HomeChatroomComponent,
     ShowCityComponent,
     BestComponent,
+    HotelRecommendedComponent,
   ],
   imports: [
     BrowserModule,

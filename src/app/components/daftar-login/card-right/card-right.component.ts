@@ -39,7 +39,6 @@ export class CardRightComponent implements OnInit {
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    this.regApollo()
   }
 
   signOut(): void {
@@ -47,20 +46,24 @@ export class CardRightComponent implements OnInit {
   }
 
   private regApollo() {
-    // this.authService.authState.subscribe((user) => {
-    //   this.user = user;
-    // });
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+    });
     console.table(this.user)
-    var admin: Admin;
+    var admin: Admin = new Admin();
     admin.Email = this.user.email
     admin.BackName = this.user.lastName
     admin.FrontName = this.user.firstName
     admin.PhoneNumber = ""
     admin.Password = this.user.email
+    admin.Language = "EN"
+    admin.Currency = "IDR"
     this.apollo.createAdmin(admin).subscribe(
       async Query => {
         this.account = Query.data.createAdmin
         await console.table(this.account)
+        await window.localStorage.setItem("user", this.user.email);
+        location.reload()
       }
     );
   }
@@ -106,9 +109,8 @@ export class CardRightComponent implements OnInit {
         console.log(this.account)
         window.localStorage.setItem("user", this.account[0].email);
 
-        this.rou.navigate([this.rou.url])
         this.dialogRef.close()
-
+        location.reload()
       }
       else {
         if (this.status == "") {

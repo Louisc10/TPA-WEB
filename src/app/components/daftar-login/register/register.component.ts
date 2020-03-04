@@ -3,6 +3,9 @@ import { nonInputTypeOnVarMessage } from 'graphql/validation/rules/VariablesAreI
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { Admin } from 'src/app/models/admin';
 import { AuthService, GoogleLoginProvider, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
+import { async } from '@angular/core/testing';
+import { MatDialog } from '@angular/material';
+import { ConfirmationBoxComponent } from '../../admin/other/confirmation-box/confirmation-box.component';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +17,8 @@ export class RegisterComponent implements OnInit {
   admin: Admin = new Admin();
   user: SocialUser
 
-  constructor(private authService: AuthService, private apollo: BackendServiceService) { }
+  constructor(private authService: AuthService, private apollo: BackendServiceService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
@@ -23,29 +27,56 @@ export class RegisterComponent implements OnInit {
   }
   
   signInWithGoogle(): void {
+    // this.authService.signOut()
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.regApollo1()
   }
- 
+  
   signInWithFB(): void {
+    // this.authService.signOut()
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.regApollo1()
   } 
-
+animal;
   private regApollo1() {
-    this.authService.authState.subscribe((user) => {
+    console.log("HEEHHEHEHHEHEHEHHEHEHHEHEHHEHEHHEHEHHEHE")
+    this.authService.authState.subscribe((user) => { async 
       this.user = user;
     });
-    var admin: Admin;
+    console.table(this.user)
+    const dialogRef = this.dialog.open(ConfirmationBoxComponent, {
+      width: '250px',
+      data: { animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+      console.log("CONS: " + this.animal)
+      if (this.animal == "CONFIRM") {
+        this.ass()
+
+      }
+    });
+  }  
+
+  ass(){
+    var admin: Admin = new Admin();
     admin.Email = this.user.email
     admin.BackName = this.user.lastName
     admin.FrontName = this.user.firstName
     admin.PhoneNumber = ""
     admin.Password = this.user.email
+    admin.Language = "EN"
+    admin.Currency = "IDR"
     this.apollo.createAdmin(admin).subscribe(
       async Query => {
         this.account = Query.data.createAdmin
-        await console.table(this.account)
+        console.table(this.account)
+        await window.localStorage.setItem("user", this.user.email);
+      },()=>{
+
+      },()=>{
       }
     );
   }

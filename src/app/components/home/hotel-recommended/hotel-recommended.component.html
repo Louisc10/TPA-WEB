@@ -1,0 +1,32 @@
+
+<div style="display: flex; justify-content: center; align-items: center;">
+    Best Offering
+</div>
+<div [ngStyle]="{'display': finish ? 'none': 'block'}">
+    <mat-spinner></mat-spinner>
+</div>
+<div [ngStyle]="{'display': finish ? 'flex': 'none'}" style="display: flex;flex-wrap: wrap; flex-direction: row; justify-content: center;">
+    <div *ngFor="let item of list"
+    style="width: 30%; margin: 1%; border: 1px solid black; border-radius: 10px; padding: 5px;"
+    >
+    <div style="overflow: hidden; width: 100%; height: 150px;">
+        <img src="{{item.image}}" alt="{{item.name}}"
+        style="width: 100%; height: 100%; border-top-left-radius: 5px ; border-top-right-radius: 5px;">
+    </div>
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div style="color: darkorange; font-size: 2vw;">{{item.name}}</div>
+        <div style="color: darkorange; font-size: 1.5vw;">Type: {{item.tipe}}</div>
+        <div style="color: chocolate; font-size: 1vw;">{{item.price}}</div>
+        <div style="display: flex; flex-direction: row;">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <div *ngFor="let w of x; let i=index">
+                    <div *ngIf="i < item.rating">
+                        <span class="fa fa-star checked"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Name Price Category Thumbnail -->
