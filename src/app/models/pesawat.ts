@@ -8,4 +8,5 @@ export class Pesawat {
     transit: string
     timeGo: string
     timeArrive: string
+    facility: string
 }

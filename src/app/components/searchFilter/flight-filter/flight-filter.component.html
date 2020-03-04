@@ -1,0 +1,136 @@
+<div style="border: 1px solid chocolate; margin-top: 100px; padding: 20px;">
+    <div style=" display: flex; justify-content: center; align-content: center;">
+        <div style="margin: auto 15px;">Filter</div>
+        <button mat-button (click)="reset()">Reset</button>
+    </div>
+
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Transit
+        </div>
+        <mat-checkbox [(ngModel)]="this.data.transit0">
+            Langsung
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.transit1">
+            1 Transit
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.transit2">
+            2+ Transit
+        </mat-checkbox>
+    </div>
+    <div style=" display: flex; justify-content: center; align-content: center;">
+        <div>
+            <mat-form-field class="example-margin">
+                <mat-label>Min</mat-label>
+                <input matInput type="number" [(ngModel)]="this.data.durasiTransitMin" disabled>
+            </mat-form-field>
+            <mat-slider (input)="changeSlider($event)" class="example-margin"
+                [max]="this.data.durasiTransitMax" [min]="0" [step]="1"
+                [(ngModel)]="this.data.durasiTransitMin">
+            </mat-slider>
+        </div>
+        <div>
+            <mat-form-field class="example-margin">
+                <mat-label>Max</mat-label>
+                <input matInput type="number" [(ngModel)]="this.data.durasiTransitMax" disabled>
+            </mat-form-field>
+            <mat-slider (input)="changeSlider1($event)" class="example-margin"
+                [max]="10" [min]="this.data.durasiTransitMin" [step]="1"
+                [(ngModel)]="this.data.durasiTransitMax">
+            </mat-slider>
+        </div>
+
+    </div>
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Berangkat
+        </div>
+        <mat-checkbox [(ngModel)]="this.data.berangkatTime1">
+            00:00 - 06:00
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.berangkatTime2">
+            06:00 - 12:00
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.berangkatTime3">
+            12:00 - 18:00
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.berangkatTime4">
+            18:00 - 24:00
+        </mat-checkbox>
+    </div>
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Tiba
+        </div>
+        <mat-checkbox [(ngModel)]="this.data.tibaTime1">
+            00:00 - 06:00
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.tibaTime2">
+            06:00 - 12:00
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.tibaTime3">
+            12:00 - 18:00
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.tibaTime4">
+            18:00 - 24:00
+        </mat-checkbox>
+    </div>
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Nama Pesawat
+        </div>
+        <mat-checkbox [(ngModel)]="this.data.garuda">
+            Garuda
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.sriwijaya">
+            Sriwijaya
+        </mat-checkbox>
+    </div>
+    
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Faslitas
+        </div>
+        <mat-checkbox [(ngModel)]="this.data.bagasi">
+            Bagasi
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.hiburan">
+            Hiburan
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="this.data.makanan">
+            Makanan
+        </mat-checkbox>
+    </div>
+    <div style=" display: flex; justify-content: space-evenly; align-content: center; ">
+        <div>
+            Transit
+        </div>
+        <mat-checkbox [(ngModel)]="this.data.jakarta">
+            Jakarta
+        </mat-checkbox>
+    </div>
+    
+    <div style=" display: flex; justify-content: center; align-content: center;">
+        <div>
+            <mat-form-field class="example-margin">
+                <mat-label>Min</mat-label>
+                <input matInput type="number" [(ngModel)]="this.data.durasiFlightMin" disabled>
+            </mat-form-field>
+            <mat-slider (input)="changeSlider3($event)" class="example-margin"
+                [max]="this.data.durasiFlightMax" [min]="0" [step]="1"
+                [(ngModel)]="this.data.durasiFlightMin">
+            </mat-slider>
+        </div>
+        <div>
+            <mat-form-field class="example-margin">
+                <mat-label>Max</mat-label>
+                <input matInput type="number" [(ngModel)]="this.data.durasiFlightMax" disabled>
+            </mat-form-field>
+            <mat-slider (input)="changeSlider4($event)" class="example-margin"
+                [max]="20" [min]="this.data.durasiFlightMin" [step]="1"
+                [(ngModel)]="this.data.durasiFlightMax">
+            </mat-slider>
+        </div>
+
+    </div>
+</div>

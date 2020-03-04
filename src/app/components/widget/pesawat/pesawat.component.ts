@@ -4,6 +4,7 @@ import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { async } from '@angular/core/testing';
 import { Query } from 'src/app/models/query';
 import { Router } from '@angular/router';
+import { FlightFilterService } from 'src/app/services/flight-filter.service';
 
 export interface City {
   name: string;
@@ -19,6 +20,7 @@ export interface City {
 })
 export class PesawatWidget implements OnInit {
 
+  selectedTamu: number
   date1;
   date2;
   selectedCity1: string = "";
@@ -30,7 +32,7 @@ export class PesawatWidget implements OnInit {
   
 
 
-  constructor(private apollo: BackendServiceService, private route: Router) {
+  constructor(private apollo: BackendServiceService, private route: Router, private filter: FlightFilterService) {
   }
   
   ngOnInit() {
@@ -63,6 +65,10 @@ export class PesawatWidget implements OnInit {
   }
 
   kik(){
+    this.filter.cityFrom = this.selectedCity1
+    this.filter.cityGo = this.selectedCity2
+    this.filter.dateGo = this.date1
+    this.filter.passenger = this.selectedTamu
     if(this.route.url != "/pesawat")
     this.route.navigate(["/pesawat"]);
   }

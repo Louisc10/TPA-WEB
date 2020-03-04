@@ -5,7 +5,7 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -97,6 +97,7 @@ import { HomeChatroomComponent } from './components/other/chatting/home-chatroom
 import { ShowCityComponent } from './components/hiburan/show-city/show-city.component';
 import { BestComponent } from './components/hiburan/recomended/best/best.component';
 import { HotelRecommendedComponent } from './components/home/hotel-recommended/hotel-recommended.component';
+import { FlightFilterComponent } from './components/searchFilter/flight-filter/flight-filter.component';
 
 @NgModule({
   declarations: [
@@ -180,6 +181,7 @@ import { HotelRecommendedComponent } from './components/home/hotel-recommended/h
     ShowCityComponent,
     BestComponent,
     HotelRecommendedComponent,
+    FlightFilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -201,7 +203,8 @@ import { HotelRecommendedComponent } from './components/home/hotel-recommended/h
     ShareButtonsModule,
     ShareButtonModule,
     ShareModule,
-    ],
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -231,5 +234,5 @@ import { HotelRecommendedComponent } from './components/home/hotel-recommended/h
   ]
 })
 export class AppModule { }
- 
+
 platformBrowserDynamic().bootstrapModule(AppModule);
