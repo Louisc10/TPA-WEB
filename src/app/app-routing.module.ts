@@ -27,6 +27,7 @@ import { BlogHomeComponent } from './components/blog/blog-home/blog-home.compone
 import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.component';
 import { ChattingComponent } from './components/other/chatting/chatting.component';
 import { FileUploadComponent } from './components/other/file-upload/file-upload.component';
+import { HotelItemComponent } from './components/searchItem/hotel-item/hotel-item.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'pesawat', component: PesawatComponent },
   { path: 'hotel', component: HotelComponent },
+  { path: 'hotel/detail/:id', component: HotelItemComponent },
   { path: 'keretaapi', component: KeretaApiComponent },
   { path: 'sewamobil', component: SewaMobilComponent },
   { path: 'hiburan', component: HiburanComponent },

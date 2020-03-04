@@ -500,6 +500,44 @@ export class BackendServiceService {
     )
   }
 
+  getHotel(id: number): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+        query($id: Int!){
+          getHotelById(id: $id){
+            id
+            name
+            image
+            rating
+            price
+            review
+            tipe
+            jaringanHotel
+            resepsionis
+            ac
+            lift
+            tempatParkir
+            restorant
+            spa
+            kolamRenang
+            wifi
+            freeLunch
+            location
+            address
+            information
+            longitude
+            latitude
+          }
+        }
+        `,
+        variables: {
+          "id": id
+        }
+      }
+    )
+  }
+
   createHotel(item: Hotel): Observable<any> {
     return this.apollo.mutate<any>(
       {

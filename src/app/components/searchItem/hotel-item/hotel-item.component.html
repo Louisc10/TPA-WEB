@@ -1,0 +1,34 @@
+<div>
+    <button (click)="closeDetail()">Home > Hotel > {{hotel.name}} </button>
+
+</div>
+
+<div style="display: flex; flex-wrap: wrap ; justify-content: center; align-items: center;">
+    <div style="width: 100%; height: 200px; display: flex; justify-content: center; align-items: center;">
+        <img src="{{hotel.image}}" alt="{{hotel.title}}" style="height: 100%; ">
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center; margin: 10px;">
+        <div>
+            <h1>{{hotel.name}}</h1>
+        </div>
+        <div>
+            Code: {{hotel.code}}
+        </div>
+        <div>
+            Platform: {{hotel.platform}}
+        </div>
+    </div>
+    <div style="padding: 20px;">
+        <p>{{hotel.detail}}</p>
+    </div>
+</div>
+
+<div style="margin: 50px;">
+    <app-share-button></app-share-button>
+</div>
+
+
+<app-footer></app-footer>
+
+<!-- name rating failities address -->

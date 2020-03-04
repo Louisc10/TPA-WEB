@@ -98,6 +98,7 @@ import { ShowCityComponent } from './components/hiburan/show-city/show-city.comp
 import { BestComponent } from './components/hiburan/recomended/best/best.component';
 import { HotelRecommendedComponent } from './components/home/hotel-recommended/hotel-recommended.component';
 import { FlightFilterComponent } from './components/searchFilter/flight-filter/flight-filter.component';
+import { HotelItemComponent } from './components/searchItem/hotel-item/hotel-item.component';
 
 @NgModule({
   declarations: [
@@ -182,6 +183,7 @@ import { FlightFilterComponent } from './components/searchFilter/flight-filter/f
     BestComponent,
     HotelRecommendedComponent,
     FlightFilterComponent,
+    HotelItemComponent,
   ],
   imports: [
     BrowserModule,
