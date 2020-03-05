@@ -41,19 +41,79 @@ export class HotelItemComponent implements OnInit {
   closeDetail(){
     this.route.navigate(['hotel'])
   }
-  
-  initMap() {
-    this.map = L.map('map').setView([this.item.latitude, this.item.longitude], 13);
+  getFacilities(){
+    var s:string =""
 
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      minZoom: 3,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
-
-    L.marker([this.item.latitude, this.item.longitude]).addTo(this.map).openPopup();
+    if(this.hotel.resepsionis == "Yes"){
+      s = s + "Resepsionis"
+    }
+    if(this.hotel.ac == "Yes"){
+      if(s != ""){
+        s = s + ", "
+      }
+      s = s + "AC"
+    }
+    if(this.hotel.lift == "Yes"){
+      if(s != ""){
+        s = s + ", "
+      }
+      s = s + "Lift"
+    }
+    if(this.hotel.tempatParkir == "Yes"){
+      if(s != ""){
+        s = s + ", "
+      }
+      s = s + "Tempat Parkir"
+    }
+    if(this.hotel.restorant == "Yes"){
+      if(s != ""){
+        s = s + ", "
+      }
+      s = s + "Restorant"
+    }
+    if(this.hotel.ac == "Yes"){
+      if(s != ""){
+        s = s + ", "
+      }
+      s = s + "AC"
+    }
+    if(this.hotel.ac == "Yes"){
+      if(s != ""){
+        s = s + ", "
+      }
+      s = s + "AC"
+    }
+    if(this.hotel.ac == "Yes"){
+      if(s != ""){
+        s = s + ", "
+      }
+      s = s + "AC"
+    }
+    if(this.hotel.ac == "Yes"){
+      if(s != ""){
+        s = s + ", "
+      }
+      s = s + "AC"
+    }
+    if(this.hotel.ac == "Yes"){
+      if(s != ""){
+        s = s + ", "
+      }
+      s = s + "AC"
+    }
   }
+  // initMap() {
+  //   this.map = L.map('map').setView([this.item.latitude, this.item.longitude], 13);
+
+
+  //   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //     maxZoom: 18,
+  //     minZoom: 3,
+  //     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  //   }).addTo(this.map);
+
+  //   L.marker([this.item.latitude, this.item.longitude]).addTo(this.map).openPopup();
+  // }
 
 
 }

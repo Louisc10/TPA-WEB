@@ -12,11 +12,13 @@
         <div>
             <h1>{{hotel.name}}</h1>
         </div>
-        <div>
-            Code: {{hotel.code}}
+        <div *ngFor="let w of x; let i=index">
+            <div *ngIf="i < hotel.rating">
+                <span class="fa fa-star checked"></span>
+            </div>
         </div>
         <div>
-            Platform: {{hotel.platform}}
+            Facilities: {{getFacilities()}}
         </div>
     </div>
     <div style="padding: 20px;">
