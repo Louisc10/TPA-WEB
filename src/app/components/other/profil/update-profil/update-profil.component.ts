@@ -27,7 +27,7 @@ export class UpdateProfilComponent implements OnInit {
     Validators.minLength(10),
     Validators.maxLength(12)
   ]);
-
+  subscribe: boolean = false
   uz: Admin = new Admin()
   account;
   constructor(private authService: AuthService, private user: UserCacheService,
@@ -60,6 +60,15 @@ export class UpdateProfilComponent implements OnInit {
   }
 
   update() {
+    if(this.subscribe){
+      this.apolo.createSubscription(this.uz.Email).subscribe(
+        async Query => {
+          this.account = Query.data.createSubscription
+          alert("Success Subscribe")
+        }
+      )
+    }
+
     // this.xx.init(this.uz.PhoneNumber)
     // console.log(this.xx.getCheck())
     this.apolo.updateAdmin(this.uz).subscribe(

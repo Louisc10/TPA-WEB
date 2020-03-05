@@ -1,6 +1,6 @@
 export class Chat {
     id: number
-    sender: number
-    recv: number
+    sender: string
+    recv: string
     content: string
 }

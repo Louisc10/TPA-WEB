@@ -28,6 +28,7 @@ import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.c
 import { ChattingComponent } from './components/other/chatting/chatting.component';
 import { FileUploadComponent } from './components/other/file-upload/file-upload.component';
 import { HotelItemComponent } from './components/searchItem/hotel-item/hotel-item.component';
+import { HomeChatroomComponent } from './components/other/chatting/home-chatroom/home-chatroom.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
@@ -50,7 +51,8 @@ const routes: Routes = [
   { path: 'texteditor', component: TextEditorComponent },
   { path: 'ticketOrder', component: EventOrderComponent },
   { path: 'ticketOrder/bayar', component: EventBayarComponent },
-  { path: 'chat', component: ChattingComponent },
+  { path: 'chat', component: HomeChatroomComponent },
+  { path: 'chat/:id', component: ChattingComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'payment/bayar', component: BayarComponent },
   { path: 'payment/bayar/success', component: SuccessComponent },

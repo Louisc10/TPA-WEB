@@ -1231,19 +1231,22 @@ export class BackendServiceService {
   }
 
   //Chat
-  getAllChat(): Observable<Query> {
+  getAllChat(id: number): Observable<Query> {
     return this.apollo.query<Query>(
       {
         query: gql`
-        {
-          getAllChat{
+        query getAllChat($id:Int!){
+          getAllChat(id:$id){
             content
             id
             recv
             sender
           }
         }
-        `
+        `,
+        variables:{
+          "id": id
+        }
       }
     )
   }
@@ -1268,8 +1271,6 @@ export class BackendServiceService {
     )
   }
 
-
-
   createChat(item: Chat): Observable<any> {
     return this.apollo.mutate<any>(
       {
@@ -1277,12 +1278,10 @@ export class BackendServiceService {
         mutation createChat(
           $sender: String!
           $recv: String!
-          $content: String!
         ){
           createChat(
             sender :$sender
             recv: $recv
-            content: $content
           ){
             id
           }

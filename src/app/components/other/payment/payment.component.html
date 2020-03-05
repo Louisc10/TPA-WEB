@@ -80,7 +80,7 @@
         </div>
         <div>
             <div>Pergi</div>
-            <div>Dewasa (x1) IDR {{price}}</div>
+            <div>Dewasa (x{{bought.quantity}}) IDR {{price * bought.quantity}}</div>
         </div>
 
         <div>
@@ -104,32 +104,35 @@
     </div>
 
 
-    <div style="border: solid 1px black; padding: 20px;">
-        <div>
-            <h1>Detail Penumpang</h1>
-        </div>
-        <div class="sp">
-            <mat-form-field class="db">
-                <mat-label>Title</mat-label>
-                <select matNativeControl>
-                    <option value="mr.">Mr.</option>
-                    <option value="mrs.">Mrs.</option>
-                </select>
-            </mat-form-field>
-        </div>
+    <div style="border: solid 1px black; padding: 20px;" *ngFor="let x of asd; let i=index">
+        <div *ngIf="i < bought.quantity">
+            <div>
+                <h1>Detail Penumpang</h1>
+            </div>
+            <div class="sp">
+                <mat-form-field class="db">
+                    <mat-label>Title</mat-label>
+                    <select matNativeControl>
+                        <option value="mr.">Mr.</option>
+                        <option value="mrs.">Mrs.</option>
+                    </select>
+                </mat-form-field>
+            </div>
 
-        <div>
-            <mat-form-field class="example-full-width">
-                <mat-label>Nama Lengkap</mat-label>
-                <input matInput [(ngModel)]="passegerName">
-            </mat-form-field>
-        </div>
+            <div>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nama Lengkap</mat-label>
+                    <input matInput [(ngModel)]="passegerName">
+                </mat-form-field>
+            </div>
 
-        <div class="sp">
-            <mat-form-field class="example-full-width">
-                <mat-label>Nomor KTP/SIM/Lainnya</mat-label>
-                <input matInput [(ngModel)]="passengerId">
-            </mat-form-field>
+            <div class="sp">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nomor KTP/SIM/Lainnya</mat-label>
+                    <input matInput [(ngModel)]="passengerId">
+                </mat-form-field>
+            </div>
+
         </div>
 
 
@@ -139,8 +142,7 @@
         <button mat-button (click)="val()">Lanjutkan</button>
     </div>
 </div>
-<div [ngStyle]="{'z-index': show? 10: -10}" style="position: relative; display: flex; align-items: center; justify-content: center;">
+<div [ngStyle]="{'z-index': show? 10: -10}"
+    style="position: relative; display: flex; align-items: center; justify-content: center;">
     <mat-spinner [ngStyle]="{'display': show? 'block': 'none'}"></mat-spinner>
 </div>
-
-

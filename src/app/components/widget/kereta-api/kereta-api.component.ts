@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { City } from '../hotel/hotel.component';
 import { Router } from '@angular/router';
+import { BoughtService } from 'src/app/service/bought.service';
 
 @Component({
   selector: 'widget-kereta-api',
@@ -11,6 +12,8 @@ import { Router } from '@angular/router';
 export class KeretaApiWidget implements OnInit {
   date1;
   date2;
+  selectedTamu
+  selectedRoom
   selectedCity1: string = "";
   selectedCity2: string = "";
 
@@ -21,7 +24,7 @@ export class KeretaApiWidget implements OnInit {
 
 
   constructor(private apollo: BackendServiceService,
-    private route: Router) {
+    private route: Router, private bought: BoughtService) {
   }
   
   ngOnInit() {
@@ -54,6 +57,9 @@ export class KeretaApiWidget implements OnInit {
   }
 
   kik(){
+    this.bought.date_1 = this.date1
+    this.bought.quantity = this.selectedRoom + this.selectedTamu
+
     if(this.route.url != "/keretaapi")
     this.route.navigate(["/keretaapi"]);
 

@@ -1,4 +1,46 @@
-<div>
+<div class="submit-btn back" (click)="backToMain()">
+    Back To Home
+</div>
+<div class="chat-container">
+    <div class="chat-wrapper">
+        <div class="chat-data">
+            <div *ngFor="let c of chats;let i = index">
+                <div class="data" *ngIf="checkUserId(i)" style="justify-content: flex-start;">
+                    <div class="chat-bubble" style="width: 35%;">
+                        <div *ngIf="checkContentIsImage(i)==''">
+                            {{c.content}}
+                        </div>
+                        <div *ngIf="checkContentIsImage(i)!=''">
+                            <img src="assets/chat/{{checkContentIsImage(i)}}" class="chat-img" (click)="openImage(checkContentIsImage(i))">
+                            <a href="http://localhost:4200/assets/chat/{{checkContentIsImage(i)}}" download="" style="text-decoration: none;">Download</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="data" *ngIf="!checkUserId(i)" style="justify-content: flex-end;">
+                    <div class="chat-bubble" style="width: 35%;">
+                        <div *ngIf="checkContentIsImage(i)==''">
+                            {{c.content}}
+                        </div>
+                        <div *ngIf="checkContentIsImage(i)!=''">
+                            <img src="assets/chat/{{checkContentIsImage(i)}}" class="chat-img" (click)="openImage(checkContentIsImage(i))">
+                            <a href="http://localhost:4200/assets/chat/{{checkContentIsImage(i)}}" download="" style="text-decoration: none;">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="bottom">
+            <input type="text" [formControl]="messageControl" (keyup)="c()">
+            <input type="file" #fileInput (change)="onFileChanged($event)" style="display: none;">
+            <div class="submit-btn" (click)="fileInput.click()">Image</div>
+            <button *ngIf="aMessage" (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- <div>
     <p *ngFor="let message of messageLists">{{ message }}</p>
 </div>
 <div>
@@ -16,4 +58,4 @@
     </div>
     <a href="{{image}}" download>Download</a>
 
-</div>
+</div> -->

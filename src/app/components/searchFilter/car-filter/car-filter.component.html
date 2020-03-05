@@ -10,9 +10,9 @@
                 <mat-label>Min</mat-label>
                 <input matInput type="number" [(ngModel)]="this.data.value" disabled>
             </mat-form-field>
-            <mat-slider (input)="changeSlider($event)" class="example-margin" [disabled]="disabled" [invert]="invert"
-                [max]="this.data.value1" [min]="this.data.min" [step]="this.data.step" [thumbLabel]="thumbLabel"
-                [tickInterval]="getSliderTickInterval()" [(ngModel)]="this.data.value" [vertical]="vertical">
+            <mat-slider (input)="changeSlider($event)" class="example-margin" 
+                [max]="this.data.value1" [min]="this.data.min"
+                [(ngModel)]="this.data.value" [vertical]="vertical">
             </mat-slider>
         </div>
         <div>
