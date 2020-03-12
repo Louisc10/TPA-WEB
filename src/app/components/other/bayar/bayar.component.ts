@@ -5,6 +5,13 @@ import { Router } from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { async } from '@angular/core/testing';
 
+export class Bank{
+  id: number
+  name: string
+  desc: string
+  image: string
+}
+
 @Component({
   selector: 'app-bayar',
   templateUrl: './bayar.component.html',
@@ -20,6 +27,8 @@ export class BayarComponent implements OnInit {
   private users;
   private account;
   private email: string
+
+  banks: Bank[] = []
   constructor(
     private apolo: BackendServiceService,
     private bought: BoughtService,
@@ -37,6 +46,11 @@ export class BayarComponent implements OnInit {
       async Query => {
         this.account = Query.data.getAdmin
         await this.x()
+      }
+    )
+    this.apolo.getAllBank().subscribe(
+      async Query => {
+        this.banks = Query.data.getAllBank
       }
     )
     var a = setInterval(() => {

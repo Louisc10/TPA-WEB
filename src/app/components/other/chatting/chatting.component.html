@@ -32,9 +32,9 @@
         <br>
         <br>
         <div class="bottom">
-            <input type="text" [formControl]="messageControl" (keyup)="c()">
             <input type="file" #fileInput (change)="onFileChanged($event)" style="display: none;">
             <div class="submit-btn" (click)="fileInput.click()">Image</div>
+            <input type="text" [formControl]="messageControl" (keyup)="c()">
             <button *ngIf="aMessage" (click)="sendMessage()">Send</button>
         </div>
     </div>

@@ -18,6 +18,26 @@ export class CarFilterComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  value: number = 0
+  value1: number = 2000000
+  less5: boolean = false
+  or6: boolean = false
+  more6: boolean = false
+
+  toyota: boolean = false
+  daihatsu: boolean = false
+  wuling: boolean = false
+  suzuki: boolean = false
+  nissan: boolean = false
+
+  apv: boolean = false
+  agya: boolean = false
+  all_new_alphard: boolean = false
+  all_new_avanza: boolean = false
+  grand_livina: boolean = false
+
+
   // autoTicks = this.data.autoTicks;
   // disabled = this.data.disabled;
   // invert = this.data.invert;
@@ -89,10 +109,10 @@ export class CarFilterComponent implements OnInit {
     this.data.max = 2000000;
     this.data.min = 0;
     this.data.showTicks = false;
-    this.data.step = 100000;
+    this.data.step = 50000;
     this.data.thumbLabel = false;
     this.data.value = 0;
-    this.data.value1 = 100000000;
+    this.data.value1 = 2000000;
     this.data.vertical = false;
     this.data.tickInterval = 1;
 
@@ -104,6 +124,18 @@ export class CarFilterComponent implements OnInit {
     this.data.events = false;
 
     this.data.penawaran = false;
+
+    this.data.less5 = false
+    this.data.or6 = false
+    this.data.more6 = false
+    this.data.toyota = false
+    this.data.daihatsu = false
+    this.data.wuling = false
+    this.data.suzuki = false
+    this.data.nisasan = false
+    this.data.apv = false
+    this.data.agya = false
+    this.data.all_new_alphard = false
 
   }
 }

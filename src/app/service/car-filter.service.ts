@@ -7,17 +7,17 @@ export class CarFilterService {
 
   constructor() { }
 
-  
+
   autoTicks = false;
   disabled = false;
   invert = false;
-  max = 100000000;
+  max = 2000000;
   min = 0;
   showTicks = false;
-  step = 100000;
+  step = 50000;
   thumbLabel = false;
   value = 0;
-  value1 = 100000000;
+  value1 = 2000000;
   vertical = false;
   tickInterval = 1;
 
@@ -29,4 +29,18 @@ export class CarFilterService {
   events = false;
 
   penawaran = false;
+
+  less5 = false
+  or6 = false
+  more6 = false
+  toyota = false
+  daihatsu = false
+  wuling = false
+  suzuki = false
+  nisasan = false
+  apv = false
+  agya = false
+  all_new_alphard = false
+  all_new_avanza = false
+
 }

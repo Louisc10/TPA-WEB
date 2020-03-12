@@ -99,8 +99,6 @@ import { BestComponent } from './components/hiburan/recomended/best/best.compone
 import { HotelRecommendedComponent } from './components/home/hotel-recommended/hotel-recommended.component';
 import { FlightFilterComponent } from './components/searchFilter/flight-filter/flight-filter.component';
 import { HotelItemComponent } from './components/searchItem/hotel-item/hotel-item.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [

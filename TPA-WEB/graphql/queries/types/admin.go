@@ -24,6 +24,18 @@ func GetAdminType() *graphql.Object {
 				"password": &graphql.Field{
 					Type: graphql.String,
 				},
+				"language": &graphql.Field{
+					Type: graphql.String,
+				},
+				"currency": &graphql.Field{
+					Type: graphql.String,
+				},
+				"gender": &graphql.Field{
+					Type: graphql.String,
+				},
+				"city": &graphql.Field{
+					Type: graphql.String,
+				},
 			},
 		})
 	}

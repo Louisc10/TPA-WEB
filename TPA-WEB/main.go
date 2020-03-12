@@ -31,5 +31,8 @@ func main() {
 
 	m := middleware.Cors(h)
 	fmt.Print("Server running..")
-	log.Fatal(http.ListenAndServe(":8088", m))
+
+	token := "Test"
+	http.Handle("/"+token+"/api", m)
+	log.Fatal(http.ListenAndServe(":8088", nil))
 }

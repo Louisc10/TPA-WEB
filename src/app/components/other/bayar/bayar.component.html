@@ -29,7 +29,7 @@
     </div>
     <div>
         <div>Pergi</div>
-        <div>Dewasa (x1) IDR {{price}}</div>
+        <div>Dewasa (x{{bought.quantity}}) IDR {{bought.quantity * price}}</div>
     </div>
 
     <div>
@@ -37,7 +37,7 @@
     </div>
     <div>
         <div>Pajak Termasuk</div>
-        <div>Total Pembayaran IDR {{price}}</div>
+        <div>Total Pembayaran IDR {{bought.quantity * price}}</div>
     </div>
     <div>
         <button mat-button (click)="xas = !xas">Detail</button>
@@ -54,28 +54,20 @@
 
 <div class="card payment-group white">
     <h3 class="payment-group-title">Kartu Kredit/Debit</h3>
-    <div class="payment-method-item">
-        <div class="method-type-name"><span class="f1">Kartu Kredit</span>
-            <div class="method-type-logo">
-                <div class="logo-item" (click)="payment()"><img
-                        src="https://www.tiket.com/images/apps_payment/logo/visa-logo.png" class="tix-ui-fadeIn"></div>
-                <div class="logo-item" (click)="payment()"><img
-                        src="https://www.tiket.com/images/apps_payment/logo/mastercard-logo.png" class="tix-ui-fadeIn">
-                </div>
-                <div class="logo-item" (click)="payment()"><img
-                        src="https://www.tiket.com/images/apps_payment/logo/amex-logo.png" class="tix-ui-fadeIn"></div>
-                <div class="logo-item" (click)="payment()"><img
-                        src="https://www.tiket.com/images/apps_payment/logo/jcb-logo.png" class="tix-ui-fadeIn"></div>
-            </div><i class="tix tixicon tixicon-right"></i>
+    <div *ngFor="let item of banks">
+        <div style="width: 100px; height: 75px;" (click)="payment()">
+            <img src="item.image" width="100%" height="100%">
+        </div>
+        <div>
+            <h3>
+                {{item.name}}
+            </h3>
+        </div>
+        <div>
+            <h6>
+                {{item.desc}}
+            </h6>
         </div>
     </div>
-    <div class="payment-method-item">
-        <div class="method-type-name"><span class="f1">Kartu Debit</span>
-            <div class="method-type-logo">
-                <div class="logo-item" (click)="payment()"><img
-                        src="https://www.tiket.com/images/apps_payment/logo/debit-online-logo.png"
-                        class="tix-ui-fadeIn"></div>
-            </div><i class="tix tixicon tixicon-right"></i>
-        </div>
-    </div>
+
 </div>

@@ -16,6 +16,10 @@ type Admin struct {
 	BackName    string     `gorm:"type:varchar(100);not null"`
 	PhoneNumber string     `gorm:"type:varchar(100);not null"`
 	Password    string     `gorm:"type:varchar(100);not null"`
+	Language    string     `gorm:"type:varchar(5);not null"`
+	Currency    string     `gorm:"type:varchar(5);not null"`
+	Gender      string     `gorm:"type:varchar(100);not null"`
+	City        string     `gorm:"type:varchar(100);not null"`
 }
 
 var db *gorm.DB
@@ -69,13 +73,14 @@ func InsertAdmin(frontName string, backName string, email string, phonenumber st
 	}
 	defer db.Close()
 
-	admin := &Admin{FrontName: frontName, BackName: backName, Email: email, PhoneNumber: phonenumber, Password: password}
+	admin := &Admin{FrontName: frontName, BackName: backName, Email: email, PhoneNumber: phonenumber, Password: password, Language: "EN", Currency: "IDR",
+		Gender: "Mr.", City: "Jakarta"}
 	db.Save(admin)
 
 	return admin, nil
 }
 
-func UpdateAdmin(frontName string, backName string, email string, phonenumber string, password string) (*Admin, error) {
+func UpdateAdmin(frontName string, backName string, email string, phonenumber string, password string, language string, currency string, gender string, city string) (*Admin, error) {
 	db, err := connection.ConnectDatabase()
 
 	if err != nil {
@@ -84,7 +89,10 @@ func UpdateAdmin(frontName string, backName string, email string, phonenumber st
 	defer db.Close()
 
 	var admin Admin
-	db.Model(&admin).Where("Email = ?", email).Updates(map[string]interface{}{"FrontName": frontName, "BackName": backName, "PhoneNumber": phonenumber, "email": email, "password": password})
+	db.Model(&admin).Where("Email = ?", email).Updates(map[string]interface{}{
+		"Gender": gender, "City": city,
+		"FrontName": frontName, "BackName": backName, "PhoneNumber": phonenumber,
+		"email": email, "password": password, "language": language, "currency": currency})
 	//db.Where(Admin{ID: id}).Assign(Admin{Name: name, Email: email, Password: password}).FirstOrCreate(&admin)
 	db.Where("Email = ?", email).Find(&admin)
 	return &admin, nil

@@ -1,0 +1,18 @@
+ambil token di:
+https://developers.google.com/gmail/api/quickstart/go
+
+go get dulu:
+
+go get -v -u google.golang.org/api/gmail/v1 <-- api gmail nya
+go get -v -u golang.org/x/oauth2/google  <-- authentikasi oauth2 token api google
+
+
+nanti saat pertama kali login di prompt akan ngasih link, buka aja terus verifikasi.
+setelah itu akan dapat token, silahkan di paste ke prompt nya.
+
+happy use api
+
+doc api gmail 
+https://developers.google.com/gmail/api/v1/reference/users/messages/send
+https://godoc.org/google.golang.org/api/gmail/v1
+https://developers.google.com/gmail/api

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Car } from 'src/app/models/car';
 import { BackendServiceService } from 'src/app/service/backend-service.service';
 import { CarFilterService } from 'src/app/service/car-filter.service';
@@ -21,27 +21,62 @@ export class SewaMobilComponent implements OnInit {
     private apollo: BackendServiceService,
     private data: CarFilterService,
     private bought: BoughtService) { }
-  
+
 
 
   ngOnInit() {
-    this.apollo.getAllTrain().subscribe(
+    this.apollo.getAllCar().subscribe(
       async Query => {
-        this.datas = Query.data.getAllTrain
+        this.datas = Query.data.getAllCar
         await this.newlyVar();
       }
     );
 
   }
 
-  doClick() {
-    this.click = true;
+
+  array = [];
+  sum = 5;
+  scrollDistance = 0.1;
+
+  @HostListener("window:scroll", [])
+  onScrollDown(ev): void {
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+      let start = this.sum;
+      this.sum += 5;
+      if (this.sum > this.list.length)
+        this.sum = this.list.length
+
+      this.appendItems(start, this.sum);
+    }
   }
 
-  newlyVar() {
-    this.list = this.datas;
-    console.table(this.list)
-    
+  appendItems(startIndex, endIndex) {
+    for (let i = startIndex; i < this.sum; ++i) {
+      this.array = [...this.array, ...[this.list[i]]];
+    }
+  }
+
+
+
+  changeUrutkan(x) {
+    this.urutkan = x
+    if (x == "Harga Terendah") {
+      this.cheapToExpensive()
+    }
+    else if (x == "Harga Tertinggi") {
+      this.expensiveToCheap()
+    }
+    else {
+    }
+
+    this.array = []
+    this.sum = 5
+    this.appendItems(0, this.sum)
+  }
+
+  doClick() {
+    this.click = true;
   }
 
   msg = [""]
@@ -50,7 +85,7 @@ export class SewaMobilComponent implements OnInit {
     this.item = item
     console.log(item)
     this.bought.train = item
-    
+
   }
 
   closeDetail() {
@@ -59,85 +94,112 @@ export class SewaMobilComponent implements OnInit {
 
   }
 
-  test(item) {
-    var date = new Date(item)
-    return ((date.getHours() < 10 ? "0" : "") + date.getHours() + ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes())
+  newlyVar() {
+    this.list = this.datas;
+    console.table(this.list)
+    this.doFilter()
   }
 
-  dif(item) {
-    var date = new Date(item.timeGo)
-    var date1 = new Date(item.timeArrive)
+  doFilter() {
+    this.list = this.datas
 
-    var day = date1.getDay() - date.getDay()
-    var hour = date1.getHours() - date.getHours()
-    var min = date1.getMinutes() - date.getMinutes()
-
-    if (min < 0) {
-      hour--
-      min += 60
+    this.list[i]
+    if (this.data.less5 || this.data.or6 || this.data.more6) {
+      var temp = []
+      if (this.data.less5) {
+        for (var i = 0; i < this.list.length; i++) {
+          if (this.list[i].capacity < 5) {
+            temp.push(this.list[i])
+          }
+        }
+      }
+      if (this.data.or6) {
+        for (var i = 0; i < this.list.length; i++) {
+          if (this.list[i].capacity == 5 || this.list[i].capacity == 6) {
+            temp.push(this.list[i])
+          }
+        }
+      }
+      if (this.data.more6) {
+        for (var i = 0; i < this.list.length; i++) {
+          if (this.list[i].capacity > 6) {
+            temp.push(this.list[i])
+          }
+        }
+      }
+      this.list = temp
     }
-    if (hour < 0) {
-      hour += 24
-      day--
-    }
-    return (hour > 0 ? hour + "j " : "") + (min > 0 ? (hour > 0 ? " + " : "") + min + "m" : "") + (day > 0 ? (hour > 0 || min > 0 ? " + " : "") + day + "D" : "")
-  }
-  gDuration(item) {
-    var date = new Date(item.timeGo)
-    var date1 = new Date(item.timeArrive)
 
-    var day = date1.getDay() - date.getDay()
-    var hour = date1.getHours() - date.getHours()
-    var min = date1.getMinutes() - date.getMinutes()
-    return (hour * 60) + min + (day * 24 * 60)
-  }
-
-  gT(item) {
-    var date = new Date(item)
-    return (date.getHours() * 60) + date.getMinutes() + (date.getDay() * 24 * 60)
-  }
-
-  gDate(item) {
-    var date = new Date(item)
-    return (date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear())
-  }
-  timeCount(text, con) {
-    var temp;
-    if (con == 1) {
+    if (this.data.toyota || this.data.daihatsu || this.data.wuling || this.data.suzuki || this.data.nisasan) {
+      var re1 = /toyota/gi
+      var re2 = /daihatsu/gi
+      var re3 = /wuling/gi
+      var re4 = /suzuki/gi
+      var re5 = /nisan/gi
+      var temp = []
       for (var i = 0; i < this.list.length; i++) {
-        for (var j = this.list.length - 1; j > i; j--) {
-          if (this.gT(this.list[j][text]) < this.gT(this.list[j - 1][text])) {
-            temp = this.list[j];
-            this.list[j] = this.list[j - 1]
-            this.list[j - 1] = temp
+        if (this.data.toyota) {
+          if (this.list[i].name.search(re1) != -1) {
+            temp.push(this.list[i])
+          }
+        }
+        if (this.data.daihatsu) {
+          if (this.list[i].name.search(re2) != -1) {
+            temp.push(this.list[i])
+          }
+        }
+        if (this.data.wuling) {
+          if (this.list[i].name.search(re3) != -1) {
+            temp.push(this.list[i])
+          }
+        }
+        if (this.data.suzuki) {
+          if (this.list[i].name.search(re4) != -1) {
+            temp.push(this.list[i])
+          }
+        }
+        if (this.data.nisasan) {
+          if (this.list[i].name.search(re5) != -1) {
+            temp.push(this.list[i])
           }
         }
       }
 
+      this.list = temp
     }
-    else {
+
+    if (this.data.apv || this.data.agya || this.data.all_new_alphard || this.data.all_new_avanza) {
+      var re1 = /apv/gi
+      var re2 = /agya/gi
+      var re3 = /all new alphard/gi
+      var re4 = /all new avanza/gi
+      var temp = []
       for (var i = 0; i < this.list.length; i++) {
-        for (var j = this.list.length - 1; j > i; j--) {
-          if (this.gT(this.list[j][text]) > this.gT(this.list[j - 1][text])) {
-            temp = this.list[j];
-            this.list[j] = this.list[j - 1]
-            this.list[j - 1] = temp
+        if (this.data.apv) {
+          if (this.list[i].name.search(re1) != -1) {
+            temp.push(this.list[i])
+          }
+        }
+        if (this.data.agya) {
+          if (this.list[i].name.search(re2) != -1) {
+            temp.push(this.list[i])
+          }
+        }
+        if (this.data.all_new_alphard) {
+          if (this.list[i].name.search(re3) != -1) {
+            temp.push(this.list[i])
+          }
+        }
+        if (this.data.all_new_avanza) {
+          if (this.list[i].name.search(re4) != -1) {
+            temp.push(this.list[i])
           }
         }
       }
+
+      this.list = temp
     }
-  }
-  duration() {
-    var temp;
-    for (var i = 0; i < this.list.length; i++) {
-      for (var j = this.list.length - 1; j > i; j--) {
-        if (this.gDuration(this.list[j]) < this.gDuration(this.list[j - 1])) {
-          temp = this.list[j];
-          this.list[j] = this.list[j - 1]
-          this.list[j - 1] = temp
-        }
-      }
-    }
+    this.changeUrutkan(this.urutkan);
   }
 
   cheapToExpensive() {
@@ -152,5 +214,25 @@ export class SewaMobilComponent implements OnInit {
       }
     }
   }
+  expensiveToCheap() {
+    var temp;
+    for (var i = 0; i < this.list.length; i++) {
+      for (var j = this.list.length - 1; j > i; j--) {
+        if (this.list[j]["price"] > this.list[j - 1]["price"]) {
+          temp = this.list[j];
+          this.list[j] = this.list[j - 1]
+          this.list[j - 1] = temp
+        }
+      }
+    }
+  }
+  openTransit(item: Car) {
+    if (this.msg[item.id] == "") {
+      this.msg[item.id] = "Capacity: " + item.capacity + ", Bagasi: " + item.bagasi
+    }
+    else {
+      this.msg[item.id] = ""
+    }
 
+  }
 }

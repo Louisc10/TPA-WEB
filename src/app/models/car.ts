@@ -1,4 +1,5 @@
 export class Car {
+    id:number
     name: String
     capacity: number
     bagasi: number

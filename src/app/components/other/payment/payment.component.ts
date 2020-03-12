@@ -15,6 +15,7 @@ export class PaymentComponent implements OnInit {
 
   con1: boolean = false
   con2: boolean = false
+  asd = [1,2,3,4,5,6,7,8,9,0,1,2,3,4,5]
   
   private users;
   private account;

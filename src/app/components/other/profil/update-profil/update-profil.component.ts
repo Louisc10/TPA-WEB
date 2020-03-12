@@ -60,7 +60,7 @@ export class UpdateProfilComponent implements OnInit {
   }
 
   update() {
-    if(this.subscribe){
+    if (this.subscribe) {
       this.apolo.createSubscription(this.uz.Email).subscribe(
         async Query => {
           this.account = Query.data.createSubscription
@@ -69,14 +69,21 @@ export class UpdateProfilComponent implements OnInit {
       )
     }
 
-    // this.xx.init(this.uz.PhoneNumber)
-    // console.log(this.xx.getCheck())
-    this.apolo.updateAdmin(this.uz).subscribe(
-      async Query => {
-        this.account = Query.data.updateAdmin
-        await this.dialogRef.close()
-        await location.reload()
-      }
-    )
+    let zz = this.xx.validate(this.account[0].phonenumber)
+    if (zz["validate"] == false || zz["validate"] == "false") {
+      alert("Not Valid Phone Number")
+    }
+    else {
+      // this.xx.init(this.uz.PhoneNumber)
+      // console.log(this.xx.getCheck())
+      this.apolo.updateAdmin(this.uz).subscribe(
+        async Query => {
+          this.account = Query.data.updateAdmin
+          await this.dialogRef.close()
+          await location.reload()
+        }
+      )
+
+    }
   }
 }

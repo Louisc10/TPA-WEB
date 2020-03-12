@@ -22,6 +22,25 @@ export class BackendServiceService {
 
   constructor(private apollo: Apollo) { }
 
+  //BANK
+  getAllBank(): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+        {
+          getAllBank{
+            id
+            image
+            name
+            desc
+          }
+        }
+        
+        `
+      }
+    )
+  }
+
   //ADMIN
   getAdmin(email: String): Observable<Query> {
     return this.apollo.query<Query>(
@@ -120,6 +139,8 @@ export class BackendServiceService {
               password: $password
               language: $language
               currency: $currency
+              city: 'Jakarta'
+              gender: 'Mr.'
               ){
               email
             }
@@ -1316,6 +1337,27 @@ export class BackendServiceService {
         variables: {
           "id": item.id,
           "content": item.content,
+        }
+      }
+    )
+  }
+
+  //Bought Event
+  getBoughtEvent(email: string): Observable<Query> {
+    return this.apollo.query<Query>(
+      {
+        query: gql`
+        query getBoughtEvent($email:String!){
+          getBoughtEvent(email: $email){
+            id
+            eventid
+            datetime
+            quantity
+          }
+        }        
+        `,
+        variables:{
+          "email": email
         }
       }
     )
